@@ -40,9 +40,9 @@ jobs:
       - name: validate required form entries and user auth
         id: validate
         run: |
-          echo "FORM=$(python .github/scripts/verify.py form \
+          echo "FORM=$(python .github/scripts/validation.py form \
             --op=${{ steps.issue-labels.outputs.result }})" >> $GITHUB_OUTPUT
-          echo "AUTH=$(python .github/scripts/verify.py auth \
+          echo "AUTH=$(python .github/scripts/validation.py auth \
             --instance=${{ steps.issue-parser.outputs.issueparser_instance }} \
             --organization=${{ steps.issue-parser.outputs.issueparser_organization }} \
             --user=${{ github.actor }})" >> $GITHUB_OUTPUT
