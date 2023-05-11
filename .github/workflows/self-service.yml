@@ -89,11 +89,13 @@ jobs:
       - name: create an organization webhook
         if: steps.issue-labels.outputs.result == 'org-webhook'
         run: |
+          active="$([[ "${{ steps.issue-parser.outputs.issueparser_active }}" == "Enable" ]] && echo true || echo false)"
+          events="$(echo "${{ steps.issue-parser.outputs.issueparser_events }}" | jq -Rc 'split(",")')"
           gh api orgs/${{ steps.issue-parser.outputs.issueparser_organization }}/hooks \
             --input - <<< '{
               "name": "web",
-              "active": 'output=$([[ "${{ steps.issue-parser.outputs.issueparser_active }}" == "Enable" ]] && echo true || echo false); echo $output',
-              "events": '$(echo "${{ steps.issue-parser.outputs.issueparser_events }}" | jq -Rc 'split(",")')',
+              "active": '$(echo $active)',
+              "events": '$(echo $events)',
               "config": {
                 "url": "${{ steps.issue-parser.outputs.issueparser_payload_url }}",
                 "content_type": "${{ steps.issue-parser.outputs.issueparser_content_type }}"
