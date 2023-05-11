@@ -8,7 +8,7 @@ body:
     id: instance
     attributes:
       label: GitHub Instance (*)
-      description: The instance of Github you're targeting. 
+      description: The instance of Github you are targeting. 
       options:
         - COM
         - EMU
