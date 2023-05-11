@@ -185,4 +185,4 @@ body:
   - type: markdown
       attributes:
         value: |
-          current_version: v2.0.1  
+          #### current_version: v2.0.1  
