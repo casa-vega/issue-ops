@@ -1,0 +1,93 @@
+name: deploy to paas
+description: deploys your project the amex way
+title: "[deploy-saas] deploy to paas environment"
+labels:
+  - deploy-to-saas
+body:
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Update Project and Service, required
+
+  - type: input
+    id: project
+    attributes:
+      label: Project (*)
+      description: the project of the PaaS platform
+      placeholder: ex. example-project
+
+  - type: input
+    id: service
+    attributes:
+      label: Service (*)
+      description: the service of the project in PaaS
+      placeholder: ex. example-project
+
+  - type: markdown
+    attributes:
+      value: |
+        ## PaaS Configuration, optional
+
+  - type: markdown
+    attributes:
+      value: |
+        ### Platform
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: platform (*)
+      description: The instance of Github you are targeting. 
+      options:
+        - hydra
+        - other
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Standard Change Template Configuration
+
+  - type: checkboxes
+    id: std_change
+    attributes:
+      label: standard change
+      description: Should a standard change template be used to enable auto-RFC creation.  
+      options:
+        - label: Enable
+
+  - type: input
+    id: chg_name
+    attributes:
+      label: change name
+      description: The name of the change template
+      placeholder: ex. Name_of_std_change
+
+  - type: input
+    id: chg_ci
+    attributes:
+      label: change ci
+      description: The Change Templates Configuration Item (CI)
+      placeholder: ex. Name_of_std_change
+
+  - type: input
+    id: chg_group
+    attributes:
+      label: change group
+      description: The Change Templates Assignment Group
+      placeholder: ex. Chg_group_name
+
+  - type: input
+    id: chg_email
+    attributes:
+      label: change email
+      description: An email address that is a member of the Assignment Group for this change template
+      placeholder: ex. email.addr@aexp.com
+
+  - type: checkboxes
+    id: manually_validate_ctask
+    attributes:
+      label: manually validate CTASK
+      description: If enabled, requires manual closure of CTASK, otherwise auto-close validate CTASK after implementation complete. 
+      options:
+        - label: Enable
