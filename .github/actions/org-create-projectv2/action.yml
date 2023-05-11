@@ -1,0 +1,41 @@
+name: org-create-projectv2
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  name:
+    description: "GitHub Project Name"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: create a v2 project
+      shell: bash
+      run: |
+        node_id=$(gh api /users/${{ inputs.organization }} | jq -r '.node_id')
+        query="mutation{
+          createProjectV2(
+            input: {
+              ownerId: \"$node_id\",
+              title: \"${{ inputs.name }}\",
+            }
+          ){
+            projectV2 {
+              id
+            }
+          }
+        }"
+        data=$(gh api graphql -f query="$query")
+        if [[ $? -eq 0 ]]; then
+          json_data=$(jq -nc '{ "msg": "created project v2 successfully", "status": "success" }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        else
+          json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to create organization project v2", "status": "error": $data  }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        fi
+

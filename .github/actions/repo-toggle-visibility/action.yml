@@ -1,0 +1,26 @@
+name: repo-toggle-visibility
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  repository:
+    description: "GitHub Repository"
+    required: true
+  visibility:
+    description: "GitHub Repository Visibility (private/internal)"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: toggle repository visibility
+      shell: bash
+      run: |
+        gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
+          --input - <<< '{
+            "visibility": "${{ inputs.visibility }}"
+          }'

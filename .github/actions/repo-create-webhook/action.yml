@@ -1,0 +1,47 @@
+name: repo-create-webhook
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  webhook_url:
+    description: "Webhook URL"
+    required: true
+  content_type:
+    description: "Content Type"
+    required: true
+  active:
+    description: "Activate Webhook"
+    required: true
+  events:
+    description: "Webhook Events"
+    required: true
+  hostname:
+    description: "GitHub Host"
+    required: true
+  secret:
+    description: "secret"
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: create an organization webhook
+      shell: bash
+      run: |
+        active="$([[ "${{ inputs.active }}" == "["Enable"]" ]] && echo true || echo false)"
+        gh api orgs/${{ inputs.organization }}/${{ inputs.repository }}/hooks \
+          --input - << EOF
+          {
+            "name": "web",
+            "active": $active,
+            "events": ${{ inputs.events }},
+            "config": {
+              "url": "${{ inputs.webhook_url }}",
+              "content_type": "${{ inputs.content_type }}"
+            }
+          }
+        EOF

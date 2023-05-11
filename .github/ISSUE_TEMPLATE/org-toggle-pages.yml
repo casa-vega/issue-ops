@@ -1,0 +1,21 @@
+name: "[Organization] - toggle pages"
+description: toggle organization pages
+title: "[org-pages-toggle] Toggle organization pages"
+labels:
+  - org-toggle-pages
+body:
+  - type: dropdown
+    id: instance
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you're targeting. 
+      options:
+        - COM
+        - EMU
+        - SOMA
+  - type: input
+    id: organization
+    attributes:
+      label: GitHub Organization (*)
+      description: The name of the github organization
+      placeholder: ex. github

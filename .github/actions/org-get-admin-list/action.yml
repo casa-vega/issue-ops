@@ -1,0 +1,18 @@
+name: list organization admins
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: list organization admins
+      shell: bash
+      run: |
+        owners=$(INSTANCE="$instance" ORG_NAME="$org_name" yq eval '.github_instances[] | select(.instance == env(INSTANCE)) | .organizations[] | select(.name == env(ORG_NAME)) | .owners[]' <<< "$yaml_str")
+}

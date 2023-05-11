@@ -1,0 +1,26 @@
+name: repo-update-name
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  repository:
+    description: "GitHub Repository"
+    required: true
+  name:
+    description: "GitHub Repository Name"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: update a repository name
+      shell: bash
+      run: |
+        gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
+          --input - <<< '{
+            "name": "${{ inputs.name }}"
+          }'

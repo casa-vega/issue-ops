@@ -1,0 +1,62 @@
+name: org-update-profile
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  name:
+    description: "Company Name"
+    required: false
+  email:
+    description: "Email"
+    required: false
+  description:
+    description: "Description"
+    required: false
+  url:
+    description: "URL"
+    required: false
+  location:
+    description: "Location"
+    required: false
+  blog:
+    description: "Blog URL"
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: update organization profile
+      shell: bash
+      run: |
+        input='{
+          "name": "${{ inputs.name }}",
+          "email": "${{ inputs.email }}",
+          "description": "${{ inputs.description }}",
+          "blog": "${{ inputs.blog }}",
+          "location": "${{ inputs.location }}",
+          "company": "${{ inputs.company }}"
+        }'
+
+        data=$(jq -c 'with_entries(select(.value != ""))' <<< "$input")
+        
+        echo "$data"
+
+        if [ -z "$data" ]; then
+          json_data=$(jq -nc '{ "msg": "No updated fields provided. Skipping API request.", "status": "failure"}')
+          echo "RESULT=$json_data" >> $GITHUB_ENV
+        else
+          op=$(gh api orgs/${{ inputs.organization }} \
+            --method PATCH \
+            --input - <<< "$data")
+          if [[ $? -eq 0 ]]; then
+            json_data=$(jq -nc '{ "msg": "Profile updated successfully", "status": "success" }')
+            echo -e "RESULT=$json_data" >> $GITHUB_ENV
+          else
+            json_data=$(jq -nc --arg fail "$op" '{ "msg": "Unable to update org profile", "status": "failure", "data": $fail }')
+            echo -e "RESULT=$json_data" >> $GITHUB_ENV
+          fi
+        fi

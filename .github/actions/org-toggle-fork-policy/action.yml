@@ -1,0 +1,38 @@
+name: org-toggle-fork-policy
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: toggle organization fork policy
+      shell: bash
+      run: |
+        old_op=$(gh api orgs/${{ inputs.organization }} --method GET)
+        members_can_fork_private_repositories=$(jq -r '.members_can_fork_private_repositories' <<< "$old_op")
+
+        data=$(jq -n \
+          --argjson members_can_fork_private_repositories "$members_can_fork_private_repositories" \
+          '{
+            "members_can_fork_private_repositories": $members_can_fork_private_repositories | not
+          }')
+
+        echo "$data"
+
+        op=$(gh api orgs/${{ inputs.organization }} \
+          --method PATCH \
+          --input - <<< "$data")
+        if [[ $? -eq 0 ]]; then
+          json_data=$(jq -nc '{ "msg": "Fork policy toggled successfully", "status": "success" }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        else
+          json_data=$(jq -nc --arg fail "$op" '{ "msg": "Unable to toggle fork policy", "status": "failure", "data": $fail }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        fi
+

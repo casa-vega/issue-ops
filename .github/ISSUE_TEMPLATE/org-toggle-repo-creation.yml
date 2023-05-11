@@ -1,0 +1,21 @@
+name: "[Organization] - toggle repo creation"
+description: toggle organization repo creation, allowing or disallowing users to create repos in the org
+title: "[org-repo-creation-toggle] Toggle organization repo creation"
+labels:
+  - org-toggle-repo-creation
+body:
+  - type: dropdown
+    id: instance
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you're targeting. 
+      options:
+        - COM
+        - EMU
+        - SOMA
+  - type: input
+    id: organization
+    attributes:
+      label: GitHub Organization (*)
+      description: The name of the github organization
+      placeholder: ex. github

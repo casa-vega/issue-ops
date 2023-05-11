@@ -1,0 +1,6 @@
+required_fields:
+  - instance
+  - organization
+  - webhook_url
+  - content_type
+  - events

@@ -1,0 +1,39 @@
+name: org-delete-webhook
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  webhook_url:
+    description: "Webhook URL"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Find and delete the organization webhook
+      shell: bash
+      run: |
+        webhooks=$(gh api orgs/${{ inputs.organization }}/hooks | jq '.[] | select(.config.url == "${{ inputs.webhook_url }}")')
+        count=$(echo "$webhooks" | jq -s length)
+        if [[ $count -eq 0 ]]; then
+          json_data=$(jq -nc '{ "msg": "No webhook found with the specified URL", "status": "failure" }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        elif [[ $count -eq 1 ]]; then
+          webhook_id=$(echo "$webhooks" | jq -r .id)
+          data=$(gh api orgs/${{ inputs.organization }}/hooks/$webhook_id \
+            --method DELETE)
+          if [[ $? -eq 0 ]]; then
+            json_data=$(jq -nc '{ "msg": "deleted organization variable successfully", "status": "success" }')
+            echo -e "RESULT=$json_data" >> $GITHUB_ENV
+          else
+            json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to delete organization variable", "status": "error": $data }')
+            echo -e "RESULT=$json_data" >> $GITHUB_ENV
+          fi
+        else
+          json_data=$(jq -nc --argjson error "$data" '{ "msg": "More than one webhook found with the specified URL", "status": "failure",  "error": $data }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        fi

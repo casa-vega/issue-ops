@@ -1,0 +1,38 @@
+name: org-toggle-pages
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: toggle organization pages
+      shell: bash
+      run: |
+        old_op=$(gh api orgs/${{ inputs.organization }} --method GET)
+        members_can_create_pages=$(jq -r '.members_can_create_pages' <<< "$old_op")
+
+        data=$(jq -n \
+          --argjson members_can_create_pages "$members_can_create_pages" \
+          '{
+            "members_can_create_pages": $members_can_create_pages | not
+          }')
+
+        echo "$data"
+
+        op=$(gh api orgs/${{ inputs.organization }} \
+          --method PATCH \
+          --input - <<< "$data")
+        if [[ $? -eq 0 ]]; then
+          json_data=$(jq -nc '{ "msg": "pages toggled successfully", "status": "success" }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        else
+          json_data=$(jq -nc --arg error "$op" '{ "msg": "Unable to toggle pages", "status": "failure", "error": $error }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        fi
+

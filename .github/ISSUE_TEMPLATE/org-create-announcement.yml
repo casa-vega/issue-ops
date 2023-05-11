@@ -1,0 +1,40 @@
+name: "[Organization] - set announcement banner"
+description: creates an organization announcement banner
+title: "[org-announcement] Create a new organization banner announcement"
+labels:
+  - org-create-announcement
+body:
+  - type: dropdown
+    id: instance
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you are targeting. 
+      options:
+        - COM
+        - EMU
+        - SOMA
+  - type: input
+    id: organization
+    attributes:
+      label: GitHub Organization (*)
+      description: The name of the github organization (must be exact)
+      placeholder: ex. salesforce
+  - type: input
+    id: announcement
+    attributes:
+      label: The announcement markdown (*)
+      description: What you want your announcement to say
+      placeholder: "ex. :tada: Welcome to the new org!"
+  - type: input
+    id: expires_at
+    attributes:
+      label: The expiration data of the announcement banner(*)
+      description: The date you want the announcement to expire in YYYY-MM-DD format
+      placeholder: "ex. 2026-07-17"
+  - type: checkboxes
+    id: user_dismissable
+    attributes:
+      label: Allow the user to dismiss the banner?
+      description: This allows the individual user to dismiss the banner
+      options:
+        - label: Enable

@@ -1,0 +1,38 @@
+name: org-toggle-repo-creation
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: toggle organization repo creation
+      shell: bash
+      run: |
+        old_op=$(gh api orgs/${{ inputs.organization }} --method GET)
+        members_can_create_repositories=$(jq -r '.members_can_create_repositories' <<< "$old_op")
+
+        data=$(jq -n \
+          --argjson members_can_create_repositories "$members_can_create_repositories" \
+          '{
+            "members_can_create_repositories": $members_can_create_repositories | not
+          }')
+
+        echo "$data"
+
+        op=$(gh api orgs/${{ inputs.organization }} \
+          --method PATCH \
+          --input - <<< "$data")
+        if [[ $? -eq 0 ]]; then
+          json_data=$(jq -nc '{ "msg": "repo creation toggled successfully", "status": "success" }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        else
+          json_data=$(jq -nc --arg fail "$op" '{ "msg": "Unable to toggle repo creation", "status": "failure", "data": $fail }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        fi
+

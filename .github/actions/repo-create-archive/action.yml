@@ -1,0 +1,22 @@
+name: repo-create-archive
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  repository:
+    description: "GitHub Repository"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: archive a repository
+      shell: bash
+      run: |
+        gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
+          --input - <<< '{
+            "archived": true
+          }'

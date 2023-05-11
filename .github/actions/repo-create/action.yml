@@ -1,0 +1,32 @@
+name: repo-create
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  repository:
+    description: "GitHub Repository"
+    required: true
+  visibility:
+    description: "GitHub Repository Visibility (private/internal)"
+    required: true
+  readme:
+    description: "GitHub README enabled"
+    required: false
+  description:
+    description: "GitHub Repository Description"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: create a repository
+      shell: bash
+      run: |
+        gh repo create \
+          ${{ inputs.organization }}/${{ inputs.repository }} \
+          --${{ inputs.visibility }} \
+          `[[ "${{ inputs.readme }}" == "["Enable"]" ]] && echo --add-readme` \
+          --description "${{ inputs.description }}"

@@ -1,0 +1,21 @@
+name: "[Organization] - toggle fork policy"
+description: toggle organization fork policy
+title: "[org-fork-policy-toggle] Toggle organization fork policy"
+labels:
+  - org-toggle-fork-policy
+body:
+  - type: dropdown
+    id: instance
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you're targeting. 
+      options:
+        - COM
+        - EMU
+        - SOMA
+  - type: input
+    id: organization
+    attributes:
+      label: GitHub Organization (*)
+      description: The name of the github organization
+      placeholder: ex. github

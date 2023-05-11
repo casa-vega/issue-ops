@@ -1,0 +1,25 @@
+name: repo-toggle-issues
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  repository:
+    description: "GitHub Repository"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: toggle repository issues
+      shell: bash
+      run: |
+        gh api \
+          --method PATCH \
+          repos/${{ inputs.organization }}/${{ inputs.repository }} \
+          --input - <<< '{
+            "has_issues": true
+          }'

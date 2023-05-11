@@ -1,0 +1,21 @@
+name: org-create-github-app
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  name:
+    description: "GitHub GitHub App Name"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: create a new github app
+      shell: bash
+      run: |
+        # GUS API code goes here
+

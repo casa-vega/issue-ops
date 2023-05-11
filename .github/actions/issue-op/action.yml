@@ -1,0 +1,49 @@
+name: Dynamic Uses
+description: Dynamically resolve and use another GitHub action. Workaround for https://github.com/actions/runner/issues/895
+author: Jon Jensen, modified by @cvega
+inputs:
+  uses:
+    description: path to issue operation reusable workflow
+    required: true
+  with:
+    description: 'JSON-ified `inputs`'
+    required: true
+outputs:
+  outputs:
+    description: 'JSON-ified `outputs`'
+    value: ${{ steps.run.outputs.outputs }}
+runs:
+  using: composite
+  steps:
+    - name: Setup
+      shell: bash
+      run: |
+        format_json() {
+          echo $1 | jq -r '
+            (
+              to_entries |
+              reduce .[] as $item (" ";
+                . + "\n                \($item.key | ascii_upcase): '\''\($item.value)'\''"
+            )
+          )'
+        }
+
+        export WITH=$(format_json '${{ inputs.with }}')
+
+        mkdir -p ./.github/actions/op
+
+        cat << 'EOF' | envsubst > ./.github/actions/op/action.yml
+        outputs:
+          outputs:
+            value: ${{ '$' }}{{ toJSON(steps.run.outputs) }}
+        runs:
+          using: composite
+          steps:
+            - name: Run
+              id: run
+              uses: ${{ inputs.uses }}
+              with: ${WITH}
+        EOF
+    - name: Run
+      id: run
+      uses: ./.github/actions/op

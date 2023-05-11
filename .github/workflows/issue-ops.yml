@@ -1,0 +1,149 @@
+name: issue-ops
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  issue-ops-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+
+      # we key off the label to determine which issue template/workflow to use/parse
+      - name: get issue labels
+        uses: actions/github-script@v6
+        id: issue-labels
+        with:
+          script: |
+            const issue = await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number
+            });
+            return issue.data.labels.map(label => label.name);
+          result-encoding: string
+
+
+      - name: update issue with run data
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const actionRunLink = `https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}`;
+            const body = `This action (${{steps.issue-labels.outputs.result}}) with run ID ${{ github.run_id }} was executed. [View Action Run](${actionRunLink})`;
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body,
+            });
+
+
+      # parse the issue template into a json object
+      # template-path is not required but highly recommended
+      - name: parse issue input
+        uses: stefanbuck/github-issue-parser@v3
+        id: issue-parser
+        with:
+          template-path: .github/ISSUE_TEMPLATE/${{ steps.issue-labels.outputs.result }}.yml
+
+
+      - run: cat ${HOME}/issue-parser-result.json
+
+
+      # validate that required fields are present and that user has entitlements to perform the requested operation
+      - name: validate required form entries and user auth
+        id: validate
+        run: |
+          echo "FORM=$(python .github/scripts/validation.py form \
+            --op=${{ steps.issue-labels.outputs.result }})" >> $GITHUB_OUTPUT
+          echo "AUTH=$(python .github/scripts/validation.py auth \
+            --instance=${{ steps.issue-parser.outputs.issueparser_instance }} \
+            --org=${{ steps.issue-parser.outputs.issueparser_organization }} \
+            --user=${{ github.actor }})" >> $GITHUB_OUTPUT
+
+
+      # if the validation steps above fail, this step will update the issue with a message indicating the missing or wrong fields
+      - name: update issue with form validation failure message
+        if: steps.validate.outputs.form != '' || steps.validate.outputs.auth != ''
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const formErrors = ${{ toJSON(steps.validate.outputs.form) }};
+            const authErrors = ${{ toJSON(steps.validate.outputs.auth) }};
+            const formFailureMessage = 'FORM: This means you are missing a required form field.\n\n```json\n' + formErrors + '\n```\n';
+            const authFailureMessage = 'AUTH: You do not have the access required to perform this operation.\n\n```json\n' + authErrors + '\n```\n';
+            const failureMessage = (formErrors != '' ? formFailureMessage : '') + (authErrors != '' ? authFailureMessage : '');
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: failureMessage,
+            });
+            core.setFailed('Verification failed. Errors: ' + failureMessage);
+
+
+      - name: create ops specific payload
+        id: setup
+        run: |
+          echo "JSON=$(jq -c '.' ${HOME}/issue-parser-result.json)" >> $GITHUB_OUTPUT
+          echo "HOST=$(python .github/scripts/validation.py host \
+            --instance=${{ steps.issue-parser.outputs.issueparser_instance }})" >> $GITHUB_OUTPUT
+
+
+      - name: gh cli setup
+        run: |
+          echo ${{ secrets[format('{0}_TOKEN', steps.issue-parser.outputs.issueparser_instance)] }} > token.txt
+          gh auth login \
+            --hostname ${{ steps.setup.outputs.host }} \
+            --with-token < token.txt
+          rm token.txt
+
+
+      # dynamically call the appropriate action based on the issue template
+      - name: call issue ops dynamically with composite action
+        id: op
+        uses: ./.github/actions/issue-op
+        with:
+          uses: ./.github/actions/${{ steps.issue-labels.outputs.result }}
+          with: ${{ steps.setup.outputs.json }}
+
+
+      # reset gh cli configuration
+      - name: reset gh cli
+        run: |
+          echo ${{ secrets.COM_TOKEN }} > token.txt
+          gh auth login \
+            --hostname github.com \
+            --with-token < token.txt
+          rm token.txt
+
+
+      # update the issue with the results of the operation
+      - name: update issue with results
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const outcome = JSON.parse('${{ env.RESULT }}');
+            const body = `Message: ${outcome.msg}\nStatus: ${outcome.status}`;
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body,
+            });
+
+
+      - name: close issue
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issueNumber = context.issue.number;
+            await github.rest.issues.update({
+              issue_number: issueNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'closed',
+            });

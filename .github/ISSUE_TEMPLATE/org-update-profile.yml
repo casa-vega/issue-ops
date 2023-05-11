@@ -1,0 +1,57 @@
+name: "[Organization] - update profile"
+description: updates the organization profile
+title: "[org-profile-update] Update organization profile"
+labels:
+  - org-update-profile
+body:
+  - type: dropdown
+    id: instance
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you're targeting. 
+      options:
+        - COM
+        - EMU
+        - SOMA
+  - type: input
+    id: organization
+    attributes:
+      label: GitHub Organization (*)
+      description: The name of the github organization
+      placeholder: ex. github
+  - type: input
+    id: name
+    attributes:
+      label: Company name
+      description: The shorthand name of the company.
+      placeholder: gh
+  - type: input
+    id: email
+    attributes:
+      label: Publically displayed email address
+      description: The publicly visible email address
+      placeholder: email@example.com
+  - type: input
+    id: description
+    attributes:
+      label: A short description of the organization
+      description: The description of the organization
+      placeholder: Describe your organization
+  - type: input
+    id: url
+    attributes:
+      label: The URL of the organization
+      description: A link to the organization's website
+      placeholder: https://example.com
+  - type: input
+    id: location
+    attributes:
+      label: The location of the organization
+      description: The geographic location of the organization
+      placeholder: San Francisco, CA
+  - type: input
+    id: blog
+    attributes:
+      label: blog link
+      description: The URL location of the organization blog
+      placeholder: https://example.com/blog

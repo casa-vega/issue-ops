@@ -1,0 +1,35 @@
+name: "[Repo] - toggle repository visibility"
+description: change the visiblity of a repository (internal/private)
+title: "[repo-update-visibility] Change repository visibility"
+labels:
+  - repo-update-visibility
+body:
+  - type: dropdown
+    id: instance
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you're targeting. 
+      options:
+        - COM
+        - EMU
+        - SOMA
+  - type: input
+    id: organization
+    attributes:
+      label: GitHub Organization (*)
+      description: The name of the github organization (must be exact)
+      placeholder: ex. github
+  - type: input
+    id: repository
+    attributes:
+      label: GitHub Repository (*)
+      description: The name of the github repository to create
+      placeholder: ex. other-fuchsia-sailfish
+  - type: dropdown
+    id: visibility
+    attributes:
+      label: Visibility (*)
+      description: sets the visiblity to internal or private
+      options:
+        - internal
+        - private

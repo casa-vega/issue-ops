@@ -1,0 +1,29 @@
+name: update labels
+
+on:
+  push:
+    paths:
+      - '.github/ISSUE_TEMPLATE/**'
+
+jobs:
+  labels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: compare and generate new labels
+        id: compare_labels
+        run: |
+          EXISTING_LABELS=$(gh api repos/${{ github.repository }}/labels --jq '.[].name')
+          NEW_LABELS=$(./.github/scripts/generate-labels.sh)
+
+          IFS=$'\n' read -rd '' -a EXISTING_LABELS_ARRAY <<< "$EXISTING_LABELS"
+          IFS=$'\n' read -rd '' -a NEW_LABELS_ARRAY <<< "$NEW_LABELS"
+
+          for label in "${NEW_LABELS_ARRAY[@]}"; do
+            if [[ ! " ${EXISTING_LABELS_ARRAY[@]} " =~ " ${label} " ]]; then
+              gh api repos/${{ github.repository }}/labels \
+                --method POST \
+                --field name="${label}"
+            fi
+          done

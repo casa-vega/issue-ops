@@ -1,0 +1,7 @@
+required_fields:
+  - instance
+  - organization
+  - repository
+  - webhook_url
+  - content_type
+  - events
