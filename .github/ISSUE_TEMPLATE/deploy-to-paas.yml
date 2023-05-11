@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## Update Project and Service, required
+        ## Required changes
 
   - type: input
     id: project
@@ -27,18 +27,18 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## PaaS Configuration, optional
+        ## Option Changes
 
   - type: markdown
     attributes:
       value: |
-        ### Platform
+        ### PaaS Configuration
 
   - type: dropdown
     id: platform
     attributes:
-      label: platform (*)
-      description: The instance of Github you are targeting. 
+      label: platform
+      description: Select a deploy platform
       options:
         - hydra
         - other
