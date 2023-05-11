@@ -35,6 +35,9 @@ jobs:
         with:
           template-path: .github/ISSUE_TEMPLATE/${{ steps.issue-labels.outputs.result }}.yml
 
+      - name: show parse input
+        run: |
+          cat ${HOME}/issue-parser-result.json
 
       # validate that required fields are present and that user has entitlements to perform the requested operation
       - name: validate required form entries and user auth
