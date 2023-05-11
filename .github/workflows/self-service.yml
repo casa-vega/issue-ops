@@ -73,7 +73,7 @@ jobs:
       - name: set instance hostname for authentication
         id: host
         run: |
-          echo "HOSTNAME=$(python .github/scripts/validate.py hostname \
+          echo "HOSTNAME=$(python .github/scripts/validation.py hostname \
             --instance=${{ steps.issue-parser.outputs.issueparser_instance }} >> $GITHUB_OUTPUT
 
 
