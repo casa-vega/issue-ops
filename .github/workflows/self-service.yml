@@ -59,7 +59,7 @@ jobs:
             const authErrors = ${{ toJSON(steps.validate.outputs.auth) }};
             const formFailureMessage = 'Validation failed. This likely means you are missing a required form field.\n\n```json\n' + formErrors + '\n```\n';
             const authFailureMessage = 'Validation failed. You do not have the access required to perform this operation.\n\n```json\n' + authErrors + '\n```\n';
-            const failureMessage = ( ${{ steps.validate.outputs.form }} != '' ? formFailureMessage : '') + ( ${{ steps.validate.outputs.auth }} != '' ? authFailureMessage : '');
+            const failureMessage = (formErrors != '' ? formFailureMessage : '') + (authErrors != '' ? authFailureMessage : '');
             await github.rest.issues.createComment({
               issue_number: issueNumber,
               owner: context.repo.owner,
