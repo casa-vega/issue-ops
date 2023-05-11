@@ -121,3 +121,20 @@ body:
       options:
         - label: Enable
         
+    - type: markdown
+    attributes:
+      value: |
+        ## Notification Configuration        
+        
+  - type: input
+    id: slack_channel
+    attributes:
+      label: Slack channel notifications
+      description: An email address that is a member of the Assignment Group for this change template
+      placeholder: ex. C00000000    
+        
+
+  
+
+        
+
