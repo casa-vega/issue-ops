@@ -1,0 +1,48 @@
+name: create a repository 
+description: creates a new repository in your organization
+title: "[repo-create] Create a new repository"
+labels:
+  - repo-create
+body:
+  - type: dropdown
+    id: instance
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you're targeting. 
+      options:
+        - COM
+        - EMU
+        - SOMA
+  - type: input
+    id: organization
+    attributes:
+      label: GitHub Organization (*)
+      description: The name of the github organization (must be exact)
+      placeholder: ex. github
+  - type: input
+    id: repository
+    attributes:
+      label: GitHub Repository (*)
+      description: The name of the github repository to create
+      placeholder: ex. other-fuchsia-sailfish
+  - type: input
+    id: description
+    attributes:
+      label: Description of the repo (*)
+      description: a brief description of the repo
+      placeholder: ex. A repo for the other fuchsia sailfish
+  - type: dropdown
+    id: visibility
+    attributes:
+      label: Visibility (*)
+      description: sets the visiblity to internal or private
+      options:
+        - internal
+        - private
+  - type: checkboxes
+    id: readme
+    attributes:
+      label: Add Readme?
+      description: add a README.md file to the repository on creation  
+      options:
+        - label: Enable

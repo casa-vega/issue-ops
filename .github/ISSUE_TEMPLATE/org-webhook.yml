@@ -1,0 +1,125 @@
+name: create an organization webhook
+description: creates a webhook for your organization
+title: "[org-webhook] Create a new organization webhook"
+labels:
+  - org-webhook
+body:
+  - type: dropdown
+    id: instance
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you're targeting. 
+      options:
+        - COM
+        - EMU
+        - SOMA
+  - type: input
+    id: organization
+    attributes:
+      label: GitHub Organization (*)
+      description: The name of the github organization (must be exact)
+      placeholder: ex. salesforce
+  - type: input
+    id: payload_url
+    attributes:
+      label: Payload URL (*)
+      description: The webhook url
+      placeholder: https://example.com/post
+  - type: dropdown
+    id: content_type
+    attributes:
+      label: Content type(*)
+      description: The content type of the webhook
+      options:
+        - json
+        - form
+  - type: checkboxes
+    id: secret
+    attributes:
+      label: Secrets
+      description: Click enable to add a secret, you will be prompted to enter a password later in the process.  
+      options:
+        - label: Enable
+  - type: checkboxes
+    id: active
+    attributes:
+      label: Active
+      description: Determines if notifications are sent when the webhook is triggered. Check to send notifications.
+      options:
+        - label: Enable
+  - type: markdown
+    attributes:
+      value: |
+        ***
+  - type: checkboxes
+    id: events
+    attributes:
+      label: Which events would you like to trigger this webhook? (*)
+      description: For more details on events please see the [webhook events and payloads](https://docs.github.com/en/webhooks-and-events/webhooks/webhook-events-and-payloadsthttps://docs.github.com/en/webhooks-and-events/webhooks/webhook-events-and-payloads) docs
+      options:
+        - label: branch_protection_rule
+        - label: check_run
+        - label: check_suite
+        - label: code_scanning_alert
+        - label: commit_comment
+        - label: create
+        - label: delete
+        - label: dependabot_alert
+        - label: deploy_key
+        - label: deployment
+        - label: deployment_protection_rule
+        - label: deployment_status
+        - label: discussion
+        - label: discussion_comment
+        - label: fork
+        - label: github_app_authorization
+        - label: gollum
+        - label: installation
+        - label: installation_repositories
+        - label: installation_target
+        - label: issue_comment
+        - label: issues
+        - label: label
+        - label: marketplace_purchase
+        - label: member
+        - label: membership
+        - label: merge_group
+        - label: meta
+        - label: milestone
+        - label: org_block
+        - label: organization
+        - label: package
+        - label: page_build
+        - label: personal_access_token_request
+        - label: ping
+        - label: project_card
+        - label: project
+        - label: project_column
+        - label: projects_v2
+        - label: projects_v2_item
+        - label: public
+        - label: pull_request
+        - label: pull_request_review_comment
+        - label: pull_request_review
+        - label: pull_request_review_thread
+        - label: push
+        - label: registry_package
+        - label: release
+        - label: repository_advisory
+        - label: repository
+        - label: repository_dispatch
+        - label: repository_import
+        - label: repository_vulnerability_alert
+        - label: secret_scanning_alert
+        - label: secret_scanning_alert_location
+        - label: security_advisory
+        - label: security_and_analysis
+        - label: sponsorship
+        - label: star
+        - label: status
+        - label: team_add
+        - label: team
+        - label: watch
+        - label: workflow_dispatch
+        - label: workflow_job
+        - label: workflow_run
