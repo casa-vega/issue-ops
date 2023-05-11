@@ -1,8 +1,8 @@
 name: deploy to paas
 description: deploys your project
-title: "[deploy-saas] deploy to paas environment"
+title: "[deploy-paas] deploy to paas environment"
 labels:
-  - deploy-to-saas
+  - deploy-to-paas
 body:
 
   - type: markdown
