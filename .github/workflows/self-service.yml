@@ -33,7 +33,7 @@ jobs:
         uses: stefanbuck/github-issue-parser@v3
         id: issue-parser
         with:
-          template-path: .github/ISSUE_TEMPLATE/${{ steps.issue-labels.outputs.result }}.yml
+          template-path: .github/FORM_FIELDS/${{ steps.issue-labels.outputs.result }}.yml
 
 
       # validate that required fields are present and that user has entitlements to perform the requested operation
