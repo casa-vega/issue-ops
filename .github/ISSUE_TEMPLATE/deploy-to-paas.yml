@@ -1,5 +1,5 @@
 name: deploy to paas
-description: deploys your project the amex way
+description: deploys your project
 title: "[deploy-saas] deploy to paas environment"
 labels:
   - deploy-to-saas
@@ -91,3 +91,50 @@ body:
       description: If enabled, requires manual closure of CTASK, otherwise auto-close validate CTASK after implementation complete. 
       options:
         - label: Enable
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Deployment Configuration
+           
+  - type: checkboxes
+    id: e3_automated
+    attributes:
+      label: e3 automated
+      description: On push to default branch, auto deploy to E3 (Requires Standard Change Template Configuration section to be completed) 
+      options:
+        - label: Enable
+        
+  - type: checkboxes
+    id: e2_automated
+    attributes:
+      label: e2 automated
+      description: On push to default branch, auto deploy to E2 
+      options:
+        - label: Enable
+        
+  - type: checkboxes
+    id: e1_on_pullrequest
+    attributes:
+      label: e1 on pull request
+      description: On PR to default branch, auto deploy to E1 
+      options:
+        - label: Enable
+        
+  - type: markdown
+    attributes:
+      value: |
+        ## Notification Configuration        
+        
+  - type: input
+    id: slack_channel
+    attributes:
+      label: Slack channel notifications
+      description: An email address that is a member of the Assignment Group for this change template
+      placeholder: ex. C00000000    
+        
+        
+        
+        
+        
+        
