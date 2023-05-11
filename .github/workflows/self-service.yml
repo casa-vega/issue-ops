@@ -41,12 +41,11 @@ jobs:
         id: validate
         run: |
           echo "FORM=$(python .github/scripts/verify.py form \
-            --op=${{ steps.issue-labels.outputs.result }})" >> $GITHUB_OUTPUT &
+            --op=${{ steps.issue-labels.outputs.result }})" >> $GITHUB_OUTPUT
           echo "AUTH=$(python .github/scripts/verify.py auth \
             --instance=${{ steps.issue-parser.outputs.issueparser_instance }} \
             --organization=${{ steps.issue-parser.outputs.issueparser_organization }} \
-            --user=${{ github.actor }})" >> $GITHUB_OUTPUT &
-          wait
+            --user=${{ github.actor }})" >> $GITHUB_OUTPUT
 
 
       # if the validation steps above fail, this step will update the issue with a message indicating the missing or wrong fields
