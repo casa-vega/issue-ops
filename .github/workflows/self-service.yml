@@ -44,7 +44,7 @@ jobs:
             --op=${{ steps.issue-labels.outputs.result }})" >> $GITHUB_OUTPUT
           echo "AUTH=$(python .github/scripts/validation.py auth \
             --instance=${{ steps.issue-parser.outputs.issueparser_instance }} \
-            --organization=${{ steps.issue-parser.outputs.issueparser_organization }} \
+            --org=${{ steps.issue-parser.outputs.issueparser_organization }} \
             --user=${{ github.actor }})" >> $GITHUB_OUTPUT
 
 
@@ -57,8 +57,8 @@ jobs:
             const issueNumber = context.issue.number;
             const formErrors = ${{ toJSON(steps.validate.outputs.form) }};
             const authErrors = ${{ toJSON(steps.validate.outputs.auth) }};
-            const formFailureMessage = 'Validation failed. This likely means you are missing a required form field.\n\n```json\n' + formErrors + '\n```\n';
-            const authFailureMessage = 'Validation failed. You do not have the access required to perform this operation.\n\n```json\n' + authErrors + '\n```\n';
+            const formFailureMessage = 'FORM: This means you are missing a required form field.\n\n```json\n' + formErrors + '\n```\n';
+            const authFailureMessage = 'AUTH: You do not have the access required to perform this operation.\n\n```json\n' + authErrors + '\n```\n';
             const failureMessage = (formErrors != '' ? formFailureMessage : '') + (authErrors != '' ? authFailureMessage : '');
             await github.rest.issues.createComment({
               issue_number: issueNumber,
