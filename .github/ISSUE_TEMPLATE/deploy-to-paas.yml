@@ -155,7 +155,32 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## Docker Configuration  
+        ## Docker Configuration
+        
+        
+  - type: input
+    id: dockerfile-path
+    attributes:
+      label: Dockerfile path
+      description: The path to the dockerfile used in Docker builds
+      placeholder: ex. DockerFile
+
+
+  - type: input
+    id: build_path
+    attributes:
+      label: Build path
+      description: The path to the code getting dockerized (build context)
+      placeholder: ex. .  
+
+
+  - type: checkboxes
+    id: latest_on_push
+    attributes:
+      label: Latest on push
+      description: Should the built docker image be tagged with `latest` when the trigger event is a push to the default branch
+      options:
+        - label: Enable
 
 
   - type: markdown
