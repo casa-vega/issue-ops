@@ -207,3 +207,8 @@ body:
         - label: Enable
 
 
+  - type: markdown
+    attributes:
+      value: |
+        current version is v2.0.1
+
