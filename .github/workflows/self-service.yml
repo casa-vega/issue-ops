@@ -74,7 +74,7 @@ jobs:
         id: host
         run: |
           echo "HOSTNAME=$(python .github/scripts/validation.py hostname \
-            --instance=${{ steps.issue-parser.outputs.issueparser_instance }}) >> $GITHUB_OUTPUT
+            --instance=${{ steps.issue-parser.outputs.issueparser_instance }})" >> $GITHUB_OUTPUT
 
 
       # login to the instance using the gh cli
