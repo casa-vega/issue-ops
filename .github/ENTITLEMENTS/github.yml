@@ -6,9 +6,9 @@ github_instances:
         owners:
           - cvega
           - owner2
-      - name: org2
+      - name: casa-vega
         owners:
-          - owner3  
+          - cvega  
   - instance: EMU
     url: cvega-020f35ca452daa2a8.ghe-test.ninja
     organizations:
