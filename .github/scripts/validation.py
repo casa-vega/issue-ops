@@ -193,6 +193,21 @@ def hostname(args: argparse.Namespace) -> None:
             print(instance['url'])
 
 
+def payload(args: argparse.Namespace) -> None:
+    """
+    Handles the 'payload' command which prints a JSON payload to stdout.
+
+    Parameters
+    ----------
+    args : argparse.Namespace
+        The command-line arguments.
+    """
+    with open(f"{os.environ.get('HOME')}/issue-parser-result.json") as f:
+        json_data = json.load(f)
+    json_data['hostname'] = hostname(args.instance)  
+    print(f"'{json.dumps(json_data)}'")
+
+
 def read_json(file_path: str) -> Dict[str, Any]:
     """
     Reads a JSON file.
@@ -285,14 +300,14 @@ def parse_arguments() -> argparse.Namespace:
     )
     form_parser.set_defaults(func=form)
 
-    form_parser = subparsers.add_parser("hostname", help="Hostname help")
+    form_parser = subparsers.add_parser("payload", help="Payload help")
     form_parser.add_argument(
         "-i",
         "--instance",
         required=True,
         help="Name of the GitHub instance"
     )
-    form_parser.set_defaults(func=hostname)
+    form_parser.set_defaults(func=payload)
 
     return parser.parse_args()
 

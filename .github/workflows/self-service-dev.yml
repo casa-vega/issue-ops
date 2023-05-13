@@ -35,9 +35,6 @@ jobs:
         with:
           template-path: .github/ISSUE_TEMPLATE/${{ steps.issue-labels.outputs.result }}.yml
 
-      - name: show parse input
-        run: |
-          cat ${HOME}/issue-parser-result.json
 
       # validate that required fields are present and that user has entitlements to perform the requested operation
       - name: validate required form entries and user auth
@@ -74,67 +71,16 @@ jobs:
 
       # set the instance hostname for authentication
       - name: set instance hostname for authentication
-        id: host
+        id: payload
         run: |
-          echo "HOSTNAME=$(python .github/scripts/validation.py hostname \
+          echo JSON=$(python .github/scripts/validation.py payload \
             --instance=${{ steps.issue-parser.outputs.issueparser_instance }})" >> $GITHUB_OUTPUT
 
 
-      # login to the instance using the gh cli
-      - name: login with gh cli
-        run: |
-          echo ${{ secrets[format('{0}_TOKEN', steps.issue-parser.outputs.issueparser_instance)] }} > token.txt
-          gh auth login \
-          --hostname ${{ steps.host.outputs.hostname }} \
-          --with-token < token.txt
-
-
-      - name: create an organization webhook
-        if: steps.issue-labels.outputs.result == 'org-webhook'
-        run: |
-          active="$([[ "${{ steps.issue-parser.outputs.issueparser_active }}" == "Enable" ]] && echo true || echo false)"
-          events="$(echo "${{ steps.issue-parser.outputs.issueparser_events }}" | jq -Rc 'split(",")')"
-          gh api orgs/${{ steps.issue-parser.outputs.issueparser_organization }}/hooks \
-            --input - <<< '{
-              "name": "web",
-              "active": '$(echo $active)',
-              "events": '$(echo $events)',
-              "config": {
-                "url": "${{ steps.issue-parser.outputs.issueparser_payload_url }}",
-                "content_type": "${{ steps.issue-parser.outputs.issueparser_content_type }}"
-              }
-            }'
-
-
-      - name: create a repository webhook
-        if: steps.issue-labels.outputs.result == 'repo-webhook'
-        run: |
-          gh api repos/${{ steps.issue-parser.outputs.issueparser_organization }}/${{ steps.issue-parser.outputs.issueparser_repository }}/hooks \
-            --input - <<< '{
-              "name": "web",
-              "active": '[[ "${{ steps.issue-parser.outputs.issueparser_active }}" == "Enable" ]] && echo true || echo false',
-              "events": '$(echo "${{ steps.issue-parser.outputs.issueparser_events }}" | jq -Rc 'split(",")')',
-              "config": {
-                "url": "${{ steps.issue-parser.outputs.issueparser_payload_url }}",
-                "content_type": "${{ steps.issue-parser.outputs.issueparser_content_type }}"
-              }
-            }'
-
-
-      - name: create a repository
-        if: steps.issue-labels.outputs.result == 'repo-create'
-        run: |
-          gh repo create \
-            ${{ steps.issue-parser.outputs.issueparser_organization }}/${{ steps.issue-parser.outputs.issueparser_repository }} \
-            --${{ steps.issue-parser.outputs.issueparser_visibility }} \
-            `[[ "${{ steps.issue-parser.outputs.issueparser_readme }}" == "Enable" ]] && echo --add-readme` \
-            --description "${{ steps.issue-parser.outputs.issueparser_description }}"
-
-
-      - name: archive a repository
-        if: steps.issue-labels.outputs.result == 'repo-archive'
-        run: |
-          gh api repos/${{ steps.issue-parser.outputs.issueparser_organization }}/${{ steps.issue-parser.outputs.issueparser_repository }} \
-            --input - <<< '{
-              "archived": true
-            }'
+      # dynamically call the appropriate action based on the issue template
+      - name: call issue ops dynamically with composite action
+        uses: .github/workflows/dynamic-uses.yml
+        id: issue-ops-composite
+        with:
+          uses: .github/workflow/reusable/${{ steps.issue-labels.outputs.result }}.yml@v1
+          with: ${{ steps.payload.outputs.json }}

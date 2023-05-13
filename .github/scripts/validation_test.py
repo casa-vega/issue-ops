@@ -1,20 +1,20 @@
 import argparse
+import json
 import unittest
 from unittest.mock import patch, mock_open
-import argparse
-import json
-import yaml
 
+import yaml
 from validation import (
-    Form,
     Auth,
-    hostname,
-    read_json,
-    read_yaml,
-    form,
+    Form,
     auth,
-    parse_arguments,
+    form,
+    hostname,
     main,
+    parse_arguments,
+    payload,
+    read_json,
+    read_yaml
 )
 
 
@@ -348,7 +348,3 @@ class TestFunctions(unittest.TestCase):
         }
         main()
         mock_print.assert_called_once_with("http://github1.com")
-
-
-if __name__ == "__main__":
-    unittest.main()
