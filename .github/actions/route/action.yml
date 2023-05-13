@@ -28,7 +28,7 @@ runs:
           )'
         }
 
-        export WITH=$(format_json "${{ inputs.with }}")
+        export WITH=$(format_json '${{ inputs.with }}')
 
         mkdir -p ./.tmp-dynamic-uses
 
