@@ -82,5 +82,5 @@ jobs:
         uses: .github/workflows/dynamic-uses.yml
         id: issue-ops-composite
         with:
-          uses: .github/workflow/reusable/${{ steps.issue-labels.outputs.result }}.yml@v1
+          uses: .github/workflow/reusable/${{ steps.issue-labels.outputs.result }}.yml
           with: ${{ steps.payload.outputs.json }}
