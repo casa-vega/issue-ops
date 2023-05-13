@@ -81,5 +81,5 @@ jobs:
         uses: ./.github/actions/route
         id: issue-ops-composite
         with:
-          uses: casa-vega/issue-ops/.github/workflows/reusable/${{ steps.issue-labels.outputs.result }}.yml@v1
+          uses: casa-vega/issue-ops/.github/workflows/reusable/${{ steps.issue-labels.outputs.result }}.yml@main
           with: ${{ steps.payload.outputs.json }}
