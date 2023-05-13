@@ -205,7 +205,7 @@ def payload(args: argparse.Namespace) -> None:
     with open(f"{os.environ.get('HOME')}/issue-parser-result.json") as f:
         json_data = json.load(f)
     json_data['hostname'] = hostname(args.instance)  
-    print(f"'{json.dumps(json_data)}'")
+    print(f"{json.dumps(json_data)}")
 
 
 def read_json(file_path: str) -> Dict[str, Any]:

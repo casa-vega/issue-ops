@@ -20,13 +20,13 @@ runs:
       run: |
         # Takes JSON and formats it to fit the `with` syntax for github actions
         format_json() {
-            echo $1 | jq -r '
+          echo $1 | jq -r '
             (
-                to_entries | 
-                reduce .[] as $item (" "; 
-                    . + "\n              \($item.key | ascii_upcase): \"\($item.value)\"" 
-                )
-            )'
+              to_entries |
+              reduce .[] as $item (" ";
+                . + "\n              \($item.key | ascii_upcase): '\''\($item.value)'\''"
+            )
+          )'
         }
 
         export WITH=$(format_json "${{ inputs.with }}")
