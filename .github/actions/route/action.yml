@@ -30,9 +30,9 @@ runs:
 
         export WITH=$(format_json '${{ inputs.with }}')
 
-        mkdir -p ./.tmp-dynamic-issue-op
+        mkdir -p ./actions/issue-op
 
-        cat << 'EOF' | envsubst >./.tmp-dynamic-issue-op/action.yml
+        cat << 'EOF' | envsubst > ./actions/issue-op/action.yml
         outputs:
           outputs:
             value: ${{ '$' }}{{ toJSON(steps.run.outputs) }}
@@ -46,7 +46,4 @@ runs:
     - name: Run
       id: run
       uses: ./.tmp-dynamic-uses
-    - name: Cleanup
-      if: always()
-      shell: bash
-      run: rm -rf ./.tmp-dynamic-uses
+ 
