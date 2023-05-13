@@ -37,7 +37,6 @@ runs:
           outputs:
             value: ${{ '$' }}{{ toJSON(steps.run.outputs) }}
         runs:
-          using: composite
           steps:
           - name: Run
             id: run
