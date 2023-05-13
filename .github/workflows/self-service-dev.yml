@@ -72,7 +72,7 @@ jobs:
       - name: setup payload
         id: payload
         run: |
-          echo JSON=$(python .github/scripts/validation.py payload \
+          echo "JSON=$(python .github/scripts/validation.py payload \
             --instance=${{ steps.issue-parser.outputs.issueparser_instance }})" >> $GITHUB_OUTPUT
 
 
