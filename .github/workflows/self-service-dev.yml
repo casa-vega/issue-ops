@@ -79,7 +79,7 @@ jobs:
 
       # dynamically call the appropriate action based on the issue template
       - name: call issue ops dynamically with composite action
-        uses: .github/workflows/dynamic-uses.yml@v1
+        uses: ./.github/workflows/dynamic-uses.yml@v1
         id: issue-ops-composite
         with:
           uses: .github/workflow/reusable/${{ steps.issue-labels.outputs.result }}.yml@${{ github.sha }}
