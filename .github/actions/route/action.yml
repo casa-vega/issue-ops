@@ -18,7 +18,6 @@ runs:
     - name: Setup
       shell: bash
       run: |
-        # Takes JSON and formats it to fit the `with` syntax for github actions
         format_json() {
           echo $1 | jq -r '
             (
