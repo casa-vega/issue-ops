@@ -178,7 +178,7 @@ def form(args: argparse.Namespace) -> None:
         print(json.dumps(errors))
 
 
-def hostname(args: argparse.Namespace) -> None:
+def hostname(gh: str) -> str: # type: ignore
     """
     Prints the URL of the given GitHub instance.
 
@@ -189,8 +189,8 @@ def hostname(args: argparse.Namespace) -> None:
     """
     data = read_yaml(".github/ENTITLEMENTS/github.yml")
     for instance in data['github_instances']:
-        if instance['instance'] == args.instance:
-            print(instance['url'])
+        if instance['instance'] == gh:
+            return instance['url']
 
 
 def payload(args: argparse.Namespace) -> None:
