@@ -23,7 +23,7 @@ runs:
             (
               to_entries |
               reduce .[] as $item (" ";
-                . + "\n              \($item.key | ascii_upcase): '\''\($item.value)'\''"
+                . + "\n                \($item.key | ascii_upcase): '\''\($item.value)'\''"
             )
           )'
         }
@@ -37,11 +37,12 @@ runs:
           outputs:
             value: ${{ '$' }}{{ toJSON(steps.run.outputs) }}
         runs:
+          using: composite
           steps:
-          - name: Run
-            id: run
-            uses: ${{ inputs.uses }}
-            with: ${WITH}
+            - name: Run
+              id: run
+              uses: ${{ inputs.uses }}
+              with: ${WITH}
         EOF
     - name: Run
       id: run
