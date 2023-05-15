@@ -9,7 +9,7 @@ inputs:
   organization:
     description: "GitHub Organization"
     required: true
-  payload_url:
+  webhook_url:
     description: "Webhook URL"
     required: true
   content_type:
