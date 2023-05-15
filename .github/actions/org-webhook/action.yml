@@ -6,58 +6,42 @@ inputs:
   instance:
     description: "GitHub Instance"
     required: true
-    type: string
   organization:
     description: "GitHub Organization"
     required: true
-    type: string
   payload_url:
-    description: "Payload URL"
+    description: "Webhook URL"
     required: true
-    type: string
   content_type:
     description: "Content Type"
     required: true
-    type: string
   active:
     description: "Activate Webhook"
     required: true
-    default: false
   events:
     description: "Webhook Events"
     required: true
-    type: string
   hostname:
     description: "GitHub Host"
     required: true
-    type: string
   secret:
-   description: "secret"
-   required: false
-   type: string
+    description: "secret"
+    required: false
 
 runs:
   using: composite
   steps:
-    - name: login with gh cli
-      shell: bash
-      run: |
-        gh auth login \
-        --hostname ${{ inputs.hostname }} \
-        --with-token < token.txt
-        rm token.txt
-
     - name: create an organization webhook
       shell: bash
       run: |
-        active="$([[ "${{ inputs.active }}" == "Enable" ]] && echo true || echo false)"
+        active="$([[ "${{ inputs.active }}" == "["Enable"]" ]] && echo true || echo false)"
         gh api orgs/${{ inputs.organization }}/hooks \
           --input - <<< '{
             "name": "web",
             "active": '$(echo $active)',
             "events": ${{ inputs.events }},
             "config": {
-              "url": "${{ inputs.payload_url }}",
+              "url": "${{ inputs.webhook_url }}",
               "content_type": "${{ inputs.content_type }}"
             }
           }'

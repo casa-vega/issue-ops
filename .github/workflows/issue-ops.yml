@@ -1,12 +1,11 @@
-name: self-service
-
+name: issue-ops
 on:
   issues:
     types:
       - opened
 
 jobs:
-  issue_ops:
+  issue_ops_run:
     runs-on: ubuntu-latest
 
     steps:
@@ -69,12 +68,20 @@ jobs:
             core.setFailed('Verification failed. Errors: ' + failureMessage);
 
 
-      - name: setup payload
-        id: payload
+      - name: create ops specific payload
+        id: setup
         run: |
           echo "JSON=$(python .github/scripts/validation.py payload \
             --instance=${{ steps.issue-parser.outputs.issueparser_instance }})" >> $GITHUB_OUTPUT
+
+
+      - name: gh auth login
+        run: |
           echo ${{ secrets[format('{0}_TOKEN', steps.issue-parser.outputs.issueparser_instance)] }} > token.txt
+          gh auth login \
+          --hostname $(echo ${{ steps.setup.outputa.json}} | jq -r '.hostname') \
+          --with-token < token.txt
+          rm token.txt
 
 
       # dynamically call the appropriate action based on the issue template
@@ -83,4 +90,4 @@ jobs:
         id: issue-ops-composite
         with:
           uses: ./.github/actions/${{ steps.issue-labels.outputs.result }}
-          with: ${{ steps.payload.outputs.json }}
+          with: ${{ steps.setup.outputs.json }}
