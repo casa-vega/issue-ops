@@ -2,9 +2,13 @@
 
 In this repository, we employ GitHub Issue Operations (Issue Ops) via GitHub Actions to facilitate a user-requested, self-service approach to GitHub features. This strategy optimizes our workflow by automating actions in response to issue interactions, effectively enabling users to request changes without requiring direct owner access. For instance, users can initiate the addition of a webhook to the repository simply by creating a specific issue. Upon detecting the creation of this issue the associated GitHub Action would validate the request and automatically add the webhook, thereby preserving user autonomy and ensuring a secure, efficient, and collaborative environment.
 
+---
+
 ## A self-service approach for managing github components/settings across multiple github instances. 
 
-### Architecture:
+---
+
+## Architecture:
 Issue ops lives inside the .github directory at the base of the repo. The framework itself relies on builtin GitHub constructs for `workflow/`, `ISSUE_TEMPLATES` directories and a best practice approach for `scripts/`. The only unique pieces of data are `ENTITLEMENTS/github.yml`, and `FORM_FIELDS`.
 
 ```bash
@@ -66,6 +70,8 @@ To avoid this we call a composite action that creates another composite action o
 
 I modified to https://github.com/jenseng/dynamic-uses to preprocess `JSON` ahead of time which makes our composite actions more explicit and easier to understand. 
 
+---
+
 ### `ENTITLEMENTS/github.yml`
 This directory has a single entitlements file that is specific to each target github instance. This file is used to validate against to determine if an org exists within an instance and if a user has entitlements to that organization. It's used in conjunction with `validate.py auth`.
 
@@ -93,6 +99,7 @@ github_instances:
         owners:
           - jdoe
 ```
+---
 
 ### `FORM_FIELDS/`
 This directory houses YAML files that define the requisite form fields. Each file within this directory should adhere to the ISSUE_TEMPLATE naming convention and encompass a list of parsed issue identifiers. This is used in conjunction with `validation.py form` to ensure prohibited values are not present before making any requests or performing any production changes. 
@@ -105,21 +112,22 @@ required_fields:
   - description
   - visibility
 ```
+--- 
 ### `scripts/`
 #### `validation.py`
 This script is designed to consistently satisfy a few critical use cases
 
-##### Authentication:
+#### Authentication:
 Validates the organization and verifies user entitlements to the organization using ENTITLEMENTS/github.yml.
 Throws an error for invalid organizations.
 Throws an error when the user lacks necessary entitlements.
-##### Form Validation:
+#### Form Validation:
 Ensures that the issue does not contain prohibited values (e.g., None, "", []). A required field must never be empty.
 Throws an error when prohibited values are detected.
-##### Hostname Resolution:
+#### Hostname Resolution:
 Provides a flat `JSON` object that it used to hydrate the ops request.
 
-###### Additional notes:
+##### Additional notes:
 `ENTITLEMENTS/github.yml` and `FORM_FIELDS` are sources of truth so it is worth noting that some of these values within validation.py are hardcoded. They could easily be moved to a config file if needed, but this ensures validation.py is always using the expected filesystem locations and expected sources.
 
 
@@ -154,7 +162,7 @@ options:
   -i INSTANCE, --instance INSTANCE
                         Name of the GitHub instance
 ```
-
+---
 ### Issue Ops Workflow
 ```mermaid
 %%{ init : {
