@@ -38,7 +38,7 @@ runs:
         gh api orgs/${{ inputs.organization }}/hooks \
           --input - <<< '{
             "name": "web",
-            "active": '$(echo $active)',
+            "active": 'echo $active',
             "events": ${{ inputs.events }},
             "config": {
               "url": "${{ inputs.webhook_url }}",
