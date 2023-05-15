@@ -46,4 +46,4 @@ runs:
               "content_type": "${{ inputs.content_type }}"
             }
           }
-          EOF
+        EOF
