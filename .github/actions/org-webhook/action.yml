@@ -37,7 +37,6 @@ runs:
   steps:
     - name: login with gh cli
       run: |
-        echo ${{ secrets[format('{0}_TOKEN', inputs.instance)] }} > token.txt
         gh auth login \
         --hostname ${{ inputs.host }} \
         --with-token < token.txt
