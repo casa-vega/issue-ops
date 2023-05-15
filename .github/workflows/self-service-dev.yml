@@ -74,7 +74,7 @@ jobs:
         run: |
           echo "JSON=$(python .github/scripts/validation.py payload \
             --instance=${{ steps.issue-parser.outputs.issueparser_instance }})" >> $GITHUB_OUTPUT
-          echo ${{ secrets[format('{0}_TOKEN', ${{ steps.issue-parser.outputs.issueparser_instance }})] }} > token.txt
+          echo ${{ secrets[format('{0}_TOKEN', steps.issue-parser.outputs.issueparser_instance )] }} > token.txt
 
 
       # dynamically call the appropriate action based on the issue template
