@@ -55,7 +55,7 @@ runs:
           --input - <<< '{
             "name": "web",
             "active": '$(echo $active)',
-            "events": "$ {{ inputs.events }}",
+            "events": "${{ inputs.events }}",
             "config": {
               "url": "${{ inputs.payload_url }}",
               "content_type": "${{ inputs.content_type }}"
