@@ -42,6 +42,7 @@ runs:
     - name: login with gh cli
       shell: bash
       run: |
+        ls -al
         gh auth login \
         --hostname ${{ inputs.hostname }} \
         --with-token < token.txt
@@ -50,6 +51,7 @@ runs:
     - name: create an organization webhook
       shell: bash
       run: |
+        pwd
         active="$([[ "${{ inputs.active }}" == "Enable" ]] && echo true || echo false)"
         events="$(echo "${{ inputs.events }}" | jq -Rc 'split(",")')"
         gh api orgs/${{ inputs.organization }}/hooks \
