@@ -81,5 +81,5 @@ jobs:
         uses: ./.github/actions/issue-op
         id: issue-ops-composite
         with:
-          uses: ./actions/${{ steps.issue-labels.outputs.result }}
+          uses: ./.github/actions/${{ steps.issue-labels.outputs.result }}
           with: ${{ steps.payload.outputs.json }}
