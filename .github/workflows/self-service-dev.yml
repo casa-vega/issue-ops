@@ -78,7 +78,7 @@ jobs:
 
       # dynamically call the appropriate action based on the issue template
       - name: call issue ops dynamically with composite action
-        uses: ./.github/actions/route
+        uses: ./actions/issue-op
         id: issue-ops-composite
         with:
           uses: ./actions/${{ steps.issue-labels.outputs.result }}
