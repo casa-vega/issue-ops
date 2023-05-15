@@ -27,10 +27,14 @@ inputs:
     description: "Webhook Events"
     required: true
     type: string
-  host:
+  hostname:
     description: "GitHub Host"
     required: true
     type: string
+  secret:
+   description: "secret"
+   required: false
+   type: string
 
 runs:
   using: composite
@@ -39,7 +43,7 @@ runs:
       shell: bash
       run: |
         gh auth login \
-        --hostname ${{ inputs.host }} \
+        --hostname ${{ inputs.hostname }} \
         --with-token < token.txt
         rm token.txt
 
