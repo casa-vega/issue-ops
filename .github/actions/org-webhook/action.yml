@@ -36,6 +36,7 @@ runs:
   using: composite
   steps:
     - name: login with gh cli
+      shell: bash
       run: |
         gh auth login \
         --hostname ${{ inputs.host }} \
@@ -43,6 +44,7 @@ runs:
         rm token.txt
 
     - name: create an organization webhook
+      shell: bash
       run: |
         active="$([[ "${{ inputs.active }}" == "Enable" ]] && echo true || echo false)"
         events="$(echo "${{ inputs.events }}" | jq -Rc 'split(",")')"
