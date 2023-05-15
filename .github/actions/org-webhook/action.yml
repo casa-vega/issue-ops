@@ -36,13 +36,14 @@ runs:
       run: |
         active="$([[ "${{ inputs.active }}" == "["Enable"]" ]] && echo true || echo false)"
         gh api orgs/${{ inputs.organization }}/hooks \
-          --input - <<< '{
+          --input - << EOF
+          {
             "name": "web",
-            "active": 'echo $active',
+            "active": $active,
             "events": ${{ inputs.events }},
             "config": {
               "url": "${{ inputs.webhook_url }}",
               "content_type": "${{ inputs.content_type }}"
             }
-          }'
-    
+          }
+          EOF
