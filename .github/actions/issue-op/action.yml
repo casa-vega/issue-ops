@@ -30,9 +30,9 @@ runs:
 
         export WITH=$(format_json '${{ inputs.with }}')
 
-        mkdir -p ./actions/op
+        mkdir -p ./.github/actions/op
 
-        cat << 'EOF' | envsubst > ./actions/op/action.yml
+        cat << 'EOF' | envsubst > ./.github/actions/op/action.yml
         outputs:
           outputs:
             value: ${{ '$' }}{{ toJSON(steps.run.outputs) }}
