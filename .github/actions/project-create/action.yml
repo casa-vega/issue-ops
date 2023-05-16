@@ -26,8 +26,9 @@ runs:
               title: \"${{ inputs.name }}\",
             }
           ){
-          projectV2 {
-            id
+            projectV2 {
+              id
+            }
           }
         }'"
         echo $query
