@@ -18,11 +18,12 @@ runs:
     - name: archive a repository
       shell: bash
       run: |
+        oid=$(gh api /users/${{ inputs.organzation }} | jq -r '.id')
         gh api graphql -f query='
           mutation{
             createProjectV2(
               input: {
-                ownerId: "${{ inputs.organization }}",
+                ownerId: "$oid",
                 title: "${{ inputs.name }}",
               }
             ){
