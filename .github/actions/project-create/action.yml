@@ -15,24 +15,20 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: archive a repository
+    - name: create a v2 project
       shell: bash
       run: |
         oid=$(gh api /users/${{ inputs.organzation }} | jq -r '.id')
-        query=$(cat <<EOF
-          'mutation{
-            createProjectV2(
-              input: {
-                ownerId: "$oid",
-                title: "${{ inputs.name }}",
-              }
-            ){
-            projectV2 {
-              id
+        query="mutation{
+          createProjectV2(
+            input: {
+              ownerId: \"${oid}\",
+              title: \"${{ inputs.name }}\",
             }
+          ){
+          projectV2 {
+            id
           }
-        }'
-        EOF
-        )
-      gh api graphql -f query=$query
+        }"
+        gh api graphql -f query="$query"
 
