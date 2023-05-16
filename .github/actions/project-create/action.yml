@@ -24,12 +24,13 @@ runs:
             createProjectV2(
               input: {
                 ownerId: "$oid",
-              title: "${{ inputs.name }}",
+                title: "${{ inputs.name }}",
               }
             ){
-              projectV2 {
-                id
-              }
+            projectV2 {
+              id
             }
           }
-      EOF
+        }
+        EOF
+      )
