@@ -79,7 +79,7 @@ body:
 
 To ensure forms can adhere to required values, is it possible to set these values in `FORM_FIELDS`. We will programmatically check these values at runtime and prevent any work from occuring when the required fields are not present.
 
-To use this feature, create a `yml` files that matches the issue template file name. Above we used the repo archive operation (`ISSUE_TEMPLATE/repo-archive.yml`), this is what a corresponding `FORM_FIELDS/repo-archive.yml` would look like:
+To use this feature, create a `yml` file that matches the issue template file name. Above we used the repo archive operation (`ISSUE_TEMPLATE/repo-archive.yml`), this is what a corresponding `FORM_FIELDS/repo-archive.yml` would look like:
 
 ```yaml
 required_fields:
