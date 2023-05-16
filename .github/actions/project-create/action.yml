@@ -18,11 +18,11 @@ runs:
     - name: create a v2 project
       shell: bash
       run: |
-        oid=$(gh api /users/${{ inputs.organization }} | jq -r '.node_id')
+        node_id=$(gh api /users/${{ inputs.organization }} | jq -r '.node_id')
         query="mutation{
           createProjectV2(
             input: {
-              ownerId: \"$oid\",
+              ownerId: \"$node_id\",
               title: \"${{ inputs.name }}\",
             }
           ){
