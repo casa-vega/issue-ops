@@ -19,16 +19,17 @@ runs:
       shell: bash
       run: |
         oid=$(gh api /users/${{ inputs.organzation }} | jq -r '.id')
-        gh api graphql -f query='
+        gh api graphql -f query=$(cat <<EOF
           mutation{
             createProjectV2(
               input: {
-                ownerId: "'"$oid"'",
-                title: "${{ inputs.name }}",
+                ownerId: "$oid",
+              title: "${{ inputs.name }}",
               }
             ){
               projectV2 {
                 id
               }
             }
-          }'
+          }
+      EOF
