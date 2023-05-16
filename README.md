@@ -4,10 +4,112 @@ In this repository, we employ GitHub Issue Operations (Issue Ops) via GitHub Act
 
 ---
 
-## A self-service approach for managing github components/settings across multiple github instances. 
+## A self-service approach for managing github components/settings across MULTIPLE instances of GitHub and GitHub Enterprise. 
 
----
+### Getting Started
 
+#### Multiple GitHub Instances
+
+Supporting multiple GitHub Instances is done via form. It's not uncommon for large enterprises to have multiple instances of GitHub. In these cases users choose the instance they want to perform the work. There is no secret sauce, we just propagate the instance name provided to our validation code which will return the hostname of the target. See the `validation.py` docs below to learn more. 
+
+We use and advocate using for the `gh` tool with the ` --with-token < token.txt` CLI tool in most cases, now that we have a parsed instance name from the form, this allows us to ask for a secret `GHES_TOKEN` in slightly dynamic way:
+
+```
+echo \
+${{ secrets[format('{0}_TOKEN', steps.parser.output.instance )] }} \
+> token.txt
+```
+
+Followed by:
+
+```bash
+gh auth login \
+--with-token < token.txt
+rm token.txt
+```
+
+#### Creating a new issue operation for users
+
+1. Think about the operation you want to perform in constract with GitHub API's. If you have an endpoint that enables you to modify components or features of GitHub, that will be a good candidate for moving forward. 
+
+2. Since the API will typically require inputs you'll want to ensure you create an `ISSUE_TEMPLATE/` that encapsulates those API requirements using a form. For more information on using templates see: [Configuring issue templates for your repository](https://docs.github.com/en/enterprise-cloud@latest/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository)
+
+
+3. Create an `ISSUE_TEMPLATE/`, here's an example of an operation that will archive a repo. Take note of the `id:` key. When we parse the issue template we will be able to use the `id:` names 
+
+```yaml
+name: archive a repository
+description: set a repo to archived making it read only
+title: "[repo-archive] Archive a repository"
+labels:
+  - repo-archive
+body:
+  - type: dropdown
+    id: instance
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you're targeting. 
+      options:
+        - COM
+        - EMU
+        - GHES
+  - type: input
+    id: organization
+    attributes:
+      label: GitHub Organization (*)
+      description: The name of the github organization (must be exact)
+      placeholder: ex. github
+  - type: input
+    id: repository
+    attributes:
+      label: GitHub Repository (*)
+      description: The name of the github repository (must be exact)
+      placeholder: ex. actions
+```
+
+4. If you're running in a `public` repo you can set form fields as required. In `private` and `internal` repos this is not possible yet.
+
+To ensure forms can adhere to required values, is it possible to set these values in `FORM_FIELDS`. We will programmatically check these values at runtime and prevent any work from occuring when the required fields are not present.
+
+To use this feature, create a `yml` files that matches the issue template file name. Above we used the repo archive operation (`ISSUE_TEMPLATE/repo-archive.yml`), this is what a corresponding `FORM_FIELDS/repo-archive.yml` would look like:
+
+```yaml
+required_fields:
+  - instance
+  - organization
+  - repository
+```
+
+In this example we require every value in the issue template to be present when calling the api. 
+
+5. Create your composite action. Here's what the example repo-archive composite action would look like:
+```yml
+name: repo-archive
+author: "@github"
+description: archive a repository
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  org:
+    description: "GitHub Organization"
+    required: true
+  repo:
+    description: "GitHub Repository"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: archive a repo
+      shell: bash
+      run: |
+        gh api repos/${{ inputs.org }}/${{ inputs.repo }} \
+          --input - <<< '{
+            "archived": true
+          }'
+```
 ## Architecture:
 Issue ops lives inside the .github directory at the base of the repo. The framework itself relies on builtin GitHub constructs for `workflow/`, `ISSUE_TEMPLATES` directories and a best practice approach for `scripts/`. The only unique pieces of data are `ENTITLEMENTS/github.yml`, and `FORM_FIELDS`.
 
@@ -39,7 +141,7 @@ Issue ops lives inside the .github directory at the base of the repo. The framew
 
 Issue operations are comprised on GitHub composite actions. For every composite action an `actions.yml` exists. The composite action has a set of inputs it expects and executes the request. The request is typically executed using `gh` cli tool but doesn't have to be.
 
-As you can see below the org webhook actions remains fairly small:
+As you can see below the org webhook action remains fairly small:
 
 ```yaml
 runs:
