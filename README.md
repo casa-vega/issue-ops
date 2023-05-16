@@ -12,7 +12,7 @@ In this repository, we employ GitHub Issue Operations (Issue Ops) via GitHub Act
 
 Supporting multiple GitHub Instances is done via form. It's not uncommon for large enterprises to have multiple instances of GitHub. In these cases users choose the instance they want to perform the work. There is no secret sauce, we just propagate the instance name provided to our validation code which will return the hostname of the target. See the `validation.py` docs below to learn more. 
 
-We use and advocate using for the `gh` tool with the ` --with-token < token.txt` CLI tool in most cases, now that we have a parsed instance name from the form, this allows us to ask for a secret `GHES_TOKEN` in slightly dynamic way:
+Create GitHub tokens that have the level of access you require. Do that for each instance. We use and also advocate using the `gh` tool with the ` --with-token < token.txt` CLI tool in most cases, now that we have a parsed instance name from the form, this allows us to ask for a secret `GHES_TOKEN` in slightly dynamic way:
 
 ```
 echo \
