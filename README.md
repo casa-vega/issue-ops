@@ -110,7 +110,7 @@ runs:
             "archived": true
           }'
 ```
-## Architecture:
+## Layout / Architecture:
 Issue ops lives inside the .github directory at the base of the repo. The framework itself relies on builtin GitHub constructs for `workflow/`, `ISSUE_TEMPLATES` directories and a best practice approach for `scripts/`. The only unique pieces of data are `ENTITLEMENTS/github.yml`, and `FORM_FIELDS`.
 
 ```bash
