@@ -77,7 +77,6 @@ jobs:
 
       - name: gh cli setup
         run: |
-          gh auth token > action.txt
           echo ${{ secrets[format('{0}_TOKEN', steps.issue-parser.outputs.issueparser_instance)] }} > token.txt
           gh auth login \
             --hostname $(echo '${{ steps.setup.outputs.json }}' | jq -r '.hostname') \
@@ -97,10 +96,11 @@ jobs:
       # reset gh cli configuration
       - name: reset gh cli
         run: |
+          echo ${{ secrets.GITHUB_TOKEN }} > token.txt
           gh auth login \
             --hostname github.com \
-            --with-token < action.txt
-          rm action.txt
+            --with-token < token.txt
+          rm token.txt
 
 
       # update the issue with the results of the operation
