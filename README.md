@@ -30,12 +30,19 @@ rm token.txt
 
 #### Creating a new issue operation for users
 
-1. Think about the operation you want to perform in contrast with GitHub API's. If you have an endpoint that enables you to modify components or features of GitHub, that will be a good candidate for moving forward. 
+1. Think about the operation you want to perform in contrast with GitHub API's. If you have an endpoint that enables you to modify components or features of GitHub, that will be a good candidate for moving forward. When thinking about this project, new issue ops require the creation of the following three files:
+
+###### A list of required form fields
+`.github/FORM_FIELDS/repo-archive.yml`
+###### ths issue template
+`.github/ISSUE_TEMPLATE/repo-archive.yml`
+###### composite action to perform the operation
+`.github/actions/repo-archive/action.yml`
+
 
 2. Since the API will typically require inputs you'll want to ensure you create an `ISSUE_TEMPLATE/` that encapsulates those API requirements using a form. For more information on using templates see: [Configuring issue templates for your repository](https://docs.github.com/en/enterprise-cloud@latest/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository)
 
-
-3. Create an `ISSUE_TEMPLATE/`, here's an example of an operation that will archive a repo. Take note of the `id:` key. When we parse the issue template we will be able to use the `id:` names 
+3. Create an `ISSUE_TEMPLATE/`, here's an example of an operation that will archive a repo. Take note of the `id:` key. When we parse the issue template we will be able to use the `id:` names as step output in other steps.
 
 ```yaml
 name: archive a repository
