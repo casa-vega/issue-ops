@@ -109,9 +109,9 @@ jobs:
         with:
           script: |
             const issueNumber = context.issue.number;
-            const result = ${{ toJSON(steps.issue-ops-composite.outputs.result) }};
+            const result = ${{ steps.issue-ops-composite.outputs.result }};
             await github.rest.issues.createComment({
-              issue_number: issueNumber,
+              issue_number: issueNumbe r,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: result,
