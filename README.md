@@ -220,14 +220,14 @@ required_fields:
 This script is designed to consistently satisfy a few critical use cases
 
 #### Authentication:
-Validates the organization and verifies user entitlements to the organization using ENTITLEMENTS/github.yml.
-Throws an error for invalid organizations.
-Throws an error when the user lacks necessary entitlements.
+- Validates the organization and verifies user entitlements to the organization using ENTITLEMENTS/github.yml.
+  - Throws an error for invalid organizations.
+  - Throws an error when the user lacks necessary entitlements.
 #### Form Validation:
-Ensures that the issue does not contain prohibited values (e.g., None, "", []). A required field must never be empty.
-Throws an error when prohibited values are detected.
+- Ensures that the issue does not contain prohibited values (e.g., None, "", []). A required field must never be empty.
+  - Throws an error when prohibited values are detected.
 #### Hostname Resolution:
-Provides a flat `JSON` object that it used to hydrate the ops request.
+- This function furnishes a monolithic JSON object that serves as the data source for populating the operations requests
 
 ##### Additional notes:
 `ENTITLEMENTS/github.yml` and `FORM_FIELDS` are sources of truth so it is worth noting that some of these values within validation.py are hardcoded. They could easily be moved to a config file if needed, but this ensures validation.py is always using the expected filesystem locations and expected sources.
