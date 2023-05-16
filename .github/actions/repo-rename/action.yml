@@ -11,6 +11,9 @@ inputs:
   repository:
     description: "GitHub Repository"
     required: true
+  name:
+    description: "GitHub Repository Name"
+    required: true
 
 runs:
   using: composite
@@ -20,5 +23,5 @@ runs:
       run: |
         gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
           --input - <<< '{
-            "archived": true
+            "name": "${{ inputs.name }}"
           }'

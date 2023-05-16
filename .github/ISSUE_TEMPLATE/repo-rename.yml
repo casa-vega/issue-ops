@@ -1,0 +1,34 @@
+name: rename a repository 
+description: rename an existing repo
+title: "[repo-rename] rename a repository"
+labels:
+  - repo-rename
+body:
+  - type: dropdown
+    id: instance
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you're targeting. 
+      options:
+        - COM
+        - EMU
+        - SOMA
+  - type: input
+    id: organization
+    attributes:
+      label: GitHub Organization (*)
+      description: The name of the github organization (must be exact)
+      placeholder: ex. github
+  - type: input
+    id: repository
+    attributes:
+      label: GitHub Repository (*)
+      description: The name of the github repository to create
+      placeholder: ex. purple-fish
+  - type: input
+    id: name
+    attributes:
+      label: the new name of the repository (*)
+      description: your new fancy/descriptive repository name
+      placeholder: fuschia-sailfish
+  
