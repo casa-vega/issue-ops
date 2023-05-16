@@ -22,7 +22,7 @@ runs:
         query="mutation{
           createProjectV2(
             input: {
-              ownerId: \"${oid}\",
+              ownerId: \"$oid\",
               title: \"${{ inputs.name }}\",
             }
           ){
@@ -30,5 +30,6 @@ runs:
             id
           }
         }"
+        echo $query
         gh api graphql -f query="$query"
 
