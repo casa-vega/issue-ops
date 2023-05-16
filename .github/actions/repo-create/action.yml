@@ -11,6 +11,15 @@ inputs:
   repository:
     description: "GitHub Repository"
     required: true
+  visibility:
+    description: "GitHub Repository Visibility (private/internal)"
+    required: true
+  readme:
+    description: "GitHub README enabled"
+    required: false
+  description:
+    description: "GitHub Repository Description"
+    required: true
 
 runs:
   using: composite
