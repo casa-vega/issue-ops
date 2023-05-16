@@ -30,7 +30,7 @@ rm token.txt
 
 #### Creating a new issue operation for users
 
-1. Think about the operation you want to perform in constract with GitHub API's. If you have an endpoint that enables you to modify components or features of GitHub, that will be a good candidate for moving forward. 
+1. Think about the operation you want to perform in contrast with GitHub API's. If you have an endpoint that enables you to modify components or features of GitHub, that will be a good candidate for moving forward. 
 
 2. Since the API will typically require inputs you'll want to ensure you create an `ISSUE_TEMPLATE/` that encapsulates those API requirements using a form. For more information on using templates see: [Configuring issue templates for your repository](https://docs.github.com/en/enterprise-cloud@latest/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository)
 
