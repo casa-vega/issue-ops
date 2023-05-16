@@ -39,4 +39,4 @@ runs:
         gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
           --input - <<< '{
             "archived": true
-          }
+          }'
