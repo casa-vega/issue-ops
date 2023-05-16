@@ -18,7 +18,7 @@ runs:
     - name: create a v2 project
       shell: bash
       run: |
-        oid=$(gh api /users/${{ inputs.organzation }} | jq -r '.id')
+        oid=$(gh api /users/${{ inputs.organization }} | jq -r '.id')
         query="mutation{
           createProjectV2(
             input: {
