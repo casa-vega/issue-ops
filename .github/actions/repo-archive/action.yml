@@ -1,5 +1,5 @@
-name: create an organization webhook
-description: create organization webhook
+name: create a repository webhook
+description: create repository webhook
 
 inputs:
   instance:
@@ -7,6 +7,9 @@ inputs:
     required: true
   organization:
     description: "GitHub Organization"
+    required: true
+  repository:
+    description: "GitHub Repository"
     required: true
   webhook_url:
     description: "Webhook URL"
@@ -34,7 +37,7 @@ runs:
       shell: bash
       run: |
         active="$([[ "${{ inputs.active }}" == "["Enable"]" ]] && echo true || echo false)"
-        gh api orgs/${{ inputs.organization }}/hooks \
+        gh api orgs/${{ inputs.organization }}/${{ inputs.repository }}/hooks \
           --input - << EOF
           {
             "name": "web",

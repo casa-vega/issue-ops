@@ -2,6 +2,6 @@ required_fields:
   - instance
   - organization
   - repository
-  - payload_url
+  - webhook_url
   - content_type
   - events

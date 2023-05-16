@@ -1,0 +1,24 @@
+name: create a repository webhook
+description: create repository webhook
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  repository:
+    description: "GitHub Repository"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: create an organization webhook
+      shell: bash
+      run: |
+        gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
+          --input - <<< '{
+            "archived": true
+          }'
