@@ -32,8 +32,7 @@ runs:
             }
           }
         }'
-EOF
-      )
-      echo $query
+        EOF
+        )
       gh api graphql -f query=$query
 
