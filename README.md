@@ -149,28 +149,25 @@ Issue ops lives inside the .github directory at the base of the repo. The framew
 
 Issue operations are comprised on GitHub composite actions. For every composite action an `actions.yml` exists. The composite action has a set of inputs it expects and executes the request. The request is typically executed using `gh` cli tool but doesn't have to be.
 
-As you can see below the org webhook action remains fairly small:
+As you can see below the org webhook action remains fairly small and it's clear what will be executed.
 
 ```yaml
-runs:
-  using: composite
-  steps:
-    - name: create an organization webhook
-      shell: bash
-      run: |
-        active="$([[ "${{ inputs.active }}" == "["Enable"]" ]] && echo true || echo false)"
-        gh api orgs/${{ inputs.organization }}/hooks \
-          --input - << EOF
-          {
-            "name": "web",
-            "active": $active,
-            "events": ${{ inputs.events }},
-            "config": {
-              "url": "${{ inputs.webhook_url }}",
-              "content_type": "${{ inputs.content_type }}"
-            }
-          }
-        EOF
+- name: create an organization webhook
+  shell: bash
+  run: |
+    active="$([[ "${{ inputs.active }}" == "["Enable"]" ]] && echo true || echo false)"
+    gh api orgs/${{ inputs.organization }}/hooks \
+      --input - << EOF
+      {
+        "name": "web",
+        "active": $active,
+        "events": ${{ inputs.events }},
+        "config": {
+          "url": "${{ inputs.webhook_url }}",
+          "content_type": "${{ inputs.content_type }}"
+        }
+      }
+    EOF
 ```
 #### Dynamic Uses
 
