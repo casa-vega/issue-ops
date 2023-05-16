@@ -1,5 +1,5 @@
 name: change repository visibility 
-description: change the visiblity of a repository (intenral/private)
+description: change the visiblity of a repository (internal/private)
 title: "[repo-visibility] Change repository visibility"
 labels:
   - repo-visibility
