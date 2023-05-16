@@ -1,8 +1,8 @@
-name: rename a repository 
-description: renames an existing repository
-title: "[repo-rename] Rename a repository"
+name: change repository visibility 
+description: change the visiblity of a repository (intenral/private)
+title: "[repo-visibility] Change repository visibility"
 labels:
-  - repo-rename
+  - repo-visibility
 body:
   - type: dropdown
     id: instance
@@ -24,11 +24,12 @@ body:
     attributes:
       label: GitHub Repository (*)
       description: The name of the github repository to create
-      placeholder: ex. purple-fish
-  - type: input
-    id: name
+      placeholder: ex. other-fuchsia-sailfish
+  - type: dropdown
+    id: visibility
     attributes:
-      label: the new name of the repository (*)
-      description: your new fancy/descriptive repository name
-      placeholder: fuschia-sailfish
-  
+      label: Visibility (*)
+      description: sets the visiblity to internal or private
+      options:
+        - internal
+        - private

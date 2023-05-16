@@ -1,0 +1,27 @@
+name: change repository visibility
+description: change the visiblity of a repository (intenral/private)
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  repository:
+    description: "GitHub Repository"
+    required: true
+  visibility:
+    description: "GitHub Repository Visibility (private/internal)"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: archive a repository
+      shell: bash
+      run: |
+        gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
+          --input - <<< '{
+            "visibility": "${{ inputs.visibility }}"
+          }'
