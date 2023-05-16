@@ -34,9 +34,9 @@ rm token.txt
 
 ###### A list of required form fields
 `.github/FORM_FIELDS/repo-archive.yml`
-###### ths issue template
+###### The issue template
 `.github/ISSUE_TEMPLATE/repo-archive.yml`
-###### composite action to perform the operation
+###### Composite action to perform the issue operation
 `.github/actions/repo-archive/action.yml`
 
 
