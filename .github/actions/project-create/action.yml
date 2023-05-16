@@ -23,7 +23,7 @@ runs:
           mutation{
             createProjectV2(
               input: {
-                ownerId: "$(echo $oid)",
+                ownerId: "'"$oid"'",
                 title: "${{ inputs.name }}",
               }
             ){
