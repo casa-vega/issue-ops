@@ -36,16 +36,7 @@ runs:
     - name: create an organization webhook
       shell: bash
       run: |
-        active="$([[ "${{ inputs.active }}" == "["Enable"]" ]] && echo true || echo false)"
-        gh api orgs/${{ inputs.organization }}/${{ inputs.repository }}/hooks \
-          --input - << EOF
-          {
-            "name": "web",
-            "active": $active,
-            "events": ${{ inputs.events }},
-            "config": {
-              "url": "${{ inputs.webhook_url }}",
-              "content_type": "${{ inputs.content_type }}"
-            }
+        gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
+          --input - <<< '{
+            "archived": true
           }
-        EOF

@@ -18,7 +18,8 @@ runs:
     - name: create an organization webhook
       shell: bash
       run: |
-        gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
-          --input - <<< '{
-            "archived": true
-          }'
+        gh repo create \
+          ${{ inputs.organization }}/${{ inputs.repository }} \
+          --${{ inputs.visibility }} \
+          `[[ "${{ inputs.readme }}" == "["Enable"]" ]] && echo --add-readme` \
+          --description "${{ inputs.description }}"
