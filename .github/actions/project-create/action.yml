@@ -20,7 +20,7 @@ runs:
       run: |
         oid=$(gh api /users/${{ inputs.organzation }} | jq -r '.id')
         query=$(cat <<EOF
-          mutation{
+          'mutation{
             createProjectV2(
               input: {
                 ownerId: "$oid",
@@ -31,7 +31,8 @@ runs:
               id
             }
           }
-        }
+        }'
         EOF
       )
-      gh api graphql -f query="$query"
+      gh api graphql -f query=$query
+
