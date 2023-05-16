@@ -1,5 +1,5 @@
 name: create a v2 project 
-description: creates a v2 project
+description: creates a Github v2 project at the org level
 title: "[project-create] Rename a repository"
 labels:
   - project-create
