@@ -96,7 +96,7 @@ jobs:
       # reset gh cli configuration
       - name: reset gh cli
         run: |
-          echo ${{ secrets.GITHUB_TOKEN }} > token.txt
+          echo ${{ secrets.COM_TOKEN }} > token.txt
           gh auth login \
             --hostname github.com \
             --with-token < token.txt
