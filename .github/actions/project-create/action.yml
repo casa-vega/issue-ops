@@ -1,0 +1,33 @@
+name: create a project
+description: create a v2 project
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  name:
+    description: "GitHub Project Name"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: archive a repository
+      shell: bash
+      run: |
+        gh api graphql -f query="
+          mutation{
+            createProjectV2(
+              input: {
+                ownerId: "${{ inputs.organization }}",
+                title: "${{ inputs.name }}",
+              }
+            ){
+              projectV2 {
+                id
+              }
+            }
+          }"

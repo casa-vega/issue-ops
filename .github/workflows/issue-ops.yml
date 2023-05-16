@@ -75,12 +75,13 @@ jobs:
             --instance=${{ steps.issue-parser.outputs.issueparser_instance }})" >> $GITHUB_OUTPUT
 
 
-      - name: gh auth login
+      - name: gh cli setup
         run: |
+          gh auth token > action.txt
           echo ${{ secrets[format('{0}_TOKEN', steps.issue-parser.outputs.issueparser_instance)] }} > token.txt
           gh auth login \
-          --hostname $(echo '${{ steps.setup.outputs.json }}' | jq -r '.hostname') \
-          --with-token < token.txt
+            --hostname $(echo '${{ steps.setup.outputs.json }}' | jq -r '.hostname') \
+            --with-token < token.txt
           rm token.txt
 
 
@@ -91,3 +92,41 @@ jobs:
         with:
           uses: ./.github/actions/${{ steps.issue-labels.outputs.result }}
           with: ${{ steps.setup.outputs.json }}
+
+
+      # reset gh cli configuration
+      - name: reset gh cli
+        run: |
+          gh auth login \
+            --hostname github.com \
+            --with-token < action.txt
+          rm action.txt
+
+
+      # update the issue with the results of the operation
+      - name: update issue with results
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issueNumber = context.issue.number;
+            const result = ${{ toJSON(steps.issue-ops-composite.outputs.result) }};
+            await github.rest.issues.createComment({
+              issue_number: issueNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: result,
+            });
+
+
+      # close the issue
+      - name: close issue
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issueNumber = context.issue.number;
+            await github.rest.issues.update({
+              issue_number: issueNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'closed',
+            });
