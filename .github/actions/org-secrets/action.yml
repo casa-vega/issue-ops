@@ -1,0 +1,49 @@
+name: create an organization secret
+description: create organization secret
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  secret_name:
+    description: "GitHub Organization Secret Name"
+    required: true
+  secret_value:
+    description: "GitHub Organization Secret Value"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: fetch org public key
+      id: fetch-public-key
+      shell: bash
+      run: | 
+        output=$(gh api \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+        /orgs/${{ inputs.organization }}/actions/secrets/public-key)
+        echo "::set-output name=public-key::$(echo $output | jq -r '.key')"
+        echo "::set-output name=public-key-id::$(echo $output | jq -r '.key_id')"
+    
+    - name: python encrypt secret
+      shell: bash
+      run : |
+        output=$(python .github/scripts/encrypt_secret.py \
+          --public-key "${{ steps.fetch-public-key.outputs.public-key }}" \
+          --secret-value "${{ inputs.secret_value }}")
+        echo "::set-output name=my-output::$output"
+
+    - name: create an organization secret
+      shell: bash
+      run: |
+        gh api \
+          --method PUT \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+        /orgs/ORG/actions/secrets/${{ inputs.secret_name }} \
+          -f encrypted_value="${{ inputs.secret_value }}"\
+          -f key_id='${{ steps.fetch-public-key.outputs.public-key }}'
