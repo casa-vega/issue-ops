@@ -1,0 +1,26 @@
+name: enables issues for a repository
+description: allows users to file issues in a repository
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  repository:
+    description: "GitHub Repository"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: enable issues for a repository
+      shell: bash
+      run: |
+        gh api \
+          --method PATCH \
+          repos/${{ inputs.organization }}/${{ inputs.repository }} \
+          --input - <<< '{
+            "has_issues": true
+          }'

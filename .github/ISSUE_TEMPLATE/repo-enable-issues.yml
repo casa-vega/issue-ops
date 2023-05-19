@@ -1,0 +1,27 @@
+name: enable issues for a repository
+description: allows users to file issues in a repository
+title: "[repo-enable-issues] Enable issues for a repository"
+labels:
+  - repo-archive
+body:
+  - type: dropdown
+    id: instance
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you're targeting. 
+      options:
+        - COM
+        - EMU
+        - SOMA
+  - type: input
+    id: organization
+    attributes:
+      label: GitHub Organization (*)
+      description: The name of the github organization (must be exact)
+      placeholder: ex. github
+  - type: input
+    id: repository
+    attributes:
+      label: GitHub Repository (*)
+      description: The name of the github repository (must be exact)
+      placeholder: ex. actions

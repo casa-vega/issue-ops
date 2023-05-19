@@ -53,14 +53,13 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const issueNumber = context.issue.number;
             const formErrors = ${{ toJSON(steps.validate.outputs.form) }};
             const authErrors = ${{ toJSON(steps.validate.outputs.auth) }};
             const formFailureMessage = 'FORM: This means you are missing a required form field.\n\n```json\n' + formErrors + '\n```\n';
             const authFailureMessage = 'AUTH: You do not have the access required to perform this operation.\n\n```json\n' + authErrors + '\n```\n';
             const failureMessage = (formErrors != '' ? formFailureMessage : '') + (authErrors != '' ? authFailureMessage : '');
             await github.rest.issues.createComment({
-              issue_number: issueNumber,
+              issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: failureMessage,
@@ -71,7 +70,8 @@ jobs:
       - name: create ops specific payload
         id: setup
         run: |
-          echo "JSON=$(python .github/scripts/validation.py payload \
+          echo "JSON=$(jq -r '.' ${HOME}/issue-parser-result.json)" >> $GITHUB_OUTPUT
+          echo "HOST=$(python .github/scripts/validation.py host \
             --instance=${{ steps.issue-parser.outputs.issueparser_instance }})" >> $GITHUB_OUTPUT
 
 
@@ -79,7 +79,7 @@ jobs:
         run: |
           echo ${{ secrets[format('{0}_TOKEN', steps.issue-parser.outputs.issueparser_instance)] }} > token.txt
           gh auth login \
-            --hostname $(echo '${{ steps.setup.outputs.json }}' | jq -r '.hostname') \
+            --hostname ${{ steps.setup.outputs.host }} \
             --with-token < token.txt
           rm token.txt
 
@@ -87,7 +87,7 @@ jobs:
       # dynamically call the appropriate action based on the issue template
       - name: call issue ops dynamically with composite action
         uses: ./.github/actions/issue-op
-        id: issue-ops-composite
+        id: ops-composite
         with:
           uses: ./.github/actions/${{ steps.issue-labels.outputs.result }}
           with: ${{ steps.setup.outputs.json }}
@@ -108,17 +108,16 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const issueNumber = context.issue.number;
-            const result = "placeholder";
+            const outcome = context.steps['ops-composite'].outputs.result;
             await github.rest.issues.createComment({
-              issue_number: issueNumber,
+              issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: result,
+              body: outcome,
             });
 
 
-      # close the issue
+
       - name: close issue
         uses: actions/github-script@v6
         with:

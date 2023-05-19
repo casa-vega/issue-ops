@@ -12,7 +12,7 @@ from validation import (
     hostname,
     main,
     parse_arguments,
-    payload,
+    json_data,
     read_json,
     read_yaml
 )

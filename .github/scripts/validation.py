@@ -193,9 +193,9 @@ def hostname(gh: str) -> str: # type: ignore
             return instance['url']
 
 
-def payload(args: argparse.Namespace) -> None:
+def json_data(args: argparse.Namespace) -> None:
     """
-    Handles the 'payload' command which prints a JSON payload to stdout.
+    Handles the 'json_data' command which prints a JSON object to stdout.
 
     Parameters
     ----------
@@ -204,7 +204,6 @@ def payload(args: argparse.Namespace) -> None:
     """
     with open(f"{os.environ.get('HOME')}/issue-parser-result.json") as f:
         json_data = json.load(f)
-    json_data['hostname'] = hostname(args.instance)  
     print(f"{json.dumps(json_data)}")
 
 
@@ -270,7 +269,7 @@ def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="issue ops validation tool")
     subparsers = parser.add_subparsers()
 
-    auth_parser = subparsers.add_parser("auth", help="Authentication help")
+    auth_parser = subparsers.add_parser("auth", help="Auth help")
     auth_parser.add_argument(
         "-i",
         "--instance",
@@ -300,14 +299,23 @@ def parse_arguments() -> argparse.Namespace:
     )
     form_parser.set_defaults(func=form)
 
-    form_parser = subparsers.add_parser("payload", help="Payload help")
+    form_parser = subparsers.add_parser("json", help="JSON help")
     form_parser.add_argument(
         "-i",
         "--instance",
         required=True,
         help="Name of the GitHub instance"
     )
-    form_parser.set_defaults(func=payload)
+    form_parser.set_defaults(func=json_data)
+
+    form_parser = subparsers.add_parser("host", help="Host help")
+    form_parser.add_argument(
+        "-i",
+        "--instance",
+        required=True,
+        help="Name of the GitHub instance"
+    )
+    form_parser.set_defaults(func=hostname)
 
     return parser.parse_args()
 
