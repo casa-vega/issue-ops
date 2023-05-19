@@ -1,0 +1,21 @@
+name: list orgnization admins
+description: allows users to list orgnization admins
+title: "[org-admin-list] List orgnization admins"
+labels:
+  - repo-archive
+body:
+  - type: dropdown
+    id: instance
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you're targeting. 
+      options:
+        - COM
+        - EMU
+        - SOMA
+  - type: input
+    id: organization
+    attributes:
+      label: GitHub Organization (*)
+      description: The name of the github organization (must be exact)
+      placeholder: ex. github

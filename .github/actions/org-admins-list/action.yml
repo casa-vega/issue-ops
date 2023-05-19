@@ -1,0 +1,18 @@
+name: list orgnization admins
+description: allows users to list orgnization admins
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: enable issues for a repository
+      shell: bash
+      run: |
+        

@@ -193,7 +193,33 @@ def hostname(gh: str) -> str: # type: ignore
             return instance['url']
 
 
-def json_data(args: argparse.Namespace) -> None:
+def owners(args: argparse.Namespace) -> Optional[List[str]]:
+    """
+    Extract the owners of an organization from a YAML file.
+
+    Parameters
+    ----------
+    yaml_file : str
+        The path to the YAML file.
+    org_name : str
+        The name of the organization.
+
+    Returns
+    -------
+    list or None
+        The list of owners if the organization is found; None otherwise.
+
+    """
+    data = read_yaml(".github/ENTITLEMENTS/github.yml")
+
+    for instance in data['github_instances']:
+        for org in instance['organizations']:
+            if org['name'] == args.org:
+                return org['owners']
+
+    return None
+
+def json_data() -> None:
     """
     Handles the 'json_data' command which prints a JSON object to stdout.
 
@@ -316,6 +342,16 @@ def parse_arguments() -> argparse.Namespace:
         help="Name of the GitHub instance"
     )
     form_parser.set_defaults(func=hostname)
+
+    form_parser = subparsers.add_parser("owners", help="Host help")
+    form_parser.add_argument(
+        "-o",
+        "--org",
+        required=True,
+        help="Name of the GitHub instance"
+    )
+    form_parser.set_defaults(func=hostname)
+
 
     return parser.parse_args()
 
