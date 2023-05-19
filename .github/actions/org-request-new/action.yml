@@ -1,5 +1,5 @@
-name: create a project
-description: create a v2 project
+name: create a new organization
+description: request to create a new organization
 
 inputs:
   instance:
@@ -8,14 +8,12 @@ inputs:
   organization:
     description: "GitHub Organization"
     required: true
-  name:
-    description: "GitHub GitHub App Name"
-    required: true
+
 
 runs:
   using: composite
   steps:
-    - name: create a new github app
+    - name: create a new github organization
       shell: bash
       run: |
         # GUS API code goes here

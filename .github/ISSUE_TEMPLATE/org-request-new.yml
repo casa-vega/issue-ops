@@ -1,0 +1,22 @@
+name: create a new github organization 
+description: requests a new github organization
+title: "[org-request-new] Create a new organization"
+labels:
+  - project-create
+body:
+  - type: dropdown
+    id: instance
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you're targeting. 
+      options:
+        - COM
+        - EMU
+        - SOMA
+  - type: input
+    id: organization
+    attributes:
+      label: GitHub Organization (*)
+      description: The name of the github organization you want to create
+      placeholder: ex. github
+  
