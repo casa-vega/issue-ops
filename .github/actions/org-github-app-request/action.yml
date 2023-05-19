@@ -1,0 +1,22 @@
+name: create a project
+description: create a v2 project
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  name:
+    description: "GitHub Project Name"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: create a v2 project
+      shell: bash
+      run: |
+        # GUS API code goes here
+

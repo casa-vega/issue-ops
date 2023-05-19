@@ -1,8 +1,8 @@
-name: list orgnization admins
-description: allows users to list orgnization admins
-title: "[org-admin-list] List organization admins"
+name: create a github app
+description: creates a Github app project at the org level
+title: "[org-github-app-request] Create a GitHub app at the org level"
 labels:
-  - repo-archive
+  - project-create
 body:
   - type: dropdown
     id: instance
@@ -12,10 +12,16 @@ body:
       options:
         - COM
         - EMU
-        - SOMA
   - type: input
     id: organization
     attributes:
       label: GitHub Organization (*)
       description: The name of the github organization (must be exact)
       placeholder: ex. github
+  - type: input
+    id: name
+    attributes:
+      label: the name of the new organization (*)
+      description: your new fancy/descriptive organization name
+      placeholder: fuschia-sailfish
+  
