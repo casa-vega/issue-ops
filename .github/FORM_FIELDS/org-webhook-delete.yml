@@ -1,0 +1,4 @@
+required_fields:
+  - instance
+  - org
+  - webhook_url

@@ -70,7 +70,7 @@ jobs:
       - name: create ops specific payload
         id: setup
         run: |
-          echo "JSON=$(jq -r '.' ${HOME}/issue-parser-result.json)" >> $GITHUB_OUTPUT
+          echo "JSON=$(jq -c '.' ${HOME}/issue-parser-result.json)" >> $GITHUB_OUTPUT
           echo "HOST=$(python .github/scripts/validation.py host \
             --instance=${{ steps.issue-parser.outputs.issueparser_instance }})" >> $GITHUB_OUTPUT
 

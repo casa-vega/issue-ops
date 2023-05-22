@@ -1,0 +1,48 @@
+name: repo-variable-create
+author: "@github"
+description: Description for repo-variable-create
+
+inputs:
+  org:
+    description: "GitHub Organization"
+    required: true
+  name:
+    description: "Variable name"
+    required: true
+  value:
+    description: "Variable value"
+    required: true
+  visibility:
+    description: "Type of repositories in the organization that can access the variable"
+    required: true
+  repo_names:
+    description: "repository ids that can access the organization variable"
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Execute repo-variable-create
+      shell: bash
+      run: |
+        if [[ -n ${{ input.repo_names }} ]]; then
+          IFS=',' read -ra repos <<< ${{ input.repo_names }}
+          repo_ids=()
+          for repo in "${repos[@]}"; do
+            repo_id=$(gh repo view OWNER/$repo --json id --jq '.id')
+            repo_ids+=("$repo_id")
+          done
+        fi
+
+        payload='{
+          "name": ${{ inputs.name }},
+          "value": ${{ inputs.value }},
+          "visibility": ${{ inputs.visibility }}
+        }'
+
+        if [[ -n "${repo_ids[*]}" ]]; then
+          selected_repository_ids=$(jq -n --argjson repo_ids "${repo_ids[*]}" '[$repo_ids[]]')
+          payload=$(jq --argjson selected_repository_ids "$selected_repository_ids" '.selected_repository_ids = $selected_repository_ids' <<< "$payload")
+        fi
+
+        gh api -X POST "/orgs/${{ inputs.org }}/actions/variables" \
+          --input - <<< "$payload"
