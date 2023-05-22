@@ -9,6 +9,9 @@ github_instances:
       - name: casa-vega
         owners:
           - cvega  
+      - name: pmartindev-test-org
+        owners:
+          - pmartindev
   - instance: EMU
     url: cvega-020f35ca452daa2a8.ghe-test.ninja
     organizations:
