@@ -1,0 +1,38 @@
+name: org-delete-webhook
+author: "@github"
+description: Delete an organization webhook if it's unique
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  org:
+    description: "GitHub Organization"
+    required: true
+  webhook_url:
+    description: "Webhook URL"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Find and delete the organization webhook
+      shell: bash
+      run: |
+        webhooks=$(gh api orgs/${{ inputs.org }}/hooks | jq '.[] | select(.config.url == "${{ inputs.webhook_url }}")')
+        count=$(echo "$webhooks" | jq -s length)
+        if [[ $count -eq 0 ]]; then
+          jq -n \
+            --arg error "No webhook found with the specified URL" \
+            '{data: [], error: $error}'
+          exit 1
+        elif [[ $count -eq 1 ]]; then
+          webhook_id=$(echo "$webhooks" | jq -r .id)
+          gh api -X DELETE orgs/${{ inputs.org }}/hooks/$webhook_id
+          jq -n --argjson data "$webhooks" '{data: $data}'
+        else
+          jq -n --argjson data "$webhooks" \
+            --arg error "More than one webhook found with the specified URL" \
+            '{data: $data, error: $error}'
+          exit 1
+        fi

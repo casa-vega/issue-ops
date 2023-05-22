@@ -1,0 +1,48 @@
+name: repo-variable-create
+description: Description for repo-variable-create
+title: "[repo-variable-create] Title for repo-variable-create"
+labels:
+  - repo-variable-create
+body:
+  - type: dropdown
+    id: instance
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you're targeting. 
+      options:
+        - COM
+        - EMU
+        - SOMA
+  - type: input
+    id: org
+    attributes:
+      label: org
+      description: GitHub Organization (*)
+      placeholder: ex. github
+  - type: input
+    id: name
+    attributes:
+      label: name
+      description: Variable name (*)
+      placeholder: ex. U_ID
+  - type: input
+    id: value
+    attributes:
+      label: value
+      description: Variable value (*)
+      placeholder: ex. 123456789
+  - type: dropdown
+    id: visibility
+    attributes:
+      label: visibility (*)
+      description: Description for visibility
+      options:
+        - all
+        - private
+        - selected
+  - type: input
+    id: repo_names
+    attributes:
+      label: repo_names (* if visibility is selected)
+      description: If you choose selected, enter the repository name that can access the organization variable
+      placeholder: ex. value
