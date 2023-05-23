@@ -4,26 +4,22 @@ on:
   push:
     paths:
       - '.github/ISSUE_TEMPLATE/**'
+  workflow_dispatch:
 
 jobs:
   labels:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: compare and generate new labels
-        id: compare_labels
+      - name: setup gh cli
+        shell: bash
         run: |
-          EXISTING_LABELS=$(gh api repos/${{ github.repository }}/labels --jq '.[].name')
-          NEW_LABELS=$(./.github/scripts/generate-labels.sh)
-
-          IFS=$'\n' read -rd '' -a EXISTING_LABELS_ARRAY <<< "$EXISTING_LABELS"
-          IFS=$'\n' read -rd '' -a NEW_LABELS_ARRAY <<< "$NEW_LABELS"
-
-          for label in "${NEW_LABELS_ARRAY[@]}"; do
-            if [[ ! " ${EXISTING_LABELS_ARRAY[@]} " =~ " ${label} " ]]; then
-              gh api repos/${{ github.repository }}/labels \
-                --method POST \
-                --field name="${label}"
-            fi
-          done
+          echo ${{ secrets.COM_TOKEN }} > token.txt
+          gh auth login \
+            --hostname github.com \
+            --with-token < token.txt
+          rm token.txt
+      - name: compare and generate new labels
+        shell: bash
+        run: |
+          ./.github/scripts/generate_labels.sh ${{ github.repository }}

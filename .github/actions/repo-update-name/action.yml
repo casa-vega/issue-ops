@@ -1,4 +1,4 @@
-name: repo-update-name
+name: update a repository name
 
 inputs:
   instance:
@@ -20,7 +20,14 @@ runs:
     - name: update a repository name
       shell: bash
       run: |
-        gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
+        data=$(gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
           --input - <<< '{
             "name": "${{ inputs.name }}"
-          }'
+          }')
+        if [[ $? -eq 0 ]]; then
+          json_data=$(jq -nc '{ "msg": "updated repository name successfully", "status": "success" }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        else
+          json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to rename repository", "status": "error": $data }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        fi

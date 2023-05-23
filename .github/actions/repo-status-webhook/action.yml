@@ -8,29 +8,33 @@ inputs:
   organization:
     description: "GitHub Organization"
     required: true
+  repository:
+    description: "GitHub Repository"
+    required: true
   webhook_url:
     description: "Webhook URL"
     required: true
+
 runs:
   using: composite
   steps:
     - name: get the status of a webhook
       shell: bash
       run: |
-        webhooks=$(gh api orgs/${{ inputs.organization }}/hooks | jq '.[] | select(.config.url == "${{ inputs.webhook_url }}")')
+        webhooks=$(gh api orgs/${{ inputs.organization }}/${{ inputs.repository }}hooks | jq '.[] | select(.config.url == "${{ inputs.webhook_url }}")')
         count=$(echo "$webhooks" | jq -s length)
         if [[ $count -eq 0 ]]; then
           json_data=$(jq -nc '{ "msg": "No webhook found with the specified URL", "status": "failure" }')
           echo -e "RESULT=$json_data" >> $GITHUB_ENV
         elif [[ $count -eq 1 ]]; then
           webhook_id=$(echo "$webhooks" | jq -r .id)
-          data=$(gh api orgs/${{ inputs.organization }}/hooks/$webhook_id \
+          data=$(gh api orgs/${{ inputs.organization }}/${{ inputs.repository }}hooks/$webhook_id \
             --method GET)
           if [[ $? -eq 0 ]]; then
-            json_data=$(jq -nc --arg active $(echo "$webhooks" | jq -r .active) '{ "msg": ("organization webhook is " + if $active == "true" then "active" else "not active" end), "status": "success" }')
+            json_data=$(jq -nc --arg active $(echo "$webhooks" | jq -r .active) '{ "msg": ("repo webhook is " + if $active == "true" then "active" else "not active" end), "status": "success" }')
             echo -e "RESULT=$json_data" >> $GITHUB_ENV
           else
-            json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to get status of organization webhook", "status": "error": $data }')
+            json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to get status of repo webhook", "status": "error": $data }')
             echo -e "RESULT=$json_data" >> $GITHUB_ENV
           fi
         else

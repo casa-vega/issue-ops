@@ -1,0 +1,30 @@
+name: Create a repository transfer request
+
+inputs:
+  org:
+    description: "Description for org"
+    required: true
+  repo:
+    description: "Description for repo"
+    required: true
+  transfer:
+    description: "Description for transfer"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Create a repository transfer request
+      shell: bash
+      run: |
+        data=$(gh api repos/${{ inputs.organization }}/${{ inputs.repository }}/transfer \
+          --input - <<< '{
+            "new_owner": ${{ inputs.transfer }}
+          }')
+        if [[ $? -eq 0 ]]; then
+          json_data=$(jq -nc '{ "msg": "created repository transfer request successfully", "status": "success" }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        else
+          json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to create repository transfer request", "status": "error": $data }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        fi

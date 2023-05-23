@@ -1,0 +1,20 @@
+name: create a data migration
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+  name:
+    description: "Name of repository to migrate (owner/repo)"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: request a data migration
+      shell: bash
+      run: |
+        # GUS API code goes here

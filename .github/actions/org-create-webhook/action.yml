@@ -35,16 +35,16 @@ runs:
         active="$([[ "${{ inputs.active }}" == "["Enable"]" ]] && echo true || echo false)"
         data=$(gh api orgs/${{ inputs.organization }}/hooks \
           --input - << EOF
-            {
-              "name": "web",
-              "active": $active,
-              "events": ${{ inputs.events }},
-              "config": {
-                "url": "${{ inputs.webhook_url }}",
-                "content_type": "${{ inputs.content_type }}"
-              }
-            }
-          EOF
+        {
+          "name": "web",
+          "active": $active,
+          "events": ${{ inputs.events }},
+          "config": {
+            "url": "${{ inputs.webhook_url }}",
+            "content_type": "${{ inputs.content_type }}"
+          }
+        }
+        EOF
         )
         if [[ $? -eq 0 ]]; then
           json_data=$(jq -nc '{ "msg": "created organization webhook successfully", "status": "success" }')

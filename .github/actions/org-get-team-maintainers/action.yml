@@ -1,0 +1,26 @@
+name: list organization team maintainers
+
+inputs:
+  instance:
+    description: "GitHub Instance"
+    required: true
+  organization:
+    description: "GitHub Organization"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: list organization team maintainers
+      shell: bash
+      run: |
+        export INSTANCE="${{ inputs.instance }}"
+        export ORG_NAME="${{ inputs.organization }}"
+        data=$(yq eval -M -o=json '[.github_instances[] | select(.instance == env(INSTANCE)) | .organizations[] | select(.name == env(ORG_NAME)) | .maintainers[]]' ./.github/ENTITLEMENTS/github.yml | jq -c .)
+        if [[ $? -eq 0 ]]; then
+          json_data=$(jq -nc --argjson data "$data" '{ "msg": "org team maintainers successfully retrieved", "status": "success", "data": $data }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        else
+          json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to retrieve org team maintainers", "status": "failure", "error": $data }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        fi

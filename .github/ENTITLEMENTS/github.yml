@@ -12,7 +12,10 @@ github_instances:
       - name: nodelord
         owners:
           - cvega
-          - jamesalbert    
+          - jamesalbert
+        maintainers:
+          - cvega
+          - jamesalbert 
   - instance: EMU
     url: cvega-020f35ca452daa2a8.ghe-test.ninja
     organizations:

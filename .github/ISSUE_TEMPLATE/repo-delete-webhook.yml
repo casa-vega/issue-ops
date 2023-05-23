@@ -1,0 +1,24 @@
+name: "[Repo] - delete a webhook"
+description: deletes a unique repository webhook
+title: "[repo-delete-webhook] Delete a repository webhook"
+labels:
+  - repo-delete-webhook
+body:
+  - type: input
+    id: instance
+    attributes:
+      label: instance (*)
+      description: Description for instance
+      placeholder: ex. value
+  - type: input
+    id: organization
+    attributes:
+      label: organization (*)
+      description: Description for organization
+      placeholder: ex. value
+  - type: input
+    id: webhook_url
+    attributes:
+      label: webhook_url (*)
+      description: Description for webhook_url
+      placeholder: ex. value

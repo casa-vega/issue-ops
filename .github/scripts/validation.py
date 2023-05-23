@@ -152,7 +152,7 @@ def auth(args: argparse.Namespace) -> None:
     """
     instance_list = read_yaml(".github/ENTITLEMENTS/github.yml")
     errors = Auth.validate_user(
-        instance_list, args.instance, args.org, args.user
+        instance_list, args.instance, args.org.lower(), args.user
     )
     if errors:
         print(json.dumps(errors))
@@ -351,8 +351,7 @@ def parse_arguments() -> argparse.Namespace:
         help="Name of the GitHub instance"
     )
     form_parser.set_defaults(func=hostname)
-
-
+    
     return parser.parse_args()
 
 def main():

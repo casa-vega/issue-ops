@@ -1,4 +1,4 @@
-name: "[Repo] - create a repository webhook"
+name: "[Repo] - create a webhook"
 description: creates a webhook for your repository
 title: "[repo-create-webhook] Create a new repository webhook"
 labels:

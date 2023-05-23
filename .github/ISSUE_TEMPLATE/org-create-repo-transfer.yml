@@ -1,0 +1,33 @@
+name: "[Organization] - create a transfer request to move a repository to another organization" 
+description: creates a Github repository transfer request
+title: "[org-create-repo-transfer] Create a transfer request, requires manual approval from the new org"
+labels:
+  - org-create-repo-transfer
+body:
+  - type: dropdown
+    id: instance
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you're targeting. 
+      options:
+        - COM
+        - EMU
+        - SOMA
+  - type: input
+    id: organization
+    attributes:
+      label: GitHub Organization (*)
+      description: The name of the github organization
+      placeholder: ex. github
+  - type: input
+    id: repository
+    attributes:
+      label: GitHub Repository (*)
+      description: The name of the github repository (must be exact)
+      placeholder: ex. actions
+  - type: input
+    id: transfer
+    attributes:
+      label: Transfer to GitHub Organization (*)
+      description: The name of the github organization you want to transfer the repo to
+      placeholder: ex. github-new

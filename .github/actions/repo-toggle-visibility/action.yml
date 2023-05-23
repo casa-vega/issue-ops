@@ -1,4 +1,4 @@
-name: repo-toggle-visibility
+name: toggle repository visibility
 
 inputs:
   instance:
@@ -20,7 +20,14 @@ runs:
     - name: toggle repository visibility
       shell: bash
       run: |
-        gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
+        data=$(gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
           --input - <<< '{
             "visibility": "${{ inputs.visibility }}"
-          }'
+          }')
+        if [[ $? -eq 0 ]]; then
+          json_data=$(jq -nc '{ "msg": "repository visability toggled successfully", "status": "success" }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        else
+          json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to toggle repository visibility", "status": "error": $data }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        fi

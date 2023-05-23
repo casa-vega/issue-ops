@@ -1,5 +1,7 @@
 # GitHub Issue Operations via Actions
 
+![Code Coverage](https://img.shields.io/badge/Coverage-100%25-green.svg)
+
 In this repository, we employ GitHub Issue Operations (Issue Ops) via GitHub Actions to facilitate a user-requested, self-service approach to GitHub features. This strategy optimizes our workflow by automating actions in response to issue interactions, effectively enabling users to request changes without requiring direct owner access. For instance, users can initiate the addition of a webhook to the repository simply by creating a specific issue. Upon detecting the creation of this issue the associated GitHub Action would validate the request and automatically add the webhook, thereby preserving user autonomy and ensuring a secure, efficient, and collaborative environment.
 
 ---
@@ -32,38 +34,41 @@ rm token.txt
 
 1. Think about the operation you want to perform in contrast with GitHub API's. If you have an endpoint that enables you to modify components or features of GitHub, that will be a good candidate for moving forward. When thinking about this project, new issue ops require the creation of the following three files, and an issue label
 
-###### A list of required form fields
-`.github/FORM_FIELDS/repo-archive.yml`
-###### The issue template
-`.github/ISSUE_TEMPLATE/repo-archive.yml`
-###### Composite action to perform the issue operation
-`.github/actions/repo-archive/action.yml`
-###### Issue label
-`repo-archive`
+##### base requirements:
 
-###### Workflow permissions
-`Read and Write Permissions` must be set.
+> ###### A list of required form fields
+> `.github/FORM_FIELDS/repo-create-archive.yml`
+> ###### The issue template
+> `.github/ISSUE_TEMPLATE/repo-create-archive.yml`
+> ###### Composite action to perform the issue operation
+> `.github/actions/repo-create-archive/action.yml`
+> ###### Issue label
+> `repo-create-archive`
+> ###### Workflow permissions
+> `Read and Write Permissions` must be set in the organization settings
+> ###### Secrets
+> Repo secrets are typically service account personal access tokens that have administrative privledge to the target instance
 
 2. Since the API will typically require inputs you'll want to ensure you create an `ISSUE_TEMPLATE/` that encapsulates those API requirements using a form. For more information on using templates see: [Configuring issue templates for your repository](https://docs.github.com/en/enterprise-cloud@latest/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository)
 
 3. Create an `ISSUE_TEMPLATE/`, here's an example of an operation that will archive a repo. Take note of the `id:` key. When we parse the issue template we will be able to use the `id:` names as step output in other steps.
 
 ```yaml
-name: archive a repository
+name: "[Repo] - archive a repository"
 description: set a repo to archived making it read only
-title: "[repo-archive] Archive a repository"
+title: "[repo-create-archive] Archive a repository"
 labels:
-  - repo-archive
+  - repo-create-archive
 body:
   - type: dropdown
     id: instance
     attributes:
       label: GitHub Instance (*)
-      description: The instance of Github you're targeting.
+      description: The instance of Github you're targeting. 
       options:
         - COM
         - EMU
-        - GHES
+        - SOMA
   - type: input
     id: organization
     attributes:
@@ -76,6 +81,7 @@ body:
       label: GitHub Repository (*)
       description: The name of the github repository (must be exact)
       placeholder: ex. actions
+
 ```
 
 4. If you're running in a `public` repo you can set form fields as required. In `private` and `internal` repos this is not possible yet.
@@ -95,31 +101,36 @@ In this example we require every value in the issue template to be present when 
 
 5. Create your composite action. Here's what the example repo-archive composite action would look like:
 ```yml
-name: repo-archive
-author: "@github"
-description: archive a repository
+name: repo-create-archive
 
 inputs:
   instance:
     description: "GitHub Instance"
     required: true
-  org:
+  organization:
     description: "GitHub Organization"
     required: true
-  repo:
+  repository:
     description: "GitHub Repository"
     required: true
 
 runs:
   using: composite
   steps:
-    - name: archive a repo
+    - name: archive a repository
       shell: bash
       run: |
-        gh api repos/${{ inputs.org }}/${{ inputs.repo }} \
+        $data=(gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
           --input - <<< '{
             "archived": true
-          }'
+          }')
+        if [[ $? -eq 0 ]]; then
+          json_data=$(jq -nc '{ "msg": "Create repo archive successful", "status": "success" }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        else
+          json_data=$(jq -nc --arg error "$data" '{ "msg": "Unable to archive repository", "status": "failure", "error": $error }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        fi
 ```
 ## Layout / Architecture:
 Issue ops lives inside the .github directory at the base of the repo. The framework itself relies on builtin GitHub constructs for `workflow/`, `ISSUE_TEMPLATES` directories and a best practice approach for `scripts/`. The only unique pieces of data are `ENTITLEMENTS/github.yml`, and `FORM_FIELDS`.
@@ -128,16 +139,16 @@ Issue ops lives inside the .github directory at the base of the repo. The framew
 ├── ENTITLEMENTS
 │   └── github.yml
 ├── FORM_FIELDS
-│   ├── repo-create.yml
+│   ├── repo-create-archive.yml
 │   ├── ...
 ├── ISSUE_TEMPLATE
 │   ├── config.yml
-│   ├── repo-create.yml
+│   ├── repo-create-archive.yml
 │   ├── ...
 ├── actions
 │   ├── issue-op
 │   │   └── action.yml
-│   └── repo-create
+│   └── repo-create-archive
 │       └── action.yml
 │   └── ...
 ├── scripts
@@ -152,25 +163,23 @@ Issue ops lives inside the .github directory at the base of the repo. The framew
 
 Issue operations are comprised on GitHub composite actions. For every composite action an `actions.yml` exists. The composite action has a set of inputs it expects and executes the request. The request is typically executed using `gh` cli tool but doesn't have to be.
 
-As you can see below the org webhook action remains fairly small and it's clear what will be executed.
+As you can see below the org webhook action remains fairly small and it's clear what will be executed coupled with messaging that can we can bubble up.
 
 ```yaml
-- name: create an organization webhook
+- name: archive a repository
   shell: bash
   run: |
-    active="$([[ "${{ inputs.active }}" == "["Enable"]" ]] && echo true || echo false)"
-    gh api orgs/${{ inputs.organization }}/hooks \
-      --input - << EOF
-      {
-        "name": "web",
-        "active": $active,
-        "events": ${{ inputs.events }},
-        "config": {
-          "url": "${{ inputs.webhook_url }}",
-          "content_type": "${{ inputs.content_type }}"
-        }
-      }
-    EOF
+    $data=(gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
+      --input - <<< '{
+        "archived": true
+    }')
+    if [[ $? -eq 0 ]]; then
+      json_data=$(jq -nc '{ "msg": "Create repo archive successful", "status": "success" }')
+      echo -e "RESULT=$json_data" >> $GITHUB_ENV
+    else
+      json_data=$(jq -nc --arg error "$data" '{ "msg": "Unable to archive repository", "status": "failure", "error": $error }')
+      echo -e "RESULT=$json_data" >> $GITHUB_ENV
+    fi
 ```
 #### Dynamic Uses
 
@@ -219,8 +228,6 @@ required_fields:
   - instance
   - organization
   - repository
-  - description
-  - visibility
 ```
 ---
 ### `scripts/`
@@ -272,6 +279,18 @@ options:
   -i INSTANCE, --instance INSTANCE
                         Name of the GitHub instance
 ```
+
+##### validation.py unittest coverage
+```
+Name                 Stmts   Miss  Cover
+----------------------------------------
+validation.py          111      1    99%
+validation_test.py     209      0   100%
+----------------------------------------
+TOTAL                  320      1    99%
+```
+
+
 ---
 ### Issue Ops Workflow
 ```mermaid

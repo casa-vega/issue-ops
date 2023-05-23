@@ -1,0 +1,4 @@
+required_fields:
+  - org
+  - repo
+  - transfer

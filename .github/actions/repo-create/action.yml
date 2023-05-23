@@ -25,8 +25,15 @@ runs:
     - name: create a repository
       shell: bash
       run: |
-        gh repo create \
+        data=$(gh repo create \
           ${{ inputs.organization }}/${{ inputs.repository }} \
           --${{ inputs.visibility }} \
           `[[ "${{ inputs.readme }}" == "["Enable"]" ]] && echo --add-readme` \
-          --description "${{ inputs.description }}"
+          --description "${{ inputs.description }}")
+        if [[ $? -eq 0 ]]; then
+          json_data=$(jq -nc '{ "msg": "created repository successfully", "status": "success" }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        else
+          json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to create repository", "status": "error": $data }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        fi        

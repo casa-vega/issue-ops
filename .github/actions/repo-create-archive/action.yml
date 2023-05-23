@@ -1,4 +1,4 @@
-name: repo-create-archive
+name: archive a repository
 inputs:
   instance:
     description: "GitHub Instance"
@@ -16,7 +16,14 @@ runs:
     - name: archive a repository
       shell: bash
       run: |
-        gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
+        data=$(gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
           --input - <<< '{
             "archived": true
-          }'
+          }')
+        if [[ $? -eq 0 ]]; then
+          json_data=$(jq -nc '{ "msg": "created repository archive successfully", "status": "success" }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        else
+          json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to create repository archive", "status": "error": $data }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        fi

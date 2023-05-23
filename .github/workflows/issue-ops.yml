@@ -32,7 +32,8 @@ jobs:
         with:
           script: |
             const actionRunLink = `https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}`;
-            const body = `This action (${{steps.issue-labels.outputs.result}}) with run ID ${{ github.run_id }} was executed. [View Action Run](${actionRunLink})`;
+            const title = `## :vertical_traffic_light: ${{ steps.issue-labels.outputs.result }} executed \n GitHub Action Run ID: \`${{ github.run_id }}\``;
+            const body = `${title} \n [View Action Run](${actionRunLink})`;
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -47,10 +48,7 @@ jobs:
         uses: stefanbuck/github-issue-parser@v3
         id: issue-parser
         with:
-          template-path: .github/ISSUE_TEMPLATE/${{ steps.issue-labels.outputs.result }}.yml
-
-
-      - run: cat ${HOME}/issue-parser-result.json
+          template-path: .github/ISSUE_TEMPLATE/${{ steps.issue-labels.outputs.result }}.yml 
 
 
       # validate that required fields are present and that user has entitlements to perform the requested operation
@@ -127,7 +125,17 @@ jobs:
         with:
           script: |
             const outcome = JSON.parse('${{ env.RESULT }}');
-            const body = `Message: ${outcome.msg}\nStatus: ${outcome.status}`;
+            let body;
+            if (outcome.status === 'success') {
+              body = `## :white_check_mark: ${outcome.msg}\nstatus: **${outcome.status}**`;
+            } else {
+              body = `Message: ${outcome.msg}\nStatus: ${outcome.status}\n\nThis is a failure message.`;
+            }
+
+            if (outcome.data != null) {
+              body += `\n\n\`\`\`\n${JSON.stringify(outcome.data, null, 2)}\n\`\`\``;
+            }
+
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,

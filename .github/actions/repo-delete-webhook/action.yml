@@ -1,4 +1,4 @@
-name: find and delete an organization webhook
+name: find and delete a repository webhook
 
 inputs:
   instance:
@@ -14,23 +14,23 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Find and delete an organization webhook
+    - name: find and delete a repository webhook
       shell: bash
       run: |
-        webhooks=$(gh api orgs/${{ inputs.organization }}/hooks | jq '.[] | select(.config.url == "${{ inputs.webhook_url }}")')
+        webhooks=$(gh api orgs/${{ inputs.organization }}/${{ inputs.repository }}/hooks | jq '.[] | select(.config.url == "${{ inputs.webhook_url }}")')
         count=$(echo "$webhooks" | jq -s length)
         if [[ $count -eq 0 ]]; then
           json_data=$(jq -nc '{ "msg": "No webhook found with the specified URL", "status": "failure" }')
           echo -e "RESULT=$json_data" >> $GITHUB_ENV
         elif [[ $count -eq 1 ]]; then
           webhook_id=$(echo "$webhooks" | jq -r .id)
-          data=$(gh api orgs/${{ inputs.organization }}/hooks/$webhook_id \
+          data=$(gh api orgs/${{ inputs.organization }}/${{ inputs.repository }}/hooks/$webhook_id \
             --method DELETE)
           if [[ $? -eq 0 ]]; then
-            json_data=$(jq -nc '{ "msg": "deleted organization webhook successfully"", "status": "success" }')
+            json_data=$(jq -nc '{ "msg": "deleted repository webhook successfully", "status": "success" }')
             echo -e "RESULT=$json_data" >> $GITHUB_ENV
           else
-            json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to delete organization variable", "status": "failure", "error": $data }')
+            json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to delete repository webhook", "status": "error": $data }')
             echo -e "RESULT=$json_data" >> $GITHUB_ENV
           fi
         else

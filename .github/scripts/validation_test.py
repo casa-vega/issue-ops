@@ -10,6 +10,7 @@ from validation import (
     auth,
     form,
     hostname,
+    owners,
     main,
     parse_arguments,
     json_data,
@@ -40,11 +41,11 @@ class TestAuth(unittest.TestCase):
             "github_instances": [
                 {
                     "instance": "Github2",
-                    "organizations": [{"name": "Org1", "owners": ["User1"]}],
+                    "organizations": [{"name": "org1", "owners": ["User1"]}],
                 }
             ]
         }
-        errors = Auth.validate_user(instance_list, "Github1", "Org1", "User1")
+        errors = Auth.validate_user(instance_list, "Github1", "org1", "User1")
         self.assertEqual(errors, {"instance_error": "invalid github instance: Github1"})
 
     def test_validate_user_organization_error(self):
@@ -56,19 +57,19 @@ class TestAuth(unittest.TestCase):
                 }
             ]
         }
-        errors = Auth.validate_user(instance_list, "Github1", "Org1", "User1")
-        self.assertEqual(errors, {"organization_error": "invalid organization: Org1"})
+        errors = Auth.validate_user(instance_list, "Github1", "org1", "User1")
+        self.assertEqual(errors, {"organization_error": "invalid organization: org1"})
 
     def test_validate_user_auth_error(self):
         instance_list = {
             "github_instances": [
                 {
                     "instance": "Github1",
-                    "organizations": [{"name": "Org1", "owners": ["User2"]}],
+                    "organizations": [{"name": "org1", "owners": ["User2"]}],
                 }
             ]
         }
-        errors = Auth.validate_user(instance_list, "Github1", "Org1", "User1")
+        errors = Auth.validate_user(instance_list, "Github1", "org1", "User1")
         self.assertEqual(
             errors, {"auth_error": "user does not have permissions: User1"}
         )
@@ -78,11 +79,11 @@ class TestAuth(unittest.TestCase):
             "github_instances": [
                 {
                     "instance": "Github1",
-                    "organizations": [{"name": "Org1", "owners": ["User1"]}],
+                    "organizations": [{"name": "org1", "owners": ["User1"]}],
                 }
             ]
         }
-        errors = Auth.validate_user(instance_list, "Github1", "Org1", "User1")
+        errors = Auth.validate_user(instance_list, "Github1", "org1", "User1")
         self.assertEqual(errors, {})
 
     @patch("validation.read_yaml")
@@ -90,13 +91,13 @@ class TestAuth(unittest.TestCase):
     def test_auth_instance_error(self, mock_print, mock_read_yaml):
         args = argparse.Namespace()
         args.instance = "Github1"
-        args.org = "Org1"
+        args.org = "org1"
         args.user = "User1"
         mock_read_yaml.return_value = {
             "github_instances": [
                 {
                     "instance": "Github2",
-                    "organizations": [{"name": "Org1", "owners": ["User1"]}],
+                    "organizations": [{"name": "org1", "owners": ["User1"]}],
                 }
             ]
         }
@@ -110,7 +111,7 @@ class TestAuth(unittest.TestCase):
     def test_auth_organization_error(self, mock_print, mock_read_yaml):
         args = argparse.Namespace()
         args.instance = "Github1"
-        args.org = "Org1"
+        args.org = "org1"
         args.user = "User1"
         mock_read_yaml.return_value = {
             "github_instances": [
@@ -122,7 +123,7 @@ class TestAuth(unittest.TestCase):
         }
         auth(args)
         mock_print.assert_called_once_with(
-            '{"organization_error": "invalid organization: Org1"}'
+            '{"organization_error": "invalid organization: org1"}'
         )
 
     @patch("validation.read_yaml")
@@ -130,13 +131,13 @@ class TestAuth(unittest.TestCase):
     def test_auth_auth_error(self, mock_print, mock_read_yaml):
         args = argparse.Namespace()
         args.instance = "Github1"
-        args.org = "Org1"
+        args.org = "org1"
         args.user = "User1"
         mock_read_yaml.return_value = {
             "github_instances": [
                 {
                     "instance": "Github1",
-                    "organizations": [{"name": "Org1", "owners": ["User2"]}],
+                    "organizations": [{"name": "org1", "owners": ["User2"]}],
                 }
             ]
         }
@@ -150,13 +151,13 @@ class TestAuth(unittest.TestCase):
     def test_auth_no_errors(self, mock_print, mock_read_yaml):
         args = argparse.Namespace()
         args.instance = "Github1"
-        args.org = "Org1"
+        args.org = "org1"
         args.user = "User1"
         mock_read_yaml.return_value = {
             "github_instances": [
                 {
                     "instance": "Github1",
-                    "organizations": [{"name": "Org1", "owners": ["User1"]}],
+                    "organizations": [{"name": "org1", "owners": ["User1"]}],
                 }
             ]
         }
@@ -197,10 +198,50 @@ class TestAuth(unittest.TestCase):
 
 
 class TestFunctions(unittest.TestCase):
+
     @patch("builtins.open", new_callable=mock_open, read_data='{"key": "value"}')
     def test_read_json(self, mock_file):
         data = read_json("dummy_path")
         self.assertEqual(data, {"key": "value"})
+
+    @patch("builtins.open", new_callable=mock_open, read_data='{"key": "value"}')
+    def test_json_data(self, mock_file):
+        with patch("builtins.print") as mock_print:
+            json_data()
+        mock_print.assert_called_once_with('{"key": "value"}')
+
+    @patch("validation.read_yaml")
+    def test_owners_found(self, mock_read_yaml):
+        mock_read_yaml.return_value = {
+            "github_instances": [
+                {
+                    "instance": "Github1",
+                    "organizations": [
+                        {"name": "Org1", "owners": ["User1", "User2"]},
+                        {"name": "Org2", "owners": ["User3"]},
+                    ],
+                }
+            ]
+        }
+        args = argparse.Namespace()
+        args.org = "Org1"
+        result = owners(args)
+        self.assertEqual(result, ["User1", "User2"])
+
+    @patch("validation.read_yaml")
+    def test_owners_not_found(self, mock_read_yaml):
+        mock_read_yaml.return_value = {
+            "github_instances": [
+                {
+                    "instance": "Github1",
+                    "organizations": [{"name": "Org2", "owners": ["User3"]}],
+                }
+            ]
+        }
+        args = argparse.Namespace()
+        args.org = "Org1"
+        result = owners(args)
+        self.assertIsNone(result)
 
     @patch("builtins.open", new_callable=mock_open, read_data='{"key": "value"}')
     @patch("json.load")
@@ -267,24 +308,24 @@ class TestFunctions(unittest.TestCase):
     def test_parse_arguments_auth(self, mock_parse_args):
         mock_parse_args.return_value = argparse.Namespace(
             instance="Github1",
-            org="Org1",
+            org="org1",
             user="User1",
             func=auth,
         )
         args = parse_arguments()
         self.assertEqual(args.instance, "Github1")
-        self.assertEqual(args.org, "Org1")
+        self.assertEqual(args.org, "org1")
         self.assertEqual(args.user, "User1")
         self.assertEqual(args.func, auth)
 
     @patch.object(argparse.ArgumentParser, "parse_args")
     def test_parse_arguments_form(self, mock_parse_args):
         mock_parse_args.return_value = argparse.Namespace(
-            instance="Github1",
+            op="Github1",
             func=form,
         )
         args = parse_arguments()
-        self.assertEqual(args.instance, "Github1")
+        self.assertEqual(args.op, "Github1")
         self.assertEqual(args.func, form)
 
     @patch.object(argparse.ArgumentParser, "parse_args")
@@ -303,7 +344,7 @@ class TestFunctions(unittest.TestCase):
     def test_main_auth(self, mock_print, mock_parse_args, mock_read_yaml):
         mock_parse_args.return_value = argparse.Namespace(
             instance="Github1",
-            org="Org1",
+            org="org1",
             user="User1",
             func=auth,
         )
@@ -311,7 +352,7 @@ class TestFunctions(unittest.TestCase):
             "github_instances": [
                 {
                     "instance": "Github1",
-                    "organizations": [{"name": "Org1", "owners": ["User1"]}],
+                    "organizations": [{"name": "org1", "owners": ["User1"]}],
                 }
             ]
         }
@@ -348,3 +389,4 @@ class TestFunctions(unittest.TestCase):
         }
         main()
         mock_print.assert_called_once_with("http://github1.com")
+
