@@ -32,7 +32,7 @@ body:
       description: The date you want the announcement to expire in YYYY-MM-DD format
       placeholder: "ex. 2026-07-17"
   - type: checkboxes
-    id: user_dismissable
+    id: user_dismissible
     attributes:
       label: Allow the user to dismiss the banner?
       description: This allows the individual user to dismiss the banner

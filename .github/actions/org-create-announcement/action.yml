@@ -17,20 +17,20 @@ inputs:
     description: "Allow user to dismiss banner?"
     required: true
 
-
 runs:
   using: composite
   steps:
     - name: create a new github organization announcement
       shell: bash
       run: |
+        dismissible="$([[ "${{ inputs.user_dismissible }}" == "["Enable"]" ]] && echo true || echo false)"
         data=$(gh api \
           --method PATCH \
           orgs/${{ inputs.organization }}/announcement \
           --input - <<< '{
             "announcement": ${{ inputs.announcement }},
             "expires_at": ${{ inputs.expires_at }},
-            "user_dismissible": ${{ inputs.user_dismissible }}
+            "user_dismissible": $dismissible
           }'
         )
         if [[ $? -eq 0 ]]; then
