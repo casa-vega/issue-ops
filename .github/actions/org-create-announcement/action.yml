@@ -23,14 +23,14 @@ runs:
     - name: create a new github organization announcement
       shell: bash
       run: |
-        dismissible="$([[ "${{ inputs.user_dismissible }}" == "["Enable"]" ]] && echo true || echo false)"
+        export dismissible=$([[ "${{ inputs.user_dismissible }}" == "["Enable"]" ]] && echo true || echo false)
         data=$(gh api \
           --method PATCH \
           orgs/${{ inputs.organization }}/announcement \
           --input - <<< '{
-            "announcement": ${{ inputs.announcement }},
-            "expires_at": ${{ inputs.expires_at }},
-            "user_dismissible": $dismissible
+            "announcement": "${{ inputs.announcement }}",
+            "expires_at": "${{ inputs.expires_at }}T00:00:00.000+00:00",
+            "user_dismissible": ${{ env.dismissible }}
           }'
         )
         if [[ $? -eq 0 ]]; then
