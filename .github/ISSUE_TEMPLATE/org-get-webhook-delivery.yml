@@ -1,0 +1,27 @@
+name: "[Organization] - get a webhook delivery"
+description: Provides the HTTP details of the last delivery for the given webhook"
+title: "[org-get-webhook-delivery] get a webhook delivery"
+labels:
+  - org-get-webhook-delivery
+body:
+  - type: dropdown
+    id: instance
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you are targeting. 
+      options:
+        - COM
+        - EMU
+        - SOMA
+  - type: input
+    id: organization
+    attributes:
+      label: GitHub Organization (*)
+      description: The name of the github organization (must be exact)
+      placeholder: ex. salesforce
+  - type: input
+    id: webhook_url
+    attributes:
+      label: Webhook URL (*)
+      description: The webhook url
+      placeholder: https://example.com/post

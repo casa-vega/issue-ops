@@ -1,0 +1,21 @@
+name: "org-get-webhook-delivery"
+description: Description for "org-get-webhook-delivery"
+
+inputs:
+  instance:
+    description: "Description for instance"
+    required: true
+  organization:
+    description: "Description for organization"
+    required: true
+  webhook_url:
+    description: "Description for webhook_url"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Execute org-get-webhook-delivery
+      shell: bash
+      run: |
+        echo "Add your code here to execute the operation"
