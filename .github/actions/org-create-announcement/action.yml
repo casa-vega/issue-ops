@@ -27,7 +27,7 @@ runs:
         data=$(gh api orgs/casa-vega/announcement \
           --method PATCH \
           -f "announcement=${{ inputs.announcement }}" \
-          -f "expires_at=T00:00:00" \
+          -f "expires_at=${{ inputs.expires_at }}T00:00:00" \
           -F "user_dismissible=$dismissible")
         if [[ $? -eq 0 ]]; then
           json_data=$(jq -nc '{ "msg": "announcement created successfully", "status": "success" }')
