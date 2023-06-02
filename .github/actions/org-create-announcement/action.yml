@@ -23,12 +23,13 @@ runs:
     - name: create a new github organization announcement
       shell: bash
       run: |
-        [ "${{ inputs.user_dismissible }}" == '["Enable"]' ] && dismissible=true || dismissible=false
+        dismissible=false
+        [ "${{ inputs.user_dismissible }}" == '["Enable"]' ] && dismissible=true
         data=$(gh api orgs/casa-vega/announcement \
           --method PATCH \
           -f "announcement=${{ inputs.announcement }}" \
           -f "expires_at=${{ inputs.expires_at }}T00:00:00" \
-          -F "user_dismissible="$dismissible)
+          -F "user_dismissible=${dismissible}")
         if [[ $? -eq 0 ]]; then
           json_data=$(jq -nc '{ "msg": "announcement created successfully", "status": "success" }')
           echo -e "RESULT=$json_data" >> $GITHUB_ENV
