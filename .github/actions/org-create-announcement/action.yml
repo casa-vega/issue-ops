@@ -29,7 +29,7 @@ runs:
           orgs/${{ inputs.organization }}/announcement \
           --input - <<< '{
             "announcement": "${{ inputs.announcement }}",
-            "expires_at": "${{ inputs.expires_at }}T00:00:00.000+00:00",
+            "expires_at": "${{ inputs.expires_at }}T00:00:00",
             "user_dismissible": true
           }'
         )
