@@ -23,7 +23,6 @@ runs:
     - name: create a new github organization announcement
       shell: bash
       run: |
-        DISMISSIBLE=$([[ "${{ inputs.user_dismissible }}" == "["Enable"]" ]] && echo true || echo false)
         data=$(gh api \
           --method PATCH \
           orgs/${{ inputs.organization }}/announcement \
@@ -34,7 +33,7 @@ runs:
           }'
         )
         if [[ $? -eq 0 ]]; then
-          json_data=$(jq -nc '{ "msg": "annoucement created successfully", "status": "success" }')
+          json_data=$(jq -nc '{ "msg": "announcement created successfully", "status": "success" }')
           echo -e "RESULT=$json_data" >> $GITHUB_ENV
         else
           json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to create announcement", "status": "failure", "error": $data }')
