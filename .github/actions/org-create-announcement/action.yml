@@ -23,7 +23,7 @@ runs:
     - name: create a new github organization announcement
       shell: bash
       run: |
-        [[ "${{ inputs.user_dismissible }}" == '["Enable"]' ] && dismissible=true || dismissible=false ]]
+        [ "${{ inputs.user_dismissible }}" == '["Enable"]' ] && dismissible=true || dismissible=false
         data=$(gh api orgs/casa-vega/announcement \
           --method PATCH \
           -f "announcement=${{ inputs.announcement }}" \
