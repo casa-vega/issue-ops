@@ -17,12 +17,9 @@ runs:
     - name: toggle repository issues
       shell: bash
       run: |
-        data=$(gh api \
+        data=$(gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
           --method PATCH \
-          repos/${{ inputs.organization }}/${{ inputs.repository }} \
-          --input - <<< '{
-            "has_issues": true
-          }')
+          -F "has_issues=true")
         if [[ $? -eq 0 ]]; then
           json_data=$(jq -nc '{ "msg": "toggled repository issues successfully", "status": "success" }')
           echo -e "RESULT=$json_data" >> $GITHUB_ENV

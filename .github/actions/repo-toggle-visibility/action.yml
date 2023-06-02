@@ -21,9 +21,8 @@ runs:
       shell: bash
       run: |
         data=$(gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
-          --input - <<< '{
-            "visibility": "${{ inputs.visibility }}"
-          }')
+          --method PATCH \
+          -f "visibility=${{ inputs.visibility }}")
         if [[ $? -eq 0 ]]; then
           json_data=$(jq -nc '{ "msg": "repository visability toggled successfully", "status": "success" }')
           echo -e "RESULT=$json_data" >> $GITHUB_ENV

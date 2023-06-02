@@ -42,7 +42,7 @@ runs:
         }'
 
         data=$(jq -c 'with_entries(select(.value != ""))' <<< "$input")
-        
+
         echo "$data"
 
         if [ -z "$data" ]; then

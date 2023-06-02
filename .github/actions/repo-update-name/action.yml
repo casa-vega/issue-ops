@@ -21,9 +21,8 @@ runs:
       shell: bash
       run: |
         data=$(gh api repos/${{ inputs.organization }}/${{ inputs.repository }} \
-          --input - <<< '{
-            "name": "${{ inputs.name }}"
-          }')
+          --method PATCH \
+          -f "name=${{ inputs.name }}")
         if [[ $? -eq 0 ]]; then
           json_data=$(jq -nc '{ "msg": "updated repository name successfully", "status": "success" }')
           echo -e "RESULT=$json_data" >> $GITHUB_ENV
