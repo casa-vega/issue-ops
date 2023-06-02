@@ -23,14 +23,15 @@ runs:
     - name: create a new github organization announcement
       shell: bash
       run: |
-        data=$(gh api \
+        data=$(gh api orgs/${{ inputs.organization }}/announcement \
           --method PATCH \
-          orgs/${{ inputs.organization }}/announcement \
-          --input - <<< '{
-            "announcement": "${{ inputs.announcement }}",
-            "expires_at": "${{ inputs.expires_at }}T00:00:00",
-            "user_dismissible": true
-          }'
+          --input - << EOF
+        {
+          "announcement": "${{ inputs.announcement }}",
+          "expires_at": "${{ inputs.expires_at }}T00:00:00",
+          "user_dismissible": true
+        }
+        EOF
         )
         if [[ $? -eq 0 ]]; then
           json_data=$(jq -nc '{ "msg": "announcement created successfully", "status": "success" }')
