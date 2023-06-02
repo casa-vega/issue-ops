@@ -37,6 +37,6 @@ runs:
           json_data=$(jq -nc '{ "msg": "annoucement created successfully", "status": "success" }')
           echo -e "RESULT=$json_data" >> $GITHUB_ENV
         else
-          json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to create announcement", "status": "error": $data }')
+          json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to create announcement", "status": "failure", "error": $data }')
           echo -e "RESULT=$json_data" >> $GITHUB_ENV
         fi
