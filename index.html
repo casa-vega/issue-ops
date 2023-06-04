@@ -6,81 +6,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Static Template</title>
-    <html data-color-mode="dark" data-dark-theme="dark_dimmed">
-
-    </html>
+    <html data-color-mode="dark" data-dark-theme="dark_dimmed"></html>
     <link href="https://unpkg.com/@primer/css@^20.2.4/dist/primer.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div class="Header">
-        <div class="Header-item">
-            <svg height="32" class="octicon octicon-mark-github mr-2" viewBox="0 0 16 16" version="1.1" width="32"
-                aria-hidden="true">
-                <path fill-rule="evenodd"
-                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z">
-                </path>
-            </svg>
-            <img src="../img/salesforce.svg" alt="salesforce" width="48" height="36" />
-        </div>
-        <span class="Header-link f4 d-flex flex-items-center">Issue Ops Portal - Self Service</span>
+  <div class="Header">
+    <div class="Header-item">
+      <svg class="octicon octicon-mark-github mr-2" viewBox="0 0 16 16" version="1.1" width="34" height="34"
+        aria-hidden="true">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+      <img src="../img/salesforce.svg" alt="salesforce" width="48" height="36" />
     </div>
-
-    <div class="d-table border">
+    <span class="Header-link f4">Self Service Issue Ops - Portal</span>
+  </div>
+  
+  <div>
+    <span class="d-block border">
+      <div class="d-table">
         <div class="d-table-cell height-full v-align-middle pl-3">
-            <!-- <%= octicon "three-bars" %> -->
-            <svg class="octicon octicon-three-bars" viewBox="0 0 12 16" version="1.1" width="12" height="16"
-                aria-hidden="true">
-                <path fill-rule="evenodd"
-                    d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z">
-                </path>
-            </svg>
+          <svg class="octicon octicon-three-bars" viewBox="0 0 12 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"></path></svg>
         </div>
         <div class="p-3">
-            Welcome. In order to get started with issue ops, please select the github instance you'll be making changes
-            to. Once your instance is selected, choose one of the operations you'd like to perform. You will be forward
-            to the appropriate page to complete your request.
+          Welcome to the issue ops portal. To get started, please select the GitHub instance where you need to make changes. Once your instance is selected, choose one of the operations you'd like to perform. You will be forwarded
+          to the appropriate page to complete your request.
         </div>
-    </div>
+      </div>
+    </span>
+  </div>
+
     <div class="p-3"> </div>
     <div class="col-10 p-0 mx-auto">
         <div class="Subhead">
-            <h2 class="Subhead-heading">Choose your instance</h2>
+            <h2 class="Subhead-heading p3">
+                <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor" style="display:inline-block;vertical-align:text-bottom"><path d="M14.064 0h.186C15.216 0 16 .784 16 1.75v.186a8.752 8.752 0 0 1-2.564 6.186l-.458.459c-.314.314-.641.616-.979.904v3.207c0 .608-.315 1.172-.833 1.49l-2.774 1.707a.749.749 0 0 1-1.11-.418l-.954-3.102a1.214 1.214 0 0 1-.145-.125L3.754 9.816a1.218 1.218 0 0 1-.124-.145L.528 8.717a.749.749 0 0 1-.418-1.11l1.71-2.774A1.748 1.748 0 0 1 3.31 4h3.204c.288-.338.59-.665.904-.979l.459-.458A8.749 8.749 0 0 1 14.064 0ZM8.938 3.623h-.002l-.458.458c-.76.76-1.437 1.598-2.02 2.5l-1.5 2.317 2.143 2.143 2.317-1.5c.902-.583 1.74-1.26 2.499-2.02l.459-.458a7.25 7.25 0 0 0 2.123-5.127V1.75a.25.25 0 0 0-.25-.25h-.186a7.249 7.249 0 0 0-5.125 2.123ZM3.56 14.56c-.732.732-2.334 1.045-3.005 1.148a.234.234 0 0 1-.201-.064.234.234 0 0 1-.064-.201c.103-.671.416-2.273 1.15-3.003a1.502 1.502 0 1 1 2.12 2.12Zm6.94-3.935c-.088.06-.177.118-.266.175l-2.35 1.521.548 1.783 1.949-1.2a.25.25 0 0 0 .119-.213ZM3.678 8.116 5.2 5.766c.058-.09.117-.178.176-.266H3.309a.25.25 0 0 0-.213.119l-1.2 1.95ZM12 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
+                    <path d="M14.064 0h.186C15.216 0 16 .784 16 1.75v.186a8.752 8.752 0 0 1-2.564 6.186l-.458.459c-.314.314-.641.616-.979.904v3.207c0 .608-.315 1.172-.833 1.49l-2.774 1.707a.749.749 0 0 1-1.11-.418l-.954-3.102a1.214 1.214 0 0 1-.145-.125L3.754 9.816a1.218 1.218 0 0 1-.124-.145L.528 8.717a.749.749 0 0 1-.418-1.11l1.71-2.774A1.748 1.748 0 0 1 3.31 4h3.204c.288-.338.59-.665.904-.979l.459-.458A8.749 8.749 0 0 1 14.064 0ZM8.938 3.623h-.002l-.458.458c-.76.76-1.437 1.598-2.02 2.5l-1.5 2.317 2.143 2.143 2.317-1.5c.902-.583 1.74-1.26 2.499-2.02l.459-.458a7.25 7.25 0 0 0 2.123-5.127V1.75a.25.25 0 0 0-.25-.25h-.186a7.249 7.249 0 0 0-5.125 2.123ZM3.56 14.56c-.732.732-2.334 1.045-3.005 1.148a.234.234 0 0 1-.201-.064.234.234 0 0 1-.064-.201c.103-.671.416-2.273 1.15-3.003a1.502 1.502 0 1 1 2.12 2.12Zm6.94-3.935c-.088.06-.177.118-.266.175l-2.35 1.521.548 1.783 1.949-1.2a.25.25 0 0 0 .119-.213ZM3.678 8.116 5.2 5.766c.058-.09.117-.178.176-.266H3.309a.25.25 0 0 0-.213.119l-1.2 1.95ZM12 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z">
+                </svg>          
+                Choose a GitHub Instance</h2>
+            </h2>
+            <div class="Subhead-description">Choosing an instance below will allow you to target a specific instance of GitHub</div>
+
         </div>
-        <nav class="subnav" aria-label="Repository">
-            <a class="subnav-item" href="#url" aria-current="page">GitHub EMU</a>
-            <a class="subnav-item" href="#url">GitHub COM</a>
-            <a class="subnav-item" href="#url">GHES (SOMA)</a>
+        <nav class="subnav p-3" aria-label="Repository">
+            <a class="subnav-item" href="#url" id="button1" aria-current="page">GitHub EMU</a>
+            <a class="subnav-item" href="#url" id="button2">GitHub COM</a>
+            <a class="subnav-item" href="#url" id="button3">GHES (SOMA)</a>
         </nav>
         <div class="Subhead">
-            <h2 class="Subhead-heading">Organization Changes</h2>
+            <h2 class="Subhead-heading">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:text-bottom">
+                    <path d="M6.25 12a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM5.5 9.25a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM6.25 5a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM9 12.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75Zm.75-4.25a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM9 5.75A.75.75 0 0 1 9.75 5h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 9 5.75ZM13.25 12a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Zm-.75-2.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM13.25 5a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Z"></path><path d="M2 20V3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v17c0 .173-.022.34-.063.5H20a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.2-.4l-.5-.375a.75.75 0 0 1 .9-1.2l.5.375c.504.378.8.97.8 1.6v8a2 2 0 0 1-2 2h-3.562a.767.767 0 0 1-.166-.018c-.089.012-.18.018-.272.018h-3.75a.75.75 0 0 1-.75-.75V19h-3v2.25a.75.75 0 0 1-.75.75H4a2 2 0 0 1-2-2Zm2 .5h3v-2.25a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 .75.75v2.25h3a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H4a.5.5 0 0 0-.5.5v17a.5.5 0 0 0 .5.5Z"></path>
+                </svg>
+                Organization Changes</h2>
+                <div class="Subhead-description">Choosing an instance below will allow you to target a specific instance of GitHub</div>
+
         </div>
 
         <div class="clearfix gutter-md-spacious ">
-            <div class="float-left">
-                <div class=" p-3">
-                    <div class="Box color-shadow-small">
-                        <div class="Box-row">
-
-                            <h3 class="m-0 "> Announcements</h3>
-                        </div>
-                        <div class="Box-row">
-                            <p class="mb-0 color-fg-muted">
-                                create an announcement
-                            
-                            </p>
-                        </div>
-                        <div class="Box-row">
-                            <button type="button" name="Create an organization" class="btn btn-primary btn-block">
-                                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-announcement&projects=&template=org-create-announcement.yml&title=%5Borg-announcement%5D+Create+a+new+organization+banner+announcement">
-
-                                Lets Go
-                                </a>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        
             <div class="float-left">
                 <div class=" p-3">
                     <div class="Box color-shadow-small">
@@ -196,9 +182,44 @@
 
 
         <div class="Subhead">
-            <h2 class="Subhead-heading">Repository Changes</h2>
+            <h2 class="Subhead-heading"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M3 2.75A2.75 2.75 0 0 1 5.75 0h14.5a.75.75 0 0 1 .75.75v20.5a.75.75 0 0 1-.75.75h-6a.75.75 0 0 1 0-1.5h5.25v-4H6A1.5 1.5 0 0 0 4.5 18v.75c0 .716.43 1.334 1.05 1.605a.75.75 0 0 1-.6 1.374A3.251 3.251 0 0 1 3 18.75ZM19.5 1.5H5.75c-.69 0-1.25.56-1.25 1.25v12.651A2.989 2.989 0 0 1 6 15h13.5Z"></path><path d="M7 18.25a.25.25 0 0 1 .25-.25h5a.25.25 0 0 1 .25.25v5.01a.25.25 0 0 1-.397.201l-2.206-1.604a.25.25 0 0 0-.294 0L7.397 23.46a.25.25 0 0 1-.397-.2v-5.01Z"></path></svg>
+                Repository Changes</h2>
         </div>
+        <div class="Box Box--condensed col-3">
+            <div class="Box-header d-flex flex-items-center">
+              <h3 class="Box-title overflow-hidden flex-auto">
+                Announcements
+              </h3>
+              <button class="btn btn-primary btn-sm">
+                Go
+              </button>
+            </div>
+            <div class="Box-body">
+              Golrwkejrrkwjelkrjwlk
+            </div>
+        </div>
+        
     </div>
+
+    <svg class="octicon octicon-three-bars" viewBox="0 0 12 16" version="1.1" width="12" height="16"
+    aria-hidden="true">
+    <path fill-rule="evenodd"
+        d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z">
+    </path>
+</svg>
+
+<div class="border">
+    <div>
+        <!-- <%= octicon "three-bars" %> -->
+
+    </div>
+    <div>
+        Welcome. In order to get started with issue ops, please select the github instance you'll be making changes
+        to. Once your instance is selected, choose one of the operations you'd like to perform. You will be forward
+        to the appropriate page to complete your request.
+    </div>
+</div>
+<script src="script.js"></script>
 
 </body>
 
