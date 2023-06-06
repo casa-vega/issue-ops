@@ -1,0 +1,24 @@
+name: "repo-get-webhook-delivery"
+description: Description for "repo-get-webhook-delivery"
+title: "[repo-get-webhook-delivery] Title for repo-get-webhook-delivery"
+labels:
+  - repo-get-webhook-delivery
+body:
+  - type: input
+    id: instance
+    attributes:
+      label: instance (*)
+      description: Description for instance
+      placeholder: ex. value
+  - type: input
+    id: organization
+    attributes:
+      label: organization (*)
+      description: Description for organization
+      placeholder: ex. value
+  - type: input
+    id: repository
+    attributes:
+      label: repository (*)
+      description: Description for repository
+      placeholder: ex. value

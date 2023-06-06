@@ -1,0 +1,20 @@
+name: "repo-get-webhook-delivery"
+description: Description for "repo-get-webhook-delivery"
+
+inputs:
+  instance:
+    description: "Description for instance"
+    required: true
+  organization:
+    description: "Description for organization"
+    required: true
+  repository:
+    description: "Description for repository"
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Execute repo-get-webhook-delivery
+      shell: bash
+      run: |
+        echo "Add your code here to execute the operation"

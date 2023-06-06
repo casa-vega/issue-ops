@@ -1,0 +1,53 @@
+name: "repo-create-branch-protection"
+description: Description for "repo-create-branch-protection"
+
+inputs:
+  instance:
+    description: "Description for instance"
+    required: true
+  organization:
+    description: "Description for organization"
+    required: true
+  repository:
+    description: "Description for repository"
+    required: true
+  branch:
+    description: "Description for branch"
+    required: true
+  required_status_checks:
+    description: "Description for required_status_checks"
+    required: true
+  enforce_admins:
+    description: "Description for enforce_admins"
+    required: true
+  required_pull_request_reviews:
+    description: "Description for required_pull_request_reviews"
+    required: true
+  restrictions:
+    description: "Description for restrictions"
+    required: true
+  required_linear_history:
+    description: "Description for required_linear_history"
+    required: true
+  allow_force_pushes:
+    description: "Description for allow_force_pushes"
+    required: true
+  allow_deletions:
+    description: "Description for allow_deletions"
+    required: true
+  required_conversation_resolution:
+    description: "Description for required_conversation_resolution"
+    required: true
+  lock_branch:
+    description: "Description for lock_branch"
+    required: true
+  allow_fork_syncing:
+    description: "Description for allow_fork_syncing"
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Execute repo-create-branch-protection
+      shell: bash
+      run: |
+        echo "Add your code here to execute the operation"

@@ -1,0 +1,90 @@
+name: "repo-create-branch-protection"
+description: Description for "repo-create-branch-protection"
+title: "[repo-create-branch-protection] Title for repo-create-branch-protection"
+labels:
+  - repo-create-branch-protection
+body:
+  - type: input
+    id: instance
+    attributes:
+      label: instance (*)
+      description: Description for instance
+      placeholder: ex. value
+  - type: input
+    id: organization
+    attributes:
+      label: organization (*)
+      description: Description for organization
+      placeholder: ex. value
+  - type: input
+    id: repository
+    attributes:
+      label: repository (*)
+      description: Description for repository
+      placeholder: ex. value
+  - type: input
+    id: branch
+    attributes:
+      label: branch (*)
+      description: Description for branch
+      placeholder: ex. value
+  - type: input
+    id: required_status_checks
+    attributes:
+      label: required_status_checks (*)
+      description: Description for required_status_checks
+      placeholder: ex. value
+  - type: input
+    id: enforce_admins
+    attributes:
+      label: enforce_admins (*)
+      description: Description for enforce_admins
+      placeholder: ex. value
+  - type: input
+    id: required_pull_request_reviews
+    attributes:
+      label: required_pull_request_reviews (*)
+      description: Description for required_pull_request_reviews
+      placeholder: ex. value
+  - type: input
+    id: restrictions
+    attributes:
+      label: restrictions (*)
+      description: Description for restrictions
+      placeholder: ex. value
+  - type: input
+    id: required_linear_history
+    attributes:
+      label: required_linear_history (*)
+      description: Description for required_linear_history
+      placeholder: ex. value
+  - type: input
+    id: allow_force_pushes
+    attributes:
+      label: allow_force_pushes (*)
+      description: Description for allow_force_pushes
+      placeholder: ex. value
+  - type: input
+    id: allow_deletions
+    attributes:
+      label: allow_deletions (*)
+      description: Description for allow_deletions
+      placeholder: ex. value
+  - type: input
+    id: required_conversation_resolution
+    attributes:
+      label: required_conversation_resolution (*)
+      description: Description for required_conversation_resolution
+      placeholder: ex. value
+  - type: input
+    id: lock_branch
+    attributes:
+      label: lock_branch (*)
+      description: Description for lock_branch
+      placeholder: ex. value
+  - type: input
+    id: allow_fork_syncing
+    attributes:
+      label: allow_fork_syncing (*)
+      description: Description for allow_fork_syncing
+      placeholder: ex. value

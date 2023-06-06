@@ -1,0 +1,11 @@
+required_fields:
+  - instance
+  - organization
+  - repository
+  - name
+  - target
+  - enforcement
+  - bypass_mode
+  - bypass_actors
+  - conditions
+  - rules

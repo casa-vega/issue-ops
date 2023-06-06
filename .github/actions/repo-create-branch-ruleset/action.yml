@@ -1,0 +1,41 @@
+name: "repo-create-branch-ruleset"
+description: Description for "repo-create-branch-ruleset"
+
+inputs:
+  instance:
+    description: "Description for instance"
+    required: true
+  organization:
+    description: "Description for organization"
+    required: true
+  repository:
+    description: "Description for repository"
+    required: true
+  name:
+    description: "Description for name"
+    required: true
+  target:
+    description: "Description for target"
+    required: true
+  enforcement:
+    description: "Description for enforcement"
+    required: true
+  bypass_mode:
+    description: "Description for bypass_mode"
+    required: true
+  bypass_actors:
+    description: "Description for bypass_actors"
+    required: true
+  conditions:
+    description: "Description for conditions"
+    required: true
+  rules:
+    description: "Description for rules"
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Execute repo-create-branch-ruleset
+      shell: bash
+      run: |
+        echo "Add your code here to execute the operation"

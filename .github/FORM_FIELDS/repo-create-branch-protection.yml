@@ -1,0 +1,15 @@
+required_fields:
+  - instance
+  - organization
+  - repository
+  - branch
+  - required_status_checks
+  - enforce_admins
+  - required_pull_request_reviews
+  - restrictions
+  - required_linear_history
+  - allow_force_pushes
+  - allow_deletions
+  - required_conversation_resolution
+  - lock_branch
+  - allow_fork_syncing

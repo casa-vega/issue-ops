@@ -1,0 +1,66 @@
+name: "repo-create-branch-ruleset"
+description: Description for "repo-create-branch-ruleset"
+title: "[repo-create-branch-ruleset] Title for repo-create-branch-ruleset"
+labels:
+  - repo-create-branch-ruleset
+body:
+  - type: input
+    id: instance
+    attributes:
+      label: instance (*)
+      description: Description for instance
+      placeholder: ex. value
+  - type: input
+    id: organization
+    attributes:
+      label: organization (*)
+      description: Description for organization
+      placeholder: ex. value
+  - type: input
+    id: repository
+    attributes:
+      label: repository (*)
+      description: Description for repository
+      placeholder: ex. value
+  - type: input
+    id: name
+    attributes:
+      label: name (*)
+      description: Description for name
+      placeholder: ex. value
+  - type: input
+    id: target
+    attributes:
+      label: target (*)
+      description: Description for target
+      placeholder: ex. value
+  - type: input
+    id: enforcement
+    attributes:
+      label: enforcement (*)
+      description: Description for enforcement
+      placeholder: ex. value
+  - type: input
+    id: bypass_mode
+    attributes:
+      label: bypass_mode (*)
+      description: Description for bypass_mode
+      placeholder: ex. value
+  - type: input
+    id: bypass_actors
+    attributes:
+      label: bypass_actors (*)
+      description: Description for bypass_actors
+      placeholder: ex. value
+  - type: input
+    id: conditions
+    attributes:
+      label: conditions (*)
+      description: Description for conditions
+      placeholder: ex. value
+  - type: input
+    id: rules
+    attributes:
+      label: rules (*)
+      description: Description for rules
+      placeholder: ex. value
