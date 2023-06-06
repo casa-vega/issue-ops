@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Check if repository name is supplied as an argument
+# Check if owner/repo name is supplied as an argument
 if [ $# -ne 1 ]; then
     echo "Usage: $0 <owner/repo> )"
     exit 1
