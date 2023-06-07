@@ -24,7 +24,7 @@ runs:
       shell: bash
       run: |
         [ '${{ inputs.user_dismissible }}' == '["Enable"]' ] && dismissible=true || dismissible=false
-        data=$(gh api orgs/casa-vega/announcement \
+        data=$(gh api orgs/${{ inputs. organization }}/announcement \
           --method PATCH \
           -f "announcement=${{ inputs.announcement }}" \
           -f "expires_at=${{ inputs.expires_at }}T00:00:00" \
