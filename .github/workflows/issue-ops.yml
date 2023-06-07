@@ -147,6 +147,7 @@ jobs:
 
       - name: close issue
         uses: actions/github-script@v6
+        if: always()
         with:
           script: |
             const issueNumber = context.issue.number;
