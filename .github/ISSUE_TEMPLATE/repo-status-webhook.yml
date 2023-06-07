@@ -2,7 +2,7 @@ name: "[Repo] - get the status of a webhook"
 description: allows users to get the status of a webhook
 title: "[repo-status-webhook] Get the Status of a webhook"
 labels:
-  - repo-status-webhook
+  - repo-get-status-webhook
 body:
   - type: dropdown
     id: instance

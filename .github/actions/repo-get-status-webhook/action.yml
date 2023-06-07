@@ -1,5 +1,5 @@
 name: get the status of a webhook
-description: Description for org-status-webhook
+description: Description for org-get-status-webhook
 
 inputs:
   instance:

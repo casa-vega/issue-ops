@@ -65,7 +65,7 @@ class Auth:
             (
                 org
                 for org in instance["organizations"]
-                if org["name"] == organization_name
+                if org["name"].lower() == organization_name.lower()
             ),
             None,
         )
