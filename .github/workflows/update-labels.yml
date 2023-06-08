@@ -14,7 +14,7 @@ jobs:
       - name: setup gh cli
         shell: bash
         run: |
-          echo ${{ secrets.emu-issue-ops }} > token.txt
+          echo ${{ secrets.emu_issue_ops }} > token.txt
           gh auth login \
             --hostname github.com \
             --with-token < token.txt
