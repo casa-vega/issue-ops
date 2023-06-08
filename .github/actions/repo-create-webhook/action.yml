@@ -7,6 +7,9 @@ inputs:
   organization:
     description: "GitHub Organization"
     required: true
+  repository:
+    description: "GitHub Repository"
+    required: true
   webhook_url:
     description: "Webhook URL"
     required: true
