@@ -1,24 +1,27 @@
 name: "[Repo] - delete a webhook"
 description: deletes a unique repository webhook
-title: "[repo-delete-webhook] Delete a repository webhook"
+title: "[repo-delete-webhook] Delete and organization webhook"
 labels:
   - repo-delete-webhook
 body:
-  - type: input
-    id: instance
-    attributes:
-      label: instance (*)
-      description: Description for instance
-      placeholder: ex. value
+# - type: dropdown
+#   id: instance
+#   attributes:
+#     label: GitHub Instance (*)
+#     description: The instance of Github you are targeting. 
+#     options:
+#       - COM
+#       - EMU
+#       - SOMA
   - type: input
     id: organization
     attributes:
-      label: organization (*)
-      description: Description for organization
-      placeholder: ex. value
+      label: GitHub Organization (*)
+      description: The name of the github organization (must be exact)
+      placeholder: ex. salesforce
   - type: input
     id: webhook_url
     attributes:
-      label: webhook_url (*)
-      description: Description for webhook_url
-      placeholder: ex. value
+      label: Webhook URL (*)
+      description: The webhook url
+      placeholder: https://example.com/post

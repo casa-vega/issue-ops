@@ -4,12 +4,12 @@ title: "[org-create-data-migration] request a data migration for an organization
 labels:
   - org-create-data-migration
 body:
-  - type: input
-    id: instance
-    attributes:
-      label: instance (*)
-      description: Description for instance
-      placeholder: ex. value
+# - type: input
+#   id: instance
+#   attributes:
+#     label: instance (*)
+#     description: Description for instance
+#     placeholder: ex. value
   - type: input
     id: organization
     attributes:
