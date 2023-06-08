@@ -1,5 +1,5 @@
 github_instances:
-  - instance: COM
+  - instance: EMU
     url: github.com
     organizations:
       - name: sfdc-demo
@@ -12,21 +12,5 @@ github_instances:
       - name: nodelord
         owners:
           - cvega
-          - jamesalbert
         maintainers:
           - cvega
-          - jamesalbert 
-  - instance: EMU
-    url: cvega-020f35ca452daa2a8.ghe-test.ninja
-    organizations:
-      - name: org2
-        owners:
-          - cvega
-  - instance: SOMA
-    url: https://github-instance-3.example.com
-    organizations:
-      - name: org3
-        owners:
-          - owner4
-          - owner5
-          - owner6
