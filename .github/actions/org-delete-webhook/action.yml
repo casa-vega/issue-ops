@@ -27,7 +27,7 @@ runs:
           data=$(gh api orgs/${{ inputs.organization }}/hooks/$webhook_id \
             --method DELETE)
           if [[ $? -eq 0 ]]; then
-            json_data=$(jq -nc '{ "msg": "deleted organization webhook successfully"", "status": "success" }')
+            json_data=$(jq -nc '{ "msg": "deleted organization webhook successfully", "status": "success" }')
             echo -e "RESULT=$json_data" >> $GITHUB_ENV
           else
             json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to delete organization variable", "status": "failure", "error": $data }')
