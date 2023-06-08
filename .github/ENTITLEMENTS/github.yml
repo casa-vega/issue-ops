@@ -11,6 +11,7 @@ github_instances:
           - cvega
       - name: nodelord
         owners:
-          - cvega
+          - janedoe
+          - johndoe
         maintainers:
           - cvega

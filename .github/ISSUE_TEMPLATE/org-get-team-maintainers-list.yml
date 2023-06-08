@@ -2,7 +2,7 @@ name:  "[Organization] - list team maintainers"
 description: allows users to list orgnization team maintainers
 title: "[org-team-maintainer-list] List organization team maintainers"
 labels:
-  - org-get-team-maintainers
+  - org-get-team-maintainers-list
 body:
 # - type: dropdown
 #   id: instance
