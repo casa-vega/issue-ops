@@ -33,9 +33,9 @@ runs:
         fi
 
         payload='{
-          "name": ${{ inputs.name }},
-          "value": ${{ inputs.value }},
-          "visibility": ${{ inputs.visibility }}
+          "name": "${{ inputs.name }}",
+          "value": "${{ inputs.value }}",
+          "visibility": "${{ inputs.visibility }}"
         }'
 
         if [[ -n "${repo_ids[*]}" ]]; then
