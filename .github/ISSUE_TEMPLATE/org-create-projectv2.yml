@@ -4,14 +4,14 @@ title: "[project-create] Create a v2 project"
 labels:
   - org-create-projectv2
 body:
-  - type: dropdown
-    id: instance
-    attributes:
-      label: GitHub Instance (*)
-      description: The instance of Github you're targeting. 
-      options:
-        - COM
-        - EMU
+# - type: dropdown
+#   id: instance
+#   attributes:
+#     label: GitHub Instance (*)
+#     description: The instance of Github you're targeting. 
+#     options:
+#       - COM
+#       - EMU
   - type: input
     id: organization
     attributes:

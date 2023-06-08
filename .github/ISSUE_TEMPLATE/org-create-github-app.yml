@@ -4,14 +4,14 @@ title: "[org-github-app-request] Create a GitHub app at the org level"
 labels:
   - org-create-github-app
 body:
-  - type: dropdown
-    id: instance
-    attributes:
-      label: GitHub Instance (*)
-      description: The instance of Github you're targeting. 
-      options:
-        - COM
-        - EMU
+# - type: dropdown
+#   id: instance
+#   attributes:
+#     label: GitHub Instance (*)
+#     description: The instance of Github you're targeting. 
+#     options:
+#       - COM
+#       - EMU
   - type: input
     id: organization
     attributes:

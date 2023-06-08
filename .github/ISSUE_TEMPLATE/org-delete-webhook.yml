@@ -4,15 +4,15 @@ title: "[org-delete-webhook] Delete and organization webhook"
 labels:
   - org-delete-webhook
 body:
-  - type: dropdown
-    id: instance
-    attributes:
-      label: GitHub Instance (*)
-      description: The instance of Github you are targeting. 
-      options:
-        - COM
-        - EMU
-        - SOMA
+# - type: dropdown
+#   id: instance
+#   attributes:
+#     label: GitHub Instance (*)
+#     description: The instance of Github you are targeting. 
+#     options:
+#       - COM
+#       - EMU
+#       - SOMA
   - type: input
     id: organization
     attributes:

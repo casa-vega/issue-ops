@@ -91,10 +91,19 @@ jobs:
           echo "HOST=$(python .github/scripts/validation.py host \
             --instance=${{ steps.issue-parser.outputs.issueparser_instance }})" >> $GITHUB_OUTPUT
 
+# call secret based on instance type
+# - name: gh cli setup
+#   run: |
+#     echo ${{ secrets[format('{0}_TOKEN', steps.issue-parser.outputs.issueparser_instance)] }} > token.txt
+#     gh auth login \
+#       --hostname ${{ steps.setup.outputs.host }} \
+#       --with-token < token.txt
+#     rm token.txt
+
 
       - name: gh cli setup
         run: |
-          echo ${{ secrets[format('{0}_TOKEN', steps.issue-parser.outputs.issueparser_instance)] }} > token.txt
+          echo ${{ secrets.emu-issue-ops }} > token.txt
           gh auth login \
             --hostname ${{ steps.setup.outputs.host }} \
             --with-token < token.txt
@@ -110,14 +119,15 @@ jobs:
           with: ${{ steps.setup.outputs.json }}
 
 
-      # reset gh cli configuration
-      - name: reset gh cli
-        run: |
-          echo ${{ secrets.COM_TOKEN }} > token.txt
-          gh auth login \
-            --hostname github.com \
-            --with-token < token.txt
-          rm token.txt
+# only need to reset if multiple instances are used
+# # reset gh cli configuration
+# - name: reset gh cli
+#   run: |
+#     echo ${{ secrets.COM_TOKEN }} > token.txt
+#     gh auth login \
+#       --hostname github.com \
+#       --with-token < token.txt
+#     rm token.txt
 
 
       # update the issue with the results of the operation

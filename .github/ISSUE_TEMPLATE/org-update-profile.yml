@@ -4,15 +4,15 @@ title: "[org-profile-update] Update organization profile"
 labels:
   - org-update-profile
 body:
-  - type: dropdown
-    id: instance
-    attributes:
-      label: GitHub Instance (*)
-      description: The instance of Github you're targeting. 
-      options:
-        - COM
-        - EMU
-        - SOMA
+# - type: dropdown
+#   id: instance
+#   attributes:
+#     label: GitHub Instance (*)
+#     description: The instance of Github you're targeting. 
+#     options:
+#       - COM
+#       - EMU
+#       - SOMA
   - type: input
     id: organization
     attributes:

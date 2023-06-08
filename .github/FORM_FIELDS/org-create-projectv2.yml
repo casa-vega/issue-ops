@@ -1,4 +1,4 @@
 required_fields:
-  - instance
+ # - instance
   - organization
   - name

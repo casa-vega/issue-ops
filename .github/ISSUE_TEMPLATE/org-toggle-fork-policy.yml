@@ -4,15 +4,15 @@ title: "[org-fork-policy-toggle] Toggle organization fork policy"
 labels:
   - org-toggle-fork-policy
 body:
-  - type: dropdown
-    id: instance
-    attributes:
-      label: GitHub Instance (*)
-      description: The instance of Github you're targeting. 
-      options:
-        - COM
-        - EMU
-        - SOMA
+# - type: dropdown
+#   id: instance
+#   attributes:
+#     label: GitHub Instance (*)
+#     description: The instance of Github you're targeting. 
+#     options:
+#       - COM
+#       - EMU
+#       - SOMA
   - type: input
     id: organization
     attributes:

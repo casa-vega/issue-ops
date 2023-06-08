@@ -4,15 +4,15 @@ title: "[repo-update-name] Rename a repository"
 labels:
   - repo-update-name
 body:
-  - type: dropdown
-    id: instance
-    attributes:
-      label: GitHub Instance (*)
-      description: The instance of Github you're targeting. 
-      options:
-        - COM
-        - EMU
-        - SOMA
+# - type: dropdown
+#   id: instance
+#   attributes:
+#     label: GitHub Instance (*)
+#     description: The instance of Github you're targeting. 
+#     options:
+#       - COM
+#       - EMU
+#       - SOMA
   - type: input
     id: organization
     attributes:

@@ -1,5 +1,5 @@
 required_fields:
-  - instance
+#  - instance
   - organization
   - repository
   - description
