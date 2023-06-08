@@ -103,7 +103,7 @@ jobs:
 
       - name: gh cli setup
         run: |
-          echo ${{ secrets.emu-issue-ops }} > token.txt
+          echo ${{ secrets.emu_issue_ops }} > token.txt
           gh auth login \
             --hostname ${{ steps.setup.outputs.host }} \
             --with-token < token.txt

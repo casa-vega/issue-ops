@@ -16,6 +16,7 @@ inputs:
   repo_names:
     description: "repository ids that can access the organization variable"
     required: true
+
 runs:
   using: composite
   steps:
