@@ -2,7 +2,7 @@ name: "[Repo] - toggle repository visibility"
 description: change the visiblity of a repository (internal/private)
 title: "[repo-update-visibility] Change repository visibility"
 labels:
-  - repo-update-visibility
+  - repo-toggle-visibility
 body:
 # - type: dropdown
 #   id: instance
