@@ -39,7 +39,7 @@ runs:
         }'
 
         if [[ -n "${repo_ids[*]}" ]]; then
-            ids=$(printf '%s\n' "${repo_ids[@]}" | jq -R . | jq -sc .)
+            ids=$(printf '%s\n' "${repo_ids[@]}" | jq -sc .)
             payload=$(echo "$payload" | jq --argjson  selected_repository_ids "$ids" '. + {"selected_repository_ids": $selected_repository_ids}')
         fi
 
