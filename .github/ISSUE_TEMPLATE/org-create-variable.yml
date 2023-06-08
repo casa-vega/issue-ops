@@ -16,7 +16,7 @@ body:
   - type: input
     id: organization
     attributes:
-      label: org
+      label: organization
       description: GitHub Organization (*)
       placeholder: ex. github
   - type: input
