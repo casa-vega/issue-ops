@@ -14,7 +14,7 @@ runs:
     - name: list organization admins
       shell: bash
       run: |
-        export INSTANCE="${{ inputs.instance }}"
+        export INSTANCE="EMU"
         export ORG_NAME="${{ inputs.organization }}"
         data=$(yq eval -M -o=json '[.github_instances[] | select(.instance == env(INSTANCE)) | .organizations[] | select(.name == env(ORG_NAME)) | .owners[]]' ./.github/ENTITLEMENTS/github.yml | jq -c .)
         if [[ $? -eq 0 ]]; then
