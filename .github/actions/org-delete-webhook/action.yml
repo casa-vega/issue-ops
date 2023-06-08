@@ -2,8 +2,8 @@ name: find and delete an organization webhook
 
 inputs:
   instance:
-    description: "GitHub Instance"
-    required: true
+# description: "GitHub Instance"
+# required: true
   organization:
     description: "GitHub Organization"
     required: true
