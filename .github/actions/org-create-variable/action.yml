@@ -24,7 +24,7 @@ runs:
       shell: bash
       run: |
         if [[ -n ${{ inputs.repo_names }} ]]; then
-          IFS=',' read -ra repos <<< ${{ input.repo_names }}
+          IFS=',' read -ra repos <<< ${{ inputs.repo_names }}
           repo_ids=()
           for repo in "${repos[@]}"; do
             repo_id=$(gh repo view OWNER/$repo --json id --jq '.id')
