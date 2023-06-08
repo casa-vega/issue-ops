@@ -1,7 +1,7 @@
 name: org-create-variable
 
 inputs:
-  org:
+  organization:
     description: "GitHub Organization"
     required: true
   name:
@@ -43,7 +43,7 @@ runs:
           payload=$(jq --argjson selected_repository_ids "$selected_repository_ids" '.selected_repository_ids = $selected_repository_ids' <<< "$payload")
         fi
 
-        data=$(gh api "/orgs/${{ inputs.org }}/actions/variables" \
+        data=$(gh api "/orgs/${{ inputs.organization }}/actions/variables" \
           --method POST \
           --input - <<< "$payload")
 

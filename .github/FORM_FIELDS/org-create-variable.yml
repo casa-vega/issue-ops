@@ -1,5 +1,5 @@
 required_fields:
-  - org
+  - organization
   - name
   - value
   - visibility
