@@ -39,8 +39,8 @@ runs:
         }'
 
         if [[ -n "${repo_ids[*]}" ]]; then
-          selected_repository_ids=$(jq -n --argjson repo_ids "${repo_ids[*]}" '[$repo_ids[]]')
-          payload=$(jq --argjson selected_repository_ids "$selected_repository_ids" '.selected_repository_ids = $selected_repository_ids' <<< "$payload")
+            ids=$(printf '%s\n' "${repo_ids[@]}" | jq -R . | jq -sc .)
+            payload=$(echo "$payload" | jq --argjson  selected_repository_ids "$ids" '. + {"selected_repository_ids": $selected_repository_ids}')
         fi
 
         data=$(gh api "/orgs/${{ inputs.organization }}/actions/variables" \
