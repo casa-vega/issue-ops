@@ -20,6 +20,12 @@ body:
       description: The name of the github organization (must be exact)
       placeholder: ex. salesforce
   - type: input
+    id: repository
+    attributes:
+      label: GitHub Repository (*)
+      description: The name of the github repository to create
+      placeholder: ex. other-fuchsia-sailfish
+  - type: input
     id: webhook_url
     attributes:
       label: Webhook URL (*)
