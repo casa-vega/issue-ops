@@ -36,7 +36,7 @@ runs:
       shell: bash
       run: |
         active="$([[ "${{ inputs.active }}" == "["Enable"]" ]] && echo true || echo false)"
-        data=$(gh api orgs/${{ inputs.organization }}/${{ inputs.repository }}/hooks \
+        data=$(gh api repos/${{ inputs.organization }}/${{ inputs.repository }}/hooks \
         --input - << EOF
         {
           "name": "web",
