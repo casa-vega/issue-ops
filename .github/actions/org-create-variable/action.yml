@@ -23,7 +23,7 @@ runs:
     - name: create a new organization variable
       shell: bash
       run: |
-        if [[ -n ${{ inputs.repo_names }} ]]; then
+        if [[ -n "${{ inputs.repo_names }}" ]]; then
           IFS=',' read -ra repos <<< ${{ inputs.repo_names }}
           repo_ids=()
           for repo in "${repos[@]}"; do
