@@ -52,17 +52,32 @@ jobs:
           template-path: .github/ISSUE_TEMPLATE/${{ steps.issue-labels.outputs.result }}.yml 
 
 
+# # validate that required fields are present and that user has entitlements to perform the requested operation
+# - name: validate required form entries and user auth
+#   id: validate
+#   run: |
+#     echo "FORM=$(python .github/scripts/validation.py form \
+#       --op=${{ steps.issue-labels.outputs.result }})" >> $GITHUB_OUTPUT
+#     echo "AUTH=$(python .github/scripts/validation.py auth \
+#       --instance=${{ steps.issue-parser.outputs.issueparser_instance }} \
+#       --org=${{ steps.issue-parser.outputs.issueparser_organization }} \
+#       --user=${{ github.actor }})" >> $GITHUB_OUTPUT
+
+
       # validate that required fields are present and that user has entitlements to perform the requested operation
       - name: validate required form entries and user auth
         id: validate
         run: |
+          
           echo "FORM=$(python .github/scripts/validation.py form \
             --op=${{ steps.issue-labels.outputs.result }})" >> $GITHUB_OUTPUT
-          echo "AUTH=$(python .github/scripts/validation.py auth \
-            --instance=${{ steps.issue-parser.outputs.issueparser_instance }} \
+          
+          if [ "${{ steps.issue-labels.outputs.result }}" != *list ]; then
+            echo "AUTH=$(python .github/scripts/validation.py auth \
+            --instance=EMU \
             --org=${{ steps.issue-parser.outputs.issueparser_organization }} \
             --user=${{ github.actor }})" >> $GITHUB_OUTPUT
-
+          fi
 
       # if the validation steps above fail, this step will update the issue with a message indicating the missing or wrong fields
       - name: update issue with form validation failure message
