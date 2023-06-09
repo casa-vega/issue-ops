@@ -1,6 +1,6 @@
-name: "repo-create-branch-ruleset"
-description: Description for "repo-create-branch-ruleset"
-title: "[repo-create-branch-ruleset] Title for repo-create-branch-ruleset"
+name: "[Repo] - Create a branch ruleset"
+description: create a ruleset for a repository branch
+title: "[repo-create-branch-ruleset] Create a branch ruleset"
 labels:
   - repo-create-branch-ruleset
 body:

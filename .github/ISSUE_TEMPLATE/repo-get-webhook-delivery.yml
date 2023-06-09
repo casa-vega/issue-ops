@@ -1,4 +1,4 @@
-name: "repo-get-webhook-delivery"
+name: "[Repo] - Report the status of the webhook, enabled or disabled."
 description: Description for "repo-get-webhook-delivery"
 title: "[repo-get-webhook-delivery] Title for repo-get-webhook-delivery"
 labels:

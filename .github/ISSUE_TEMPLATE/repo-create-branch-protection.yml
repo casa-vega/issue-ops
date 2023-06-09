@@ -1,6 +1,6 @@
-name: "repo-create-branch-protection"
-description: Description for "repo-create-branch-protection"
-title: "[repo-create-branch-protection] Title for repo-create-branch-protection"
+name: "[Repo] - Create a branch protection rule."
+description: Create a branch protection rule for a repository.
+title: "[repo-create-branch-protection] Create a branch protection rule."
 labels:
   - repo-create-branch-protection
 body:
