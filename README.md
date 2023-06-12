@@ -8,7 +8,7 @@ In this repository, we employ GitHub Issue Operations (Issue Ops) via GitHub Act
 
 ## A self-service approach for managing github components/settings across MULTIPLE instances of GitHub and GitHub Enterprise.
 
-### Getting Started
+### Getting Started 
 
 #### Multiple GitHub Instances
 
