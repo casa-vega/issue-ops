@@ -9,16 +9,18 @@ on:
 jobs:
   labels:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.EMU_ISSUE_OPS }}
     steps:
       - uses: actions/checkout@v3
-      - name: setup gh cli
-        shell: bash
-        run: |
-          echo ${{ secrets.emu_issue_ops }} > token.txt
-          gh auth login \
-            --hostname github.com \
-            --with-token < token.txt
-          rm token.txt
+#       - name: setup gh cli
+#         shell: bash
+#         run: |
+#           echo ${{ secrets.emu_issue_ops }} > token.txt
+#           gh auth login \
+#             --hostname github.com \
+#             --with-token < token.txt
+#           rm token.txt
       - name: compare and generate new labels
         shell: bash
         run: |
