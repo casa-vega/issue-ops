@@ -13,8 +13,10 @@ runs:
   steps:
     - name: list organization team maintainers
       shell: bash
+# for dynamic env vars, we need to use the run command to set the env vars
+# export INSTANCE="${{ inputs.instance }}"
       run: |
-        export INSTANCE="${{ inputs.instance }}"
+        export INSTANCE="EMU"
         export ORG_NAME="${{ inputs.organization }}"
         data=$(yq eval -M -o=json '[.github_instances[] | select(.instance == env(INSTANCE)) | .organizations[] | select(.name == env(ORG_NAME)) | .maintainers[]]' ./.github/ENTITLEMENTS/github.yml | jq -c .)
         if [[ $? -eq 0 ]]; then
