@@ -8,11 +8,12 @@ on:
 jobs:
   issue-ops-run:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.EMU_ISSUE_OPS }}
 
     steps:
       - uses: actions/checkout@v3
-
-
+      
       # we key off the label to determine which issue template/workflow to use/parse
       - name: get issue labels
         uses: actions/github-script@v6
@@ -125,13 +126,13 @@ jobs:
 #     rm token.txt
 
 
-      - name: gh cli setup
-        run: |
-          echo ${{ secrets.emu_issue_ops }} > token.txt
-          gh auth login \
-            --hostname ${{ steps.setup.outputs.host }} \
-            --with-token < token.txt
-          rm token.txt
+#       - name: gh cli setup
+#         run: |
+#           echo ${{ secrets.emu_issue_ops }} > token.txt
+#           gh auth login \
+#             --hostname ${{ steps.setup.outputs.host }} \
+#             --with-token < token.txt
+#           rm token.txt
 
 
       # dynamically call the appropriate action based on the issue template
