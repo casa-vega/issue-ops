@@ -3,4 +3,3 @@ required_fields:
   - organization
   - announcement
   - expires_at
-  - user_dismissible
