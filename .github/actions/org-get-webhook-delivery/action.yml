@@ -32,7 +32,7 @@ runs:
             --method GET)
           if [[ $? -eq 0 ]]; then
             clean_data=$(echo "$data" | perl -pe 's/[\x00-\x1F]//g' | jq .)
-            json_data=$(jq -n --argjson data "$clean_data" '{ "msg": "fetched webhook delivery", "status": "success", "data": $data }')
+            json_data=$(jq -nc --argjson data "$clean_data" '{ "msg": "fetched webhook delivery", "status": "success", "data": $data }')
             echo -e "RESULT=$json_data" >> $GITHUB_ENV
           else
             json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to fetch last webhook delivery", "status": "failure", "error": $data }')
