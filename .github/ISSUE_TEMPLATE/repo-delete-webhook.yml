@@ -1,6 +1,6 @@
 name: "[Repo] - delete a webhook"
 description: deletes a unique repository webhook
-title: "[repo-delete-webhook] Delete and organization webhook"
+title: "[repo-delete-webhook] Delete an organization webhook"
 labels:
   - repo-delete-webhook
 body:
