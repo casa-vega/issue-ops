@@ -9,7 +9,7 @@ github_instances:
       - name: casa-vega
         owners:
           - cvega
-      - name: nodelord
+      - name: testorg
         owners:
           - janedoe
           - johndoe
