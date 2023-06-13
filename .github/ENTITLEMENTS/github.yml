@@ -13,6 +13,5 @@ github_instances:
         owners:
           - janedoe
           - johndoe
-          - cvega
         maintainers:
           - cvega
