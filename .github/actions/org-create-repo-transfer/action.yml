@@ -18,7 +18,7 @@ runs:
       shell: bash
       run: |
         data=$(gh api repos/${{ inputs.organization }}/${{ inputs.repository }}/transfer \
-          -f "new_owner=${{ inputs.transfer }}"
+          -f "new_owner=${{ inputs.transfer }}")
         if [[ $? -eq 0 ]]; then
           json_data=$(jq -nc '{ "msg": "created repository transfer request successfully", "status": "success" }')
           echo -e "RESULT=$json_data" >> $GITHUB_ENV
