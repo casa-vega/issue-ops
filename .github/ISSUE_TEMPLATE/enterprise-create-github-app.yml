@@ -1,8 +1,8 @@
-name: "[Organization] - create a github app"
+name: "[Enterprise] - create a github app"
 description: creates a Github app project at the org level, must be approved by an enterprise admin
-title: "[org-github-app-request] Create a GitHub app at the org level"
+title: "[enterprise-github-app-request] Create a GitHub app at the org level"
 labels:
-  - org-create-github-app
+  - enterprise-create-github-app
 body:
 # - type: dropdown
 #   id: instance
@@ -21,7 +21,7 @@ body:
   - type: input
     id: name
     attributes:
-      label: the name of the new organization (*)
-      description: your new fancy/descriptive organization name
-      placeholder: fuschia-sailfish
+      label: the name of the new github app (*)
+      description: your new github app name
+      placeholder: twilight-wizard
   

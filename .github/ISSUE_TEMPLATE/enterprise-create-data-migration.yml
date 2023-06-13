@@ -1,8 +1,8 @@
-name: "[Organization] - create a data migration"
+name: "[Enterprise] - create a data migration"
 description: "creates a data migration for an organization, requires approval from an enterprise admin"
-title: "[org-create-data-migration] request a data migration for an organization"
+title: "[enterprise-create-data-migration] request a data migration for an organization"
 labels:
-  - org-create-data-migration
+  - enterprise-create-data-migration
 body:
 # - type: input
 #   id: instance

@@ -1,8 +1,8 @@
-name: "[Organization] - create a new github organization" 
+name: "[Enterprise] - create a new github organization" 
 description: requests a new github organization
-title: "[org-request-new] Create a new organization"
+title: "[enterprise-request-new] Create a new organization"
 labels:
-  - org-create-org
+  - enterprise-create-org
 body:
 # - type: dropdown
 #   id: instance
