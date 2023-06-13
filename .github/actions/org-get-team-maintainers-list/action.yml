@@ -17,7 +17,7 @@ runs:
 # export INSTANCE="${{ inputs.instance }}"
       run: |
         export INSTANCE="EMU"
-        export ORG_NAME="${{ inputs.organization }}"
+        export ORG_NAME=$(echo "${{ inputs.organization }}" | tr '[:upper:]' '[:lower:]')
         data=$(yq eval -M -o=json '[.github_instances[] | select(.instance == env(INSTANCE)) | .organizations[] | select(.name == env(ORG_NAME)) | .maintainers[]]' ./.github/ENTITLEMENTS/github.yml | jq -c .)
         if [[ $? -eq 0 ]]; then
           json_data=$(jq -nc --argjson data "$data" '{ "msg": "org team maintainers successfully retrieved", "status": "success", "data": $data }')
