@@ -27,7 +27,7 @@ runs:
           webhook_id=$(echo "$webhooks" | jq -r .id)
           delivery=$(gh api orgs/${{ inputs.organization }}/hooks/$webhook_id/deliveries?per_page=1 \
             --method GET)
-          delivery_id=$(echo "$delivery" | jq -r .id)
+          delivery_id=$(echo "$delivery" | jq -r .[0].id)
           data=$(gh api orgs/${{ inputs.organization }}/hooks/$webhook_id/deliveries/$delivery_id \
             --method GET)
           if [[ $? -eq 0 ]]; then
