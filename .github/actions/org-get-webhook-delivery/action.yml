@@ -24,11 +24,11 @@ runs:
           json_data=$(jq -nc '{ "msg": "No webhook found with the specified URL", "status": "failure" }')
           echo -e "RESULT=$json_data" >> $GITHUB_ENV
         elif [[ $count -eq 1 ]]; then
-          webhook_id=$(echo "$webhooks" | jq -r .id)
-          delivery=$(gh api orgs/${{ inputs.organization }}/hooks/$webhook_id/deliveries?per_page=1 \
+          hook_id=$(echo "$webhooks" | jq -r .id)
+          delivery=$(gh api orgs/${{ inputs.organization }}/hooks/$hook_id/deliveries \
             --method GET)
           delivery_id=$(echo "$delivery" | jq -r .[0].id)
-          data=$(gh api orgs/${{ inputs.organization }}/hooks/$webhook_id/deliveries/$delivery_id \
+          data=$(gh api orgs/${{ inputs.organization }}/hooks/$hook_id/deliveries/$delivery_id \
             --method GET)
           if [[ $? -eq 0 ]]; then
             json_data=$(jq -nc --argjson data "$data" '{ "msg": "fetched webhook delivery", "status": "success", "data": $data }')
