@@ -31,8 +31,16 @@ runs:
           `[[ "${{ inputs.readme }}" == "["Enable"]" ]] && echo --add-readme` \
           --description "${{ inputs.description }}")
         if [[ $? -eq 0 ]]; then
-          json_data=$(jq -nc '{ "msg": "created repository successfully", "status": "success" }')
-          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+          user=$(gh api /repos/${{ inputs.organization }}/${{ inputs.repository }}/collaborators/${{ github.actor }} \
+              --method PUT \
+              -f permission='admin')
+          if [[ $? -eq 0 ]]; then
+            json_data=$(jq -nc '{ "msg": "created repository successfully", "status": "success" }')
+            echo -e "RESULT=$json_data" >> $GITHUB_ENV
+          else
+            json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to add user to repository", "status": "error": $user }')
+            echo -e "RESULT=$json_data" >> $GITHUB_ENV
+          fi
         else
           json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to create repository", "status": "error": $data }')
           echo -e "RESULT=$json_data" >> $GITHUB_ENV
