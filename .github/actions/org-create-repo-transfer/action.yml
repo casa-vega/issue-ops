@@ -1,10 +1,10 @@
 name: Create a repository transfer request
 
 inputs:
-  org:
+  organization:
     description: "Description for org"
     required: true
-  repo:
+  repository:
     description: "Description for repo"
     required: true
   transfer:

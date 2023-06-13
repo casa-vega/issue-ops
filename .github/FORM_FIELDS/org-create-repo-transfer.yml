@@ -1,4 +1,4 @@
 required_fields:
-  - org
-  - repo
+  - organization
+  - repository
   - transfer
