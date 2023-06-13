@@ -31,7 +31,6 @@ runs:
           data=$(gh api orgs/${{ inputs.organization }}/hooks/$webhook_id/deliveries/$delivery_id \
             --method GET)
           if [[ $? -eq 0 ]]; then
-            json_data=$(jq -nc '{ "msg": "fetched webhook delivery", "status": "success", "data": $data }')
             json_data=$(jq -nc --argjson data "$data" '{ "msg": "fetched webhook delivery", "status": "success", "data": $data }')
             echo -e "RESULT=$json_data" >> $GITHUB_ENV
           else
