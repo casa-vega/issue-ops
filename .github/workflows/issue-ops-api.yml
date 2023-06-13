@@ -1,0 +1,50 @@
+name: issue-ops
+on:
+  repository_dispatch:
+
+jobs:
+  issue-ops-api-run:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.EMU_ISSUE_OPS }}
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      # we key off the label to determine which issue template/workflow to use/parse
+      - name: get issue labels
+        id: issue-labels
+        run: |
+          echo "result=${{ github.event.client_payload.op }}" >> $GITHUB_OUTPUT
+        
+
+
+      # validate that required fields are present and that user has entitlements to perform the requested operation
+      - name: validate required form entries and user auth
+        id: validate
+        run: |
+          echo "FORM=$(python .github/scripts/validation.py form \
+            --op=${{ steps.issue-labels.outputs.result }})" >> $GITHUB_OUTPUT
+          if ! [[ "${{ steps.issue-labels.outputs.result }}" == *list ]]; then
+            echo "AUTH=$(python .github/scripts/validation.py auth \
+            --instance=EMU \
+            --org=${{ steps.issue-parser.outputs.issueparser_organization }} \
+            --user=${{ github.actor }})" >> $GITHUB_OUTPUT
+          fi
+
+
+      - name: create ops specific payload
+        id: setup
+        run: |
+          echo "JSON=$(jq -c '.' ${HOME}/issue-parser-result.json)" >> $GITHUB_OUTPUT
+          echo "HOST=$(python .github/scripts/validation.py host \
+            --instance=EMU)" >> $GITHUB_OUTPUT
+
+
+      # dynamically call the appropriate action based on the issue template
+      - name: call issue ops dynamically with composite action
+        id: op
+        uses: ./.github/actions/issue-op
+        with:
+          uses: ./.github/actions/${{ steps.issue-labels.outputs.result }}
+          with: ${{ steps.setup.outputs.json }}
