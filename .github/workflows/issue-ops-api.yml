@@ -1,4 +1,4 @@
-name: issue-ops
+name: issue-ops-api
 on:
   repository_dispatch:
 
@@ -12,11 +12,12 @@ jobs:
       - uses: actions/checkout@v3
       
       # we key off the label to determine which issue template/workflow to use/parse
-      - name: get issue labels
-        id: issue-labels
+      - name: parse client payload
+        id: payload
         run: |
-          echo "result=${{ github.event.client_payload.op }}" >> $GITHUB_OUTPUT
-        
+          echo "result=${{ github.event.client_payload }}" >> $GITHUB_OUTPUT
+          echo ${{ github.event.client_payload }} > ${HOME}/issue-parser-payload.json
+          cat ${HOME}/issue-parser-payload.json
 
 
       # validate that required fields are present and that user has entitlements to perform the requested operation
