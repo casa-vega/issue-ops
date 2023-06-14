@@ -33,7 +33,7 @@ body:
     attributes:
       label: Required status checks
       description: Require status checks to pass before merging.
-      placeholder: ex. continuous-integration/gh-actions
+      placeholder: ex. ci/gha, test/unit, test/integration
   - type: checkboxes
     id: enforce_admins
     attributes:

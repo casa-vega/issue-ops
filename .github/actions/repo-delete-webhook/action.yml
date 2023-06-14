@@ -27,7 +27,7 @@ runs:
           echo -e "RESULT=$json_data" >> $GITHUB_ENV
         elif [[ $count -eq 1 ]]; then
           webhook_id=$(echo "$webhooks" | jq -r .id)
-          data=$(gh api orgs/${{ inputs.organization }}/${{ inputs.repository }}/hooks/$webhook_id \
+          data=$(gh api repos/${{ inputs.organization }}/${{ inputs.repository }}/hooks/$webhook_id \
             --method DELETE)
           if [[ $? -eq 0 ]]; then
             json_data=$(jq -nc '{ "msg": "deleted repository webhook successfully", "status": "success" }')
