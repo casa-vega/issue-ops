@@ -15,9 +15,10 @@ jobs:
       - name: parse client payload
         id: payload
         run: |
-          echo "result=${{ github.event.client_payload }}" >> $GITHUB_OUTPUT
-          echo ${{ github.event.client_payload }} > ${HOME}/issue-parser-payload.json
+          echo "${{ github.event.client_payload }}" > ${HOME}/issue-parser-payload.json
           cat ${HOME}/issue-parser-payload.json
+
+      
 
 
       # validate that required fields are present and that user has entitlements to perform the requested operation
@@ -25,8 +26,8 @@ jobs:
         id: validate
         run: |
           echo "FORM=$(python .github/scripts/validation.py form \
-            --op=${{ steps.issue-labels.outputs.result }})" >> $GITHUB_OUTPUT
-          if ! [[ "${{ steps.issue-labels.outputs.result }}" == *list ]]; then
+            --op=${{ github.event.event_type }})" >> $GITHUB_OUTPUT
+          if ! [[ "${{ github.event.event_type }}" == *list ]]; then
             echo "AUTH=$(python .github/scripts/validation.py auth \
             --instance=EMU \
             --org=${{ steps.issue-parser.outputs.issueparser_organization }} \
