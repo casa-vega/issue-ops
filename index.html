@@ -6,1320 +6,123 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Self Service Issue Ops - Portal</title>
     <html data-color-mode="dark" data-dark-theme="dark_dimmed"></html>
-    <link
-      href="https://unpkg.com/@primer/css@^20.2.4/dist/primer.css"
-      rel="stylesheet"
-    />
+    <link href="https://unpkg.com/@primer/css@^20.2.4/dist/primer.css" rel="stylesheet" />
+    <style>
+      .tabcontent {
+        display: none;
+      }
+    </style>
   </head>
-
   <body>
     <div class="Header">
       <div class="Header-item">
-        <svg
-          class="octicon octicon-mark-github mr-2"
-          viewBox="0 0 16 16"
-          version="1.1"
-          width="34"
-          height="34"
-          aria-hidden="true"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-          ></path>
+        <svg class="octicon octicon-mark-github mr-2" viewBox="0 0 16 16" version="1.1" width="34" height="34" aria-hidden="true">
+          <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
         </svg>
-        <img
-          src="./img/salesforce.svg"
-          alt="salesforce"
-          width="48"
-          height="36"
-        />
+        <img src="./img/salesforce.svg" alt="salesforce" width="48" height="36" />
       </div>
       <span class="Header-link f4">Self Service Issue Ops - Portal</span>
     </div>
-
-    <div>
-      <span class="d-block border">
-        <div class="d-table">
-          <div class="d-table-cell height-full v-align-middle pl-3">
-            <svg
-              class="octicon octicon-three-bars"
-              viewBox="0 0 12 16"
-              version="1.1"
-              width="16"
-              height="16"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"
-              ></path>
-            </svg>
-          </div>
-          <div class="p-3">
-            Welcome to the issue ops portal. To get started, please select the
-            GitHub instance where you need to make changes. Once your instance
-            is selected, choose one of the operations you'd like to perform. You
-            will be forwarded to the appropriate page to complete your request.
-          </div>
-        </div>
-      </span>
-    </div>
-
-    <div class="p-3"></div>
+    <div class="p-4"></div>
     <div class="col-10 p-0 mx-auto">
-      <!-- <div class="Subhead">
-        <h2 class="Subhead-heading p3">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 16 16"
-            fill="currentColor"
-            style="display: inline-block; vertical-align: text-bottom"
-          >
-            <path
-              d="M14.064 0h.186C15.216 0 16 .784 16 1.75v.186a8.752 8.752 0 0 1-2.564 6.186l-.458.459c-.314.314-.641.616-.979.904v3.207c0 .608-.315 1.172-.833 1.49l-2.774 1.707a.749.749 0 0 1-1.11-.418l-.954-3.102a1.214 1.214 0 0 1-.145-.125L3.754 9.816a1.218 1.218 0 0 1-.124-.145L.528 8.717a.749.749 0 0 1-.418-1.11l1.71-2.774A1.748 1.748 0 0 1 3.31 4h3.204c.288-.338.59-.665.904-.979l.459-.458A8.749 8.749 0 0 1 14.064 0ZM8.938 3.623h-.002l-.458.458c-.76.76-1.437 1.598-2.02 2.5l-1.5 2.317 2.143 2.143 2.317-1.5c.902-.583 1.74-1.26 2.499-2.02l.459-.458a7.25 7.25 0 0 0 2.123-5.127V1.75a.25.25 0 0 0-.25-.25h-.186a7.249 7.249 0 0 0-5.125 2.123ZM3.56 14.56c-.732.732-2.334 1.045-3.005 1.148a.234.234 0 0 1-.201-.064.234.234 0 0 1-.064-.201c.103-.671.416-2.273 1.15-3.003a1.502 1.502 0 1 1 2.12 2.12Zm6.94-3.935c-.088.06-.177.118-.266.175l-2.35 1.521.548 1.783 1.949-1.2a.25.25 0 0 0 .119-.213ZM3.678 8.116 5.2 5.766c.058-.09.117-.178.176-.266H3.309a.25.25 0 0 0-.213.119l-1.2 1.95ZM12 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"
-            ></path>
-          </svg>
-          Choose a GitHub Instance
-        </h2>
-        <div class="Subhead-description">
-          Choosing an instance below will allow you to target a specific
-          instance of GitHub
+      <div class="tabnav">
+        <nav class="tabnav-tabs" aria-label="Foo bar">
+          <a class="tabnav-tab" href="#url" onclick="openTab(event, 'Enterprise')" aria-current="false">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;">
+              <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM5.78 8.75a9.64 9.64 0 0 0 1.363 4.177c.255.426.542.832.857 1.215.245-.296.551-.705.857-1.215A9.64 9.64 0 0 0 10.22 8.75Zm4.44-1.5a9.64 9.64 0 0 0-1.363-4.177c-.307-.51-.612-.919-.857-1.215a9.927 9.927 0 0 0-.857 1.215A9.64 9.64 0 0 0 5.78 7.25Zm-5.944 1.5H1.543a6.507 6.507 0 0 0 4.666 5.5c-.123-.181-.24-.365-.352-.552-.715-1.192-1.437-2.874-1.581-4.948Zm-2.733-1.5h2.733c.144-2.074.866-3.756 1.58-4.948.12-.197.237-.381.353-.552a6.507 6.507 0 0 0-4.666 5.5Zm10.181 1.5c-.144 2.074-.866 3.756-1.58 4.948-.12.197-.237.381-.353.552a6.507 6.507 0 0 0 4.666-5.5Zm2.733-1.5a6.507 6.507 0 0 0-4.666-5.5c.123.181.24.365.353.552.714 1.192 1.436 2.874 1.58 4.948Z"></path>
+            </svg>
+            <span>Enterprise</span>
+          </a>
+          <a class="tabnav-tab" id="Organization-tab" href="#url" onclick="openTab(event, 'Organization')" aria-current="page">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+              <path d="M6.25 12a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM5.5 9.25a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM6.25 5a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM9 12.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75Zm.75-4.25a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM9 5.75A.75.75 0 0 1 9.75 5h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 9 5.75ZM13.25 12a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Zm-.75-2.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM13.25 5a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Z"></path>
+              <path d="M2 20V3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v17c0 .173-.022.34-.063.5H20a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.2-.4l-.5-.375a.75.75 0 0 1 .9-1.2l.5.375c.504.378.8.97.8 1.6v8a2 2 0 0 1-2 2h-3.562a.767.767 0 0 1-.166-.018c-.089.012-.18.018-.272.018h-3.75a.75.75 0 0 1-.75-.75V19h-3v2.25a.75.75 0 0 1-.75.75H4a2 2 0 0 1-2-2Zm2 .5h3v-2.25a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 .75.75v2.25h3a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H4a.5.5 0 0 0-.5.5v17a.5.5 0 0 0 .5.5Z"></path>
+            </svg>
+            <span>Organization</span>
+          </a>
+          <a class="tabnav-tab" href="#url" onclick="openTab(event, 'Repository')" aria-current="false">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+              <path d="M3 2.75A2.75 2.75 0 0 1 5.75 0h14.5a.75.75 0 0 1 .75.75v20.5a.75.75 0 0 1-.75.75h-6a.75.75 0 0 1 0-1.5h5.25v-4H6A1.5 1.5 0 0 0 4.5 18v.75c0 .716.43 1.334 1.05 1.605a.75.75 0 0 1-.6 1.374A3.251 3.251 0 0 1 3 18.75ZM19.5 1.5H5.75c-.69 0-1.25.56-1.25 1.25v12.651A2.989 2.989 0 0 1 6 15h13.5Z"></path>
+            </svg>
+            <span>Repository</span>
+          </a>
+          <a class="tabnav-tab" href="#url" onclick="openTab(event, 'Docs')" aria-current="false">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;">
+              <path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574ZM8.755 4.75l-.004 7.322a3.752 3.752 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25Z"></path>
+            </svg>
+            <span>Docs</span>
+          </a>
+        </nav>
+      </div>
+      <div id="Enterprise" class="tabcontent" style="display: none;">
+        <div class="Subhead">
+          <h2 class="Subhead-heading">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+              <path d="M3 2.75A2.75 2.75 0 0 1 5.75 0h14.5a.75.75 0 0 1 .75.75v20.5a.75.75 0 0 1-.75.75h-6a.75.75 0 0 1 0-1.5h5.25v-4H6A1.5 1.5 0 0 0 4.5 18v.75c0 .716.43 1.334 1.05 1.605a.75.75 0 0 1-.6 1.374A3.251 3.251 0 0 1 3 18.75ZM19.5 1.5H5.75c-.69 0-1.25.56-1.25 1.25v12.651A2.989 2.989 0 0 1 6 15h13.5Z"></path>
+            </svg> Enterprise Changes <div class="Subhead-description">These operations are coming soon, please contact SCM team </div>
+          </h2>
         </div>
-      </div>
-      <nav class="subnav p-3" aria-label="Repository">
-        <a class="subnav-item" href="#url" id="button1" aria-current="page"
-          >GitHub EMU</a
-        >
-        <a class="subnav-item" href="#url" id="button2">GitHub COM</a>
-        <a class="subnav-item" href="#url" id="button3">GHES (SOMA)</a>
-      </nav> -->
-      <div class="Subhead">
-        <h2 class="Subhead-heading">
-          <svg
-            width="24"
-            height="24"Fwebhoo
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            style="display: inline-block; vertical-align: text-bottom"
-          >
-            <path
-              d="M6.25 12a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM5.5 9.25a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM6.25 5a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM9 12.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75Zm.75-4.25a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM9 5.75A.75.75 0 0 1 9.75 5h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 9 5.75ZM13.25 12a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Zm-.75-2.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM13.25 5a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Z"
-            ></path>
-            <path
-              d="M2 20V3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v17c0 .173-.022.34-.063.5H20a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.2-.4l-.5-.375a.75.75 0 0 1 .9-1.2l.5.375c.504.378.8.97.8 1.6v8a2 2 0 0 1-2 2h-3.562a.767.767 0 0 1-.166-.018c-.089.012-.18.018-.272.018h-3.75a.75.75 0 0 1-.75-.75V19h-3v2.25a.75.75 0 0 1-.75.75H4a2 2 0 0 1-2-2Zm2 .5h3v-2.25a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 .75.75v2.25h3a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H4a.5.5 0 0 0-.5.5v17a.5.5 0 0 0 .5.5Z"
-            ></path>
-          </svg>
-          Organization Changes
-        </h2>
-        <div class="Subhead-description">
-          All of the operations below are scoped to GitHub organizations
-        </div>
-      </div>
-      <div class="p-3">
-        <div class="clearfix gutter-md-spacious">
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M22 1.75v14.5a.75.75 0 0 1-.399.662c-.384.204-.783-.035-1.139-.248l-.003-.002c-.09-.054-.177-.107-.261-.15a15.53 15.53 0 0 0-2-.849c-1.738-.607-4.321-1.223-7.703-1.251a.833.833 0 0 1 .005.088c0 2.279.494 4.279.906 5.547.368 1.131-.438 2.453-1.732 2.453H7.661c-.696 0-1.36-.42-1.6-1.129C5.684 20.255 5 17.811 5 14.75v-.457A5.5 5.5 0 0 1 6.5 3.5h3.75c3.505 0 6.175-.61 7.955-1.21a15.88 15.88 0 0 0 2.002-.82 9.21 9.21 0 0 0 .49-.262c.048-.028.095-.055.142-.085A.751.751 0 0 1 22 1.75ZM10.5 12.912c3.564.029 6.313.678 8.193 1.335.737.258 1.34.517 1.807.74V2.993c-.467.216-1.073.467-1.815.718-1.878.634-4.624 1.26-8.185 1.288ZM6.5 5a4 4 0 0 0 0 8H9V5Zm0 9.75c0 2.847.638 5.123.982 6.141.018.051.074.109.179.109h2.013c.087 0 .179-.043.249-.147a.396.396 0 0 0 .057-.343C9.537 19.148 9 16.986 9 14.5H6.5Z"
-                      ></path>
-                    </svg>
-                    Announcements
-                  </h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Create an organization banner with useful details for your
-                    users
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a
-                    href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-announcement&projects=&template=org-create-announcement.yml&title=%5Borg-announcement%5D+Create+a+new+organization+banner+announcement"
-                  >
-                    <button
-                      type="button"
-                      name="Create an organization"
-                      class="btn btn-primary"
-                    >
-                      Create
-                    </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M7.25 6a.75.75 0 0 0-.75.75v7.5a.75.75 0 0 0 1.5 0v-7.5A.75.75 0 0 0 7.25 6ZM12 6a.75.75 0 0 0-.75.75v4.5a.75.75 0 0 0 1.5 0v-4.5A.75.75 0 0 0 12 6Zm4 .75a.75.75 0 0 1 1.5 0v9.5a.75.75 0 0 1-1.5 0v-9.5Z"
-                      ></path>
-                      <path
-                        d="M3.75 2h16.5c.966 0 1.75.784 1.75 1.75v16.5A1.75 1.75 0 0 1 20.25 22H3.75A1.75 1.75 0 0 1 2 20.25V3.75C2 2.784 2.784 2 3.75 2ZM3.5 3.75v16.5c0 .138.112.25.25.25h16.5a.25.25 0 0 0 .25-.25V3.75a.25.25 0 0 0-.25-.25H3.75a.25.25 0 0 0-.25.25Z"
-                      ></path>
-                    </svg>
-                    Projects
-                  </h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Create a new V2 project for your organization users and
-                    repositories
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-projectv2&projects=&template=org-create-projectv2.yml&title=%5Bproject-create%5D+Create+a+v2+project">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Create
-                  </button>
-                </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M0 2.75A2.75 2.75 0 0 1 2.75 0h10.5A2.75 2.75 0 0 1 16 2.75v10.5A2.75 2.75 0 0 1 13.25 16H2.75A2.75 2.75 0 0 1 0 13.25ZM2.75 1.5c-.69 0-1.25.56-1.25 1.25v10.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25V2.75c0-.69-.56-1.25-1.25-1.25Z"
-                      ></path>
-                      <path
-                        d="M8 4a.75.75 0 0 1 .75.75V6.7l1.69-.975a.75.75 0 0 1 .75 1.3L9.5 8l1.69.976a.75.75 0 0 1-.75 1.298L8.75 9.3v1.951a.75.75 0 0 1-1.5 0V9.299l-1.69.976a.75.75 0 0 1-.75-1.3L6.5 8l-1.69-.975a.75.75 0 0 1 .75-1.3l1.69.976V4.75A.75.75 0 0 1 8 4Z"
-                      ></path>
-                    </svg>
-                    Variables
-                  </h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Create organization variables to use in your workflows
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-variable&projects=&template=org-create-variable.yml&title=%5Borg-create-variable%5D+Create+a+variable+in+an+organization">
-                    
-                  
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Create
-                  </button>
-                </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"
-                      ></path>
-                      <path
-                        d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"
-                      ></path>
-                      <path
-                        d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"
-                      ></path>
-                    </svg>
-                    Webhooks
-                  </h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Create new webhooks for your organization and subscribe to
-                    events
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-webhook&projects=&template=org-create-webhook.yml&title=%5Borg-webhook%5D+Create+a+new+organization+webhook">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Create
-                  </button>
-                </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="p-3">
-        <div class="clearfix gutter-md-spacious">
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M1 3.5c0-.626.292-1.165.7-1.59.406-.422.956-.767 1.579-1.041C4.525.32 6.195 0 8 0c1.805 0 3.475.32 4.722.869.622.274 1.172.62 1.578 1.04.408.426.7.965.7 1.591v9c0 .626-.292 1.165-.7 1.59-.406.422-.956.767-1.579 1.041C11.476 15.68 9.806 16 8 16c-1.805 0-3.475-.32-4.721-.869-.623-.274-1.173-.62-1.579-1.04-.408-.426-.7-.965-.7-1.591Zm1.5 0c0 .133.058.318.282.551.227.237.591.483 1.101.707C4.898 5.205 6.353 5.5 8 5.5c1.646 0 3.101-.295 4.118-.742.508-.224.873-.471 1.1-.708.224-.232.282-.417.282-.55 0-.133-.058-.318-.282-.551-.227-.237-.591-.483-1.101-.707C11.102 1.795 9.647 1.5 8 1.5c-1.646 0-3.101.295-4.118.742-.508.224-.873.471-1.1.708-.224.232-.282.417-.282.55Zm0 4.5c0 .133.058.318.282.551.227.237.591.483 1.101.707C4.898 9.705 6.353 10 8 10c1.646 0 3.101-.295 4.118-.742.508-.224.873-.471 1.1-.708.224-.232.282-.417.282-.55V5.724c-.241.15-.503.286-.778.407C11.475 6.68 9.805 7 8 7c-1.805 0-3.475-.32-4.721-.869a6.15 6.15 0 0 1-.779-.407Zm0 2.225V12.5c0 .133.058.318.282.55.227.237.592.484 1.1.708 1.016.447 2.471.742 4.118.742 1.647 0 3.102-.295 4.117-.742.51-.224.874-.47 1.101-.707.224-.233.282-.418.282-.551v-2.275c-.241.15-.503.285-.778.406-1.247.549-2.917.869-4.722.869-1.805 0-3.475-.32-4.721-.869a6.327 6.327 0 0 1-.779-.406Z"
-                      ></path>
-                    </svg>
-                    Data Migration
-                  </h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Create a request to migrate your data. This will require
-                    human intervention
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-data-migration&projects=&template=org-create-data-migration.yml&title=%5Borg-create-data-migration%5D+request+a+data+migration+for+an+organization">
-
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Create
-                  </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M1.5 3.25c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5A1.75 1.75 0 0 1 5.75 7.5h-2.5A1.75 1.75 0 0 1 1.5 5.75Zm7 0c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5A1.75 1.75 0 0 1 8.5 5.75Zm-7 7c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5a1.75 1.75 0 0 1-1.75-1.75Zm7 0c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5a1.75 1.75 0 0 1-1.75-1.75ZM3.25 3a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5A.25.25 0 0 0 6 5.75v-2.5A.25.25 0 0 0 5.75 3Zm7 0a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Zm-7 7a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Zm7 0a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Z"
-                      ></path>
-                    </svg>
-                    GitHub App
-                  </h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Create a new github app, require enterprise admin approval
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-github-app&projects=&template=org-create-github-app.yml&title=%5Borg-github-app-request%5D+Create+a+GitHub+app+at+the+org+level">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Create
-                  </button>
-                </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M6.25 12a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM5.5 9.25a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM6.25 5a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM9 12.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75Zm.75-4.25a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM9 5.75A.75.75 0 0 1 9.75 5h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 9 5.75ZM13.25 12a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Zm-.75-2.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM13.25 5a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Z"
-                      ></path>
-                      <path
-                        d="M2 20V3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v17c0 .173-.022.34-.063.5H20a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.2-.4l-.5-.375a.75.75 0 0 1 .9-1.2l.5.375c.504.378.8.97.8 1.6v8a2 2 0 0 1-2 2h-3.562a.767.767 0 0 1-.166-.018c-.089.012-.18.018-.272.018h-3.75a.75.75 0 0 1-.75-.75V19h-3v2.25a.75.75 0 0 1-.75.75H4a2 2 0 0 1-2-2Zm2 .5h3v-2.25a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 .75.75v2.25h3a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H4a.5.5 0 0 0-.5.5v17a.5.5 0 0 0 .5.5Z"
-                      ></path>
-                    </svg>
-                    Organization
-                  </h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Create a request for a new organization. Requires
-                    enterprrise admin approval
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-org&projects=&template=org-create-org.yml&title=%5Borg-request-new%5D+Create+a+new+organization">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Create
-                  </button>
-                </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="m10.78 8.53-3.75 3.75a.749.749 0 1 1-1.06-1.06l2.469-2.47H1.75a.75.75 0 0 1 0-1.5h6.689L5.97 4.78a.749.749 0 1 1 1.06-1.06l3.75 3.75a.749.749 0 0 1 0 1.06ZM13 12.25v-8.5a.75.75 0 0 1 1.5 0v8.5a.75.75 0 0 1-1.5 0Z"
-                      ></path>
-                    </svg>
-                    Transfer
-                  </h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Create a transfer request, requires enterprise admin
-                    approval
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-repo-transfer&projects=&template=org-create-repo-transfer.yml&title=%5Borg-create-repo-transfer%5D+Create+a+transfer+request%2C+requires+manual+approval+from+the+new+org">
-                    <button
-                      type="button"
-                      name="Create an organization"
-                      class="btn btn-primary"
-                    >
-                      Create
-                    </button>
-                </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="p-3">
-        <div class="clearfix gutter-md-spacious">
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z"></path></svg>
-                    Admins</h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    List the organization admin users using issue operations
-                    entitlement
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a
-                    href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-get-admin-list&projects=&template=org-get-admin-list.yml&title=%5Borg-admin-list%5D+List+organization+admins"
-                  >
-                    <button
-                      type="button"
-                      name="Create an organization"
-                      class="btn btn-primary"
-                    >
-                      Report
-                    </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z"></path></svg>
-                    Maintainers</h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    List the organization maintainers users using issue
-                    operations entitlement
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                    aria-selected="true"
-                  >
-                    Report
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"
-                      ></path>
-                      <path
-                        d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"
-                      ></path>
-                      <path
-                        d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"
-                      ></path>
-                    </svg>
-                    Webhook Delivery</h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Report the last webhook delivery HTTP data, useful for
-                    debugging
-                  </p>
-                </div>
-                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-get-webhook-delivery&projects=&template=org-get-webhook-delivery.yml&title=%5Borg-get-webhook-delivery%5D+get+a+webhook+delivery">
-                <div class="Box-row">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Report
-                  </button>
-                </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"
-                      ></path>
-                      <path
-                        d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"
-                      ></path>
-                      <path
-                        d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"
-                      ></path>
-                    </svg>
-                    Webhook Status</h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Report the status of the webhook, enabled or disabled.
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-status-webhook&projects=&template=org-status-webhook.yml&title=%5Borg-status-webhook%5D+Get+the+Status+of+a+webhook">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Report
-                  </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="p-3">
-        <div class="clearfix gutter-md-spacious">
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M15 4.75a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0ZM2.5 19.25a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0Zm0-14.5a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0ZM5.75 6.5a1.75 1.75 0 1 0-.001-3.501A1.75 1.75 0 0 0 5.75 6.5Zm0 14.5a1.75 1.75 0 1 0-.001-3.501A1.75 1.75 0 0 0 5.75 21Zm12.5-14.5a1.75 1.75 0 1 0-.001-3.501A1.75 1.75 0 0 0 18.25 6.5Z"></path><path d="M5.75 16.75A.75.75 0 0 1 5 16V8a.75.75 0 0 1 1.5 0v8a.75.75 0 0 1-.75.75Z"></path><path d="M17.5 8.75v-1H19v1a3.75 3.75 0 0 1-3.75 3.75h-7a1.75 1.75 0 0 0-1.75 1.75H5A3.25 3.25 0 0 1 8.25 11h7a2.25 2.25 0 0 0 2.25-2.25Z"></path></svg>
-                    Fork Policy
-                    
-
-                  </h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Toggle your organization fork policy, this will allow or disallow uses to fork repos.
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-toggle-fork-policy&projects=&template=org-toggle-fork-policy.yml&title=%5Borg-fork-policy-toggle%5D+Toggle+organization+fork+policy">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-outline"
-                  >
-                    Update
-                  </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25ZM14.5 6h-13v7.25c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25Zm-6-3.5v2h6V2.75a.25.25 0 0 0-.25-.25ZM5 2.5v2h2v-2Zm-3.25 0a.25.25 0 0 0-.25.25V4.5h2v-2Z"></path></svg>
-                    Pages Policy</h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Toggle GitHub pages. Allow users to host static content from their repositories.
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-toggle-pages&projects=&template=org-toggle-pages.yml&title=%5Borg-pages-toggle%5D+Toggle+organization+pages">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-outline"
-                  >
-                    Update
-                  </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg>
-                    Repo Create Policy</h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Allow or disallow org members to create repositories.
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-toggle-repo-creation&projects=&template=org-toggle-repo-creation.yml&title=%5Borg-repo-creation-toggle%5D+Toggle+organization+repo+creation">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-outline"
-                  >
-                    Update
-                  </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"
-                      ></path>
-                      <path
-                        d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"
-                      ></path>
-                      <path
-                        d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"
-                      ></path>
-                    </svg>
-                    Webhooks</h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Update a current webhook with new configuration settings. 
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-outline"
-                  >
-                    Update
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="p-3">
-        <div class="clearfix gutter-md-spacious">
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"
-                      ></path>
-                      <path
-                        d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"
-                      ></path>
-                      <path
-                        d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"
-                      ></path>
-                    </svg>
-                    Webhooks</h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Deletes a webhook from the organization. Proceed with
-                    caution.
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-delete-webhook&projects=&template=org-delete-webhook.yml&title=%5Borg-delete-webhook%5D+Delete+and+organization+webhook">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-danger"
-                  >
-                    Delete
-                  </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            
-          </div>
-          <div class="col-3 float-left">
-            
-          </div>
-          <div class="col-3 float-left">
-            
-          </div>
-        </div>
-      </div>
-      <div class="col-2"></div>
-
-      <div class="Subhead">
-        <h2 class="Subhead-heading">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            style="display: inline-block; vertical-align: text-bottom"
-          >
-            <path
-              d="M3 2.75A2.75 2.75 0 0 1 5.75 0h14.5a.75.75 0 0 1 .75.75v20.5a.75.75 0 0 1-.75.75h-6a.75.75 0 0 1 0-1.5h5.25v-4H6A1.5 1.5 0 0 0 4.5 18v.75c0 .716.43 1.334 1.05 1.605a.75.75 0 0 1-.6 1.374A3.251 3.251 0 0 1 3 18.75ZM19.5 1.5H5.75c-.69 0-1.25.56-1.25 1.25v12.651A2.989 2.989 0 0 1 6 15h13.5Z"
-            ></path>
-          </svg>
-          Repository Changes
-          <div class="Subhead-description">All of the operations below are scoped to GitHub repositories</div>
-        </h2>
-      </div>
-      <div class="p-3">
-        <div class="clearfix gutter-md-spacious">
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg>
-                    Repository
-                  </h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Create a new repository in your organization
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a
-                    href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-announcement&projects=&template=org-create-announcement.yml&title=%5Borg-announcement%5D+Create+a+new+organization+banner+announcement"
-                  >
-                    <button
-                      type="button"
-                      name="Create an organization"
-                      class="btn btn-primary"
-                    >
-                      Create
-                    </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display:inline-block;vertical-align:text-bottom"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v1.5A1.75 1.75 0 0 1 14.25 6H1.75A1.75 1.75 0 0 1 0 4.25ZM1.75 7a.75.75 0 0 1 .75.75v5.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-5.5a.75.75 0 0 1 1.5 0v5.5A1.75 1.75 0 0 1 13.25 15H2.75A1.75 1.75 0 0 1 1 13.25v-5.5A.75.75 0 0 1 1.75 7Zm0-4.5a.25.25 0 0 0-.25.25v1.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-1.5a.25.25 0 0 0-.25-.25ZM6.25 8h3.5a.75.75 0 0 1 0 1.5h-3.5a.75.75 0 0 1 0-1.5Z"></path></svg>
-                    Archive
-                  </h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Archive a repository, this will preserve the repository as read only
-                  </p>
-                </div>
-                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-create-archive&projects=&template=repo-create-archive.yml&title=%5Brepo-create-archive%5D+Archive+a+repository">
-                <div class="Box-row">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Create
-                  </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M9.5 3.25a2.25 2.25 0 1 1 3 2.122V6A2.5 2.5 0 0 1 10 8.5H6a1 1 0 0 0-1 1v1.128a2.251 2.251 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.5 0v1.836A2.493 2.493 0 0 1 6 7h4a1 1 0 0 0 1-1v-.628A2.25 2.25 0 0 1 9.5 3.25Zm-6 0a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Zm8.25-.75a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5ZM4.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"></path></svg>
-                    Branch Protection
-                  </h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Create a new branch protection rule for your repository
-                  </p>
-                </div>
-                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-create-branch-protection&projects=&template=repo-create-branch-protection.yml&title=%5Brepo-create-branch-protection%5D+Create+a+branch+protection+rule.">
-                <div class="Box-row">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Create
-                  </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M9.5 3.25a2.25 2.25 0 1 1 3 2.122V6A2.5 2.5 0 0 1 10 8.5H6a1 1 0 0 0-1 1v1.128a2.251 2.251 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.5 0v1.836A2.493 2.493 0 0 1 6 7h4a1 1 0 0 0 1-1v-.628A2.25 2.25 0 0 1 9.5 3.25Zm-6 0a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Zm8.25-.75a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5ZM4.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"></path></svg>
-                    Branch Ruleset <span class="Label Label--success">beta</span>
-                  </h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Create new branch ruleset for your repository
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-create-branch-ruleset&projects=&template=repo-create-branch-ruleset.yml&title=%5Brepo-create-branch-ruleset%5D+Create+a+branch+ruleset">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Create
-                  </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="p-3">
-        <div class="clearfix gutter-md-spacious">
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"
-                      ></path>
-                      <path
-                        d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"
-                      ></path>
-                      <path
-                        d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"
-                      ></path>
-                    </svg>
-                    Webhooks
-                  </h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Create new webhooks for your repository and subscribe to events
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-create-webhook&projects=&template=repo-create-webhook.yml&title=%5Brepo-create-webhook%5D+Create+a+new+repository+webhook">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Create
-                  </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"
-                      ></path>
-                      <path
-                        d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"
-                      ></path>
-                      <path
-                        d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"
-                      ></path>
-                    </svg>
-                    Webhook Delivery</h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Report the last webhook delivery HTTP data, useful for
-                    debugging
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-get-webhook-delivery&projects=&template=repo-get-webhook-delivery.yml&title=%5Brepo-get-webhook-delivery%5D+Title+for+repo-get-webhook-delivery">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Report
-                  </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"
-                      ></path>
-                      <path
-                        d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"
-                      ></path>
-                      <path
-                        d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"
-                      ></path>
-                    </svg>
-                    Webhook Status</h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Report the status of the webhook, enabled or disabled.
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-get-status-webhook&projects=&template=repo-get-status-webhook.yml&title=%5Brepo-status-webhook%5D+Get+the+Status+of+a+webhook">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Report
-                  </button>
-                </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display:inline-block;vertical-align:text-bottom"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path></svg>
-                    Issues policy
-                  </h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Create a transfer request, requires enterprise admin
-                    approval
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-toggle-issues&projects=&template=repo-toggle-issues.yml&title=%5Brepo-toggle-issues%5D+Enable+issues+for+a+repository">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-outline"
-                  >
-                    Update
-                  </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="p-3">
-        <div class="clearfix gutter-md-spacious">
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg>
-                    Repository visibility</h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Change the repositories visibility to internal and or private and vice verse
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a
-                    href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-toggle-visibility&projects=&template=repo-toggle-visibility.yml&title=%5Brepo-update-visibility%5D+Change+repository+visibility"
-                  >
-                    <button
-                      type="button"
-                      name="Create an organization"
-                      class="btn btn-outline"
-                    >
-                      Update
-                    </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path></svg>
-                    Repository Name</h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    List the organization maintainers users using issue
-                    operations entitlement
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-update-name&projects=&template=repo-update-name.yml&title=%5Brepo-update-name%5D+Rename+a+repository">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-outline"
-                  >
-                    Update
-                  </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"
-                      ></path>
-                      <path
-                        d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"
-                      ></path>
-                      <path
-                        d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"
-                      ></path>
-                    </svg>
-                    Webhooks</h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Report the last webhook delivery HTTP data, useful for
-                    debugging
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-delete-webhook&projects=&template=repo-delete-webhook.yml&title=%5Brepo-delete-webhook%5D+Delete+and+organization+webhook">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-danger"
-                  >
-                    Delete
-                  </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="Subhead">
-        <h2 class="Subhead-heading">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            style="display: inline-block; vertical-align: text-bottom"
-          >
-            <path
-              d="M3 2.75A2.75 2.75 0 0 1 5.75 0h14.5a.75.75 0 0 1 .75.75v20.5a.75.75 0 0 1-.75.75h-6a.75.75 0 0 1 0-1.5h5.25v-4H6A1.5 1.5 0 0 0 4.5 18v.75c0 .716.43 1.334 1.05 1.605a.75.75 0 0 1-.6 1.374A3.251 3.251 0 0 1 3 18.75ZM19.5 1.5H5.75c-.69 0-1.25.56-1.25 1.25v12.651A2.989 2.989 0 0 1 6 15h13.5Z"
-            ></path>
-          </svg>
-          Enterprise Changes
-          <div class="Subhead-description">These operations are coming soon, please contact SCM team </div>
-
-        </h2>
-      </div>
-      <div class="p-3">
-        <div class="clearfix gutter-md-spacious">
-          <div class="col-3 float-left">
-            <div class="p-2">
+        <div class="p-3">
+          <div class="clearfix gutter-md-spacious">
+            <div class="col-3 float-left">
+              <div class="p-2">
                 <div class="Box color-shadow-small">
                   <div class="Box-row">
                     <h3 class="h4">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        style="display: inline-block; vertical-align: text-bottom"
-                      >
-                        <path
-                          d="M6.25 12a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM5.5 9.25a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM6.25 5a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM9 12.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75Zm.75-4.25a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM9 5.75A.75.75 0 0 1 9.75 5h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 9 5.75ZM13.25 12a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Zm-.75-2.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM13.25 5a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Z"
-                        ></path>
-                        <path
-                          d="M2 20V3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v17c0 .173-.022.34-.063.5H20a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.2-.4l-.5-.375a.75.75 0 0 1 .9-1.2l.5.375c.504.378.8.97.8 1.6v8a2 2 0 0 1-2 2h-3.562a.767.767 0 0 1-.166-.018c-.089.012-.18.018-.272.018h-3.75a.75.75 0 0 1-.75-.75V19h-3v2.25a.75.75 0 0 1-.75.75H4a2 2 0 0 1-2-2Zm2 .5h3v-2.25a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 .75.75v2.25h3a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H4a.5.5 0 0 0-.5.5v17a.5.5 0 0 0 .5.5Z"
-                        ></path>
-                      </svg>
-                      Organization
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                        <path d="M6.25 12a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM5.5 9.25a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM6.25 5a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM9 12.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75Zm.75-4.25a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM9 5.75A.75.75 0 0 1 9.75 5h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 9 5.75ZM13.25 12a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Zm-.75-2.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM13.25 5a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Z"></path>
+                        <path d="M2 20V3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v17c0 .173-.022.34-.063.5H20a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.2-.4l-.5-.375a.75.75 0 0 1 .9-1.2l.5.375c.504.378.8.97.8 1.6v8a2 2 0 0 1-2 2h-3.562a.767.767 0 0 1-.166-.018c-.089.012-.18.018-.272.018h-3.75a.75.75 0 0 1-.75-.75V19h-3v2.25a.75.75 0 0 1-.75.75H4a2 2 0 0 1-2-2Zm2 .5h3v-2.25a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 .75.75v2.25h3a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H4a.5.5 0 0 0-.5.5v17a.5.5 0 0 0 .5.5Z"></path>
+                      </svg> Organization
                     </h3>
                   </div>
                   <div class="Box-row">
-                    <p class="mb-0 color-fg-muted">
-                      Create a request for a new organization. Requires
-                      enterprrise admin approval
-                    </p>
+                    <p class="mb-0 color-fg-muted"> Create a request for a new organization. Requires enterprrise admin approval </p>
                   </div>
                   <div class="Box-row">
                     <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-org&projects=&template=org-create-org.yml&title=%5Borg-request-new%5D+Create+a+new+organization">
-                    <button
-                      type="button"
-                      name="Create an organization"
-                      class="btn btn-primary"
-                    >
-                      Create
-                    </button>
-                  </a>
+                      <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
+                    </a>
                   </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M1.5 3.25c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5A1.75 1.75 0 0 1 5.75 7.5h-2.5A1.75 1.75 0 0 1 1.5 5.75Zm7 0c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5A1.75 1.75 0 0 1 8.5 5.75Zm-7 7c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5a1.75 1.75 0 0 1-1.75-1.75Zm7 0c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5a1.75 1.75 0 0 1-1.75-1.75ZM3.25 3a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5A.25.25 0 0 0 6 5.75v-2.5A.25.25 0 0 0 5.75 3Zm7 0a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Zm-7 7a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Zm7 0a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Z"
-                      ></path>
-                    </svg>
-                    GitHub App
-                  </h3>
-                </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Create a new github app, require enterprise admin approval
-                  </p>
-                </div>
-                <div class="Box-row">
-                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-github-app&projects=&template=org-create-github-app.yml&title=%5Borg-github-app-request%5D+Create+a+GitHub+app+at+the+org+level">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Create
-                  </button>
-                </a>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-3 float-left">
-            <div class="p-2">
-              <div class="Box color-shadow-small">
-                <div class="Box-row">
-                  <h3 class="h4">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M9.5 3.25a2.25 2.25 0 1 1 3 2.122V6A2.5 2.5 0 0 1 10 8.5H6a1 1 0 0 0-1 1v1.128a2.251 2.251 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.5 0v1.836A2.493 2.493 0 0 1 6 7h4a1 1 0 0 0 1-1v-.628A2.25 2.25 0 0 1 9.5 3.25Zm-6 0a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Zm8.25-.75a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5ZM4.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"></path></svg>
-                    Branch Protection
-                  </h3>
+            <div class="col-3 float-left">
+              <div class="p-2">
+                <div class="Box color-shadow-small">
+                  <div class="Box-row">
+                    <h3 class="h4">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                        <path d="M1.5 3.25c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5A1.75 1.75 0 0 1 5.75 7.5h-2.5A1.75 1.75 0 0 1 1.5 5.75Zm7 0c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5A1.75 1.75 0 0 1 8.5 5.75Zm-7 7c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5a1.75 1.75 0 0 1-1.75-1.75Zm7 0c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5a1.75 1.75 0 0 1-1.75-1.75ZM3.25 3a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5A.25.25 0 0 0 6 5.75v-2.5A.25.25 0 0 0 5.75 3Zm7 0a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Zm-7 7a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Zm7 0a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Z"></path>
+                      </svg> GitHub App
+                    </h3>
+                  </div>
+                  <div class="Box-row">
+                    <p class="mb-0 color-fg-muted"> Create a new github app, require enterprise admin approval </p>
+                  </div>
+                  <div class="Box-row">
+                    <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-github-app&projects=&template=org-create-github-app.yml&title=%5Borg-github-app-request%5D+Create+a+GitHub+app+at+the+org+level">
+                      <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
+                    </a>
+                  </div>
                 </div>
-                <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Create a new branch protection rule for your repository
-                  </p>
-                </div>
-                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-create-branch-protection&projects=&template=repo-create-branch-protection.yml&title=%5Brepo-create-branch-protection%5D+Create+a+branch+protection+rule.">
-                <div class="Box-row">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Create
-                  </button>
+              </div>
+            </div>
+            <div class="col-3 float-left">
+              <div class="p-2">
+                <div class="Box color-shadow-small">
+                  <div class="Box-row">
+                    <h3 class="h4">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;">
+                        <path d="M9.5 3.25a2.25 2.25 0 1 1 3 2.122V6A2.5 2.5 0 0 1 10 8.5H6a1 1 0 0 0-1 1v1.128a2.251 2.251 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.5 0v1.836A2.493 2.493 0 0 1 6 7h4a1 1 0 0 0 1-1v-.628A2.25 2.25 0 0 1 9.5 3.25Zm-6 0a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Zm8.25-.75a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5ZM4.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"></path>
+                      </svg> Branch Protection
+                    </h3>
+                  </div>
+                  <div class="Box-row">
+                    <p class="mb-0 color-fg-muted"> Create a new branch protection rule for your repository </p>
+                  </div>
+                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-create-branch-protection&projects=&template=repo-create-branch-protection.yml&title=%5Brepo-create-branch-protection%5D+Create+a+branch+protection+rule.">
+                    <div class="Box-row">
+                      <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
                   </a>
                 </div>
               </div>
@@ -1330,41 +133,687 @@
               <div class="Box color-shadow-small">
                 <div class="Box-row">
                   <h3 class="h4">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      style="display: inline-block; vertical-align: text-bottom"
-                    >
-                      <path
-                        d="M1.5 3.25c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5A1.75 1.75 0 0 1 5.75 7.5h-2.5A1.75 1.75 0 0 1 1.5 5.75Zm7 0c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5A1.75 1.75 0 0 1 8.5 5.75Zm-7 7c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5a1.75 1.75 0 0 1-1.75-1.75Zm7 0c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5a1.75 1.75 0 0 1-1.75-1.75ZM3.25 3a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5A.25.25 0 0 0 6 5.75v-2.5A.25.25 0 0 0 5.75 3Zm7 0a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Zm-7 7a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Zm7 0a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Z"
-                      ></path>
-                    </svg>
-                    GitHub App
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                      <path d="M1.5 3.25c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5A1.75 1.75 0 0 1 5.75 7.5h-2.5A1.75 1.75 0 0 1 1.5 5.75Zm7 0c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5A1.75 1.75 0 0 1 8.5 5.75Zm-7 7c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5a1.75 1.75 0 0 1-1.75-1.75Zm7 0c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5a1.75 1.75 0 0 1-1.75-1.75ZM3.25 3a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5A.25.25 0 0 0 6 5.75v-2.5A.25.25 0 0 0 5.75 3Zm7 0a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Zm-7 7a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Zm7 0a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Z"></path>
+                    </svg> GitHub App
                   </h3>
                 </div>
                 <div class="Box-row">
-                  <p class="mb-0 color-fg-muted">
-                    Create a new github app, require enterprise admin approval
-                  </p>
+                  <p class="mb-0 color-fg-muted"> Create a new github app, require enterprise admin approval </p>
                 </div>
                 <div class="Box-row">
                   <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-github-app&projects=&template=org-create-github-app.yml&title=%5Borg-github-app-request%5D+Create+a+GitHub+app+at+the+org+level">
-                  <button
-                    type="button"
-                    name="Create an organization"
-                    class="btn btn-primary"
-                  >
-                    Create
-                  </button>
-                </a>
+                    <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div id="Organization" class="tabcontent">
+      <div class="Subhead">
+        <h2 class="Subhead-heading">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+            <path d="M6.25 12a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM5.5 9.25a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM6.25 5a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM9 12.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75Zm.75-4.25a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM9 5.75A.75.75 0 0 1 9.75 5h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 9 5.75ZM13.25 12a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Zm-.75-2.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM13.25 5a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Z"></path>
+            <path d="M2 20V3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v17c0 .173-.022.34-.063.5H20a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.2-.4l-.5-.375a.75.75 0 0 1 .9-1.2l.5.375c.504.378.8.97.8 1.6v8a2 2 0 0 1-2 2h-3.562a.767.767 0 0 1-.166-.018c-.089.012-.18.018-.272.018h-3.75a.75.75 0 0 1-.75-.75V19h-3v2.25a.75.75 0 0 1-.75.75H4a2 2 0 0 1-2-2Zm2 .5h3v-2.25a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 .75.75v2.25h3a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H4a.5.5 0 0 0-.5.5v17a.5.5 0 0 0 .5.5Z"></path>
+          </svg> Organization Changes
+        </h2>
+        <div class="Subhead-description"> All of the operations below are scoped to GitHub organizations </div>
+      </div>
+      <div class="p-3">
+        <div class="clearfix gutter-md-spacious">
+          <div class="col-3 float-left">
+            <div class="p-2">
+              <div class="Box color-shadow-small">
+                <div class="Box-row">
+                  <h3 class="h4">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                      <path d="M22 1.75v14.5a.75.75 0 0 1-.399.662c-.384.204-.783-.035-1.139-.248l-.003-.002c-.09-.054-.177-.107-.261-.15a15.53 15.53 0 0 0-2-.849c-1.738-.607-4.321-1.223-7.703-1.251a.833.833 0 0 1 .005.088c0 2.279.494 4.279.906 5.547.368 1.131-.438 2.453-1.732 2.453H7.661c-.696 0-1.36-.42-1.6-1.129C5.684 20.255 5 17.811 5 14.75v-.457A5.5 5.5 0 0 1 6.5 3.5h3.75c3.505 0 6.175-.61 7.955-1.21a15.88 15.88 0 0 0 2.002-.82 9.21 9.21 0 0 0 .49-.262c.048-.028.095-.055.142-.085A.751.751 0 0 1 22 1.75ZM10.5 12.912c3.564.029 6.313.678 8.193 1.335.737.258 1.34.517 1.807.74V2.993c-.467.216-1.073.467-1.815.718-1.878.634-4.624 1.26-8.185 1.288ZM6.5 5a4 4 0 0 0 0 8H9V5Zm0 9.75c0 2.847.638 5.123.982 6.141.018.051.074.109.179.109h2.013c.087 0 .179-.043.249-.147a.396.396 0 0 0 .057-.343C9.537 19.148 9 16.986 9 14.5H6.5Z"></path>
+                    </svg> Announcements
+                  </h3>
+                </div>
+                <div class="Box-row">
+                  <p class="mb-0 color-fg-muted"> Create an organization banner with useful details for your users </p>
+                </div>
+                <div class="Box-row">
+                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-announcement&projects=&template=org-create-announcement.yml&title=%5Borg-announcement%5D+Create+a+new+organization+banner+announcement">
+                    <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 float-left">
+            <div class="p-2">
+              <div class="Box color-shadow-small">
+                <div class="Box-row">
+                  <h3 class="h4">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                      <path d="M7.25 6a.75.75 0 0 0-.75.75v7.5a.75.75 0 0 0 1.5 0v-7.5A.75.75 0 0 0 7.25 6ZM12 6a.75.75 0 0 0-.75.75v4.5a.75.75 0 0 0 1.5 0v-4.5A.75.75 0 0 0 12 6Zm4 .75a.75.75 0 0 1 1.5 0v9.5a.75.75 0 0 1-1.5 0v-9.5Z"></path>
+                      <path d="M3.75 2h16.5c.966 0 1.75.784 1.75 1.75v16.5A1.75 1.75 0 0 1 20.25 22H3.75A1.75 1.75 0 0 1 2 20.25V3.75C2 2.784 2.784 2 3.75 2ZM3.5 3.75v16.5c0 .138.112.25.25.25h16.5a.25.25 0 0 0 .25-.25V3.75a.25.25 0 0 0-.25-.25H3.75a.25.25 0 0 0-.25.25Z"></path>
+                    </svg> Projects
+                  </h3>
+                </div>
+                <div class="Box-row">
+                  <p class="mb-0 color-fg-muted"> Create a new V2 project for your organization users and repositories </p>
+                </div>
+                <div class="Box-row">
+                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-projectv2&projects=&template=org-create-projectv2.yml&title=%5Bproject-create%5D+Create+a+v2+project">
+                    <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 float-left">
+            <div class="p-2">
+              <div class="Box color-shadow-small">
+                <div class="Box-row">
+                  <h3 class="h4">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                      <path d="M0 2.75A2.75 2.75 0 0 1 2.75 0h10.5A2.75 2.75 0 0 1 16 2.75v10.5A2.75 2.75 0 0 1 13.25 16H2.75A2.75 2.75 0 0 1 0 13.25ZM2.75 1.5c-.69 0-1.25.56-1.25 1.25v10.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25V2.75c0-.69-.56-1.25-1.25-1.25Z"></path>
+                      <path d="M8 4a.75.75 0 0 1 .75.75V6.7l1.69-.975a.75.75 0 0 1 .75 1.3L9.5 8l1.69.976a.75.75 0 0 1-.75 1.298L8.75 9.3v1.951a.75.75 0 0 1-1.5 0V9.299l-1.69.976a.75.75 0 0 1-.75-1.3L6.5 8l-1.69-.975a.75.75 0 0 1 .75-1.3l1.69.976V4.75A.75.75 0 0 1 8 4Z"></path>
+                    </svg> Variables
+                  </h3>
+                </div>
+                <div class="Box-row">
+                  <p class="mb-0 color-fg-muted"> Create organization variables to use in your workflows </p>
+                </div>
+                <div class="Box-row">
+                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-variable&projects=&template=org-create-variable.yml&title=%5Borg-create-variable%5D+Create+a+variable+in+an+organization">
+                    <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 float-left">
+            <div class="p-2">
+              <div class="Box color-shadow-small">
+                <div class="Box-row">
+                  <h3 class="h4">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                      <path d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"></path>
+                      <path d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"></path>
+                      <path d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"></path>
+                    </svg> Webhooks
+                  </h3>
+                </div>
+                <div class="Box-row">
+                  <p class="mb-0 color-fg-muted"> Create new webhooks for your organization and subscribe to events </p>
+                </div>
+                <div class="Box-row">
+                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-webhook&projects=&template=org-create-webhook.yml&title=%5Borg-webhook%5D+Create+a+new+organization+webhook">
+                    <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-3">
+        <div class="clearfix gutter-md-spacious">
+          <div class="col-3 float-left">
+            <div class="p-2">
+              <div class="Box color-shadow-small">
+                <div class="Box-row">
+                  <h3 class="h4">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                      <path d="M1 3.5c0-.626.292-1.165.7-1.59.406-.422.956-.767 1.579-1.041C4.525.32 6.195 0 8 0c1.805 0 3.475.32 4.722.869.622.274 1.172.62 1.578 1.04.408.426.7.965.7 1.591v9c0 .626-.292 1.165-.7 1.59-.406.422-.956.767-1.579 1.041C11.476 15.68 9.806 16 8 16c-1.805 0-3.475-.32-4.721-.869-.623-.274-1.173-.62-1.579-1.04-.408-.426-.7-.965-.7-1.591Zm1.5 0c0 .133.058.318.282.551.227.237.591.483 1.101.707C4.898 5.205 6.353 5.5 8 5.5c1.646 0 3.101-.295 4.118-.742.508-.224.873-.471 1.1-.708.224-.232.282-.417.282-.55 0-.133-.058-.318-.282-.551-.227-.237-.591-.483-1.101-.707C11.102 1.795 9.647 1.5 8 1.5c-1.646 0-3.101.295-4.118.742-.508.224-.873.471-1.1.708-.224.232-.282.417-.282.55Zm0 4.5c0 .133.058.318.282.551.227.237.591.483 1.101.707C4.898 9.705 6.353 10 8 10c1.646 0 3.101-.295 4.118-.742.508-.224.873-.471 1.1-.708.224-.232.282-.417.282-.55V5.724c-.241.15-.503.286-.778.407C11.475 6.68 9.805 7 8 7c-1.805 0-3.475-.32-4.721-.869a6.15 6.15 0 0 1-.779-.407Zm0 2.225V12.5c0 .133.058.318.282.55.227.237.592.484 1.1.708 1.016.447 2.471.742 4.118.742 1.647 0 3.102-.295 4.117-.742.51-.224.874-.47 1.101-.707.224-.233.282-.418.282-.551v-2.275c-.241.15-.503.285-.778.406-1.247.549-2.917.869-4.722.869-1.805 0-3.475-.32-4.721-.869a6.327 6.327 0 0 1-.779-.406Z"></path>
+                    </svg> Data Migration
+                  </h3>
+                </div>
+                <div class="Box-row">
+                  <p class="mb-0 color-fg-muted"> Create a request to migrate your data. This will require human intervention </p>
+                </div>
+                <div class="Box-row">
+                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-data-migration&projects=&template=org-create-data-migration.yml&title=%5Borg-create-data-migration%5D+request+a+data+migration+for+an+organization">
+                    <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 float-left">
+            <div class="p-2">
+              <div class="Box color-shadow-small">
+                <div class="Box-row">
+                  <h3 class="h4">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                      <path d="M1.5 3.25c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5A1.75 1.75 0 0 1 5.75 7.5h-2.5A1.75 1.75 0 0 1 1.5 5.75Zm7 0c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5A1.75 1.75 0 0 1 8.5 5.75Zm-7 7c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5a1.75 1.75 0 0 1-1.75-1.75Zm7 0c0-.966.784-1.75 1.75-1.75h2.5c.966 0 1.75.784 1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75h-2.5a1.75 1.75 0 0 1-1.75-1.75ZM3.25 3a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5A.25.25 0 0 0 6 5.75v-2.5A.25.25 0 0 0 5.75 3Zm7 0a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Zm-7 7a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Zm7 0a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2.5a.25.25 0 0 0 .25-.25v-2.5a.25.25 0 0 0-.25-.25Z"></path>
+                    </svg> GitHub App
+                  </h3>
+                </div>
+                <div class="Box-row">
+                  <p class="mb-0 color-fg-muted"> Create a new github app, require enterprise admin approval </p>
+                </div>
+                <div class="Box-row">
+                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-github-app&projects=&template=org-create-github-app.yml&title=%5Borg-github-app-request%5D+Create+a+GitHub+app+at+the+org+level">
+                    <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 float-left">
+            <div class="p-2">
+              <div class="Box color-shadow-small">
+                <div class="Box-row">
+                  <h3 class="h4">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                      <path d="M6.25 12a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM5.5 9.25a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM6.25 5a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM9 12.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75Zm.75-4.25a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5ZM9 5.75A.75.75 0 0 1 9.75 5h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 9 5.75ZM13.25 12a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Zm-.75-2.75a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1-.75-.75ZM13.25 5a.75.75 0 0 0 0 1.5h.5a.75.75 0 0 0 0-1.5h-.5Z"></path>
+                      <path d="M2 20V3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v17c0 .173-.022.34-.063.5H20a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.2-.4l-.5-.375a.75.75 0 0 1 .9-1.2l.5.375c.504.378.8.97.8 1.6v8a2 2 0 0 1-2 2h-3.562a.767.767 0 0 1-.166-.018c-.089.012-.18.018-.272.018h-3.75a.75.75 0 0 1-.75-.75V19h-3v2.25a.75.75 0 0 1-.75.75H4a2 2 0 0 1-2-2Zm2 .5h3v-2.25a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 .75.75v2.25h3a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H4a.5.5 0 0 0-.5.5v17a.5.5 0 0 0 .5.5Z"></path>
+                    </svg> Organization
+                  </h3>
+                </div>
+                <div class="Box-row">
+                  <p class="mb-0 color-fg-muted"> Create a request for a new organization. Requires enterprrise admin approval </p>
+                </div>
+                <div class="Box-row">
+                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-org&projects=&template=org-create-org.yml&title=%5Borg-request-new%5D+Create+a+new+organization">
+                    <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 float-left">
+            <div class="p-2">
+              <div class="Box color-shadow-small">
+                <div class="Box-row">
+                  <h3 class="h4">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                      <path d="m10.78 8.53-3.75 3.75a.749.749 0 1 1-1.06-1.06l2.469-2.47H1.75a.75.75 0 0 1 0-1.5h6.689L5.97 4.78a.749.749 0 1 1 1.06-1.06l3.75 3.75a.749.749 0 0 1 0 1.06ZM13 12.25v-8.5a.75.75 0 0 1 1.5 0v8.5a.75.75 0 0 1-1.5 0Z"></path>
+                    </svg> Transfer
+                  </h3>
+                </div>
+                <div class="Box-row">
+                  <p class="mb-0 color-fg-muted"> Create a transfer request, requires enterprise admin approval </p>
+                </div>
+                <div class="Box-row">
+                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-repo-transfer&projects=&template=org-create-repo-transfer.yml&title=%5Borg-create-repo-transfer%5D+Create+a+transfer+request%2C+requires+manual+approval+from+the+new+org">
+                    <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-3">
+        <div class="clearfix gutter-md-spacious">
+          <div class="col-3 float-left">
+            <div class="p-2">
+              <div class="Box color-shadow-small">
+                <div class="Box-row">
+                  <h3 class="h4">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;">
+                      <path d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z"></path>
+                    </svg> Admins
+                  </h3>
+                </div>
+                <div class="Box-row">
+                  <p class="mb-0 color-fg-muted"> List the organization admin users using issue operations entitlement </p>
+                </div>
+                <div class="Box-row">
+                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-get-admin-list&projects=&template=org-get-admin-list.yml&title=%5Borg-admin-list%5D+List+organization+admins">
+                    <button type="button" name="Create an organization" class="btn btn-primary"> Report </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 float-left">
+            <div class="p-2">
+              <div class="Box color-shadow-small">
+                <div class="Box-row">
+                  <h3 class="h4">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;">
+                      <path d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z"></path>
+                    </svg> Maintainers
+                  </h3>
+                </div>
+                <div class="Box-row">
+                  <p class="mb-0 color-fg-muted"> List the organization maintainers users using issue operations entitlement </p>
+                </div>
+                <div class="Box-row">
+                  <button type="button" name="Create an organization" class="btn btn-primary" aria-selected="true"> Report </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 float-left">
+            <div class="p-2">
+              <div class="Box color-shadow-small">
+                <div class="Box-row">
+                  <h3 class="h4">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                      <path d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"></path>
+                      <path d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"></path>
+                      <path d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"></path>
+                    </svg> Webhook Delivery
+                  </h3>
+                </div>
+                <div class="Box-row">
+                  <p class="mb-0 color-fg-muted"> Report the last webhook delivery HTTP data, useful for debugging </p>
+                </div>
+                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-get-webhook-delivery&projects=&template=org-get-webhook-delivery.yml&title=%5Borg-get-webhook-delivery%5D+get+a+webhook+delivery">
+                  <div class="Box-row">
+                    <button type="button" name="Create an organization" class="btn btn-primary"> Report </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 float-left">
+          <div class="p-2">
+            <div class="Box color-shadow-small">
+              <div class="Box-row">
+                <h3 class="h4">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                    <path d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"></path>
+                    <path d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"></path>
+                    <path d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"></path>
+                  </svg> Webhook Status
+                </h3>
+              </div>
+              <div class="Box-row">
+                <p class="mb-0 color-fg-muted"> Report the status of the webhook, enabled or disabled. </p>
+              </div>
+              <div class="Box-row">
+                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-status-webhook&projects=&template=org-status-webhook.yml&title=%5Borg-status-webhook%5D+Get+the+Status+of+a+webhook">
+                  <button type="button" name="Create an organization" class="btn btn-primary"> Report </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-3">
+      <div class="clearfix gutter-md-spacious">
+        <div class="col-3 float-left">
+          <div class="p-2">
+            <div class="Box color-shadow-small">
+              <div class="Box-row">
+                <h3 class="h4">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;">
+                    <path d="M15 4.75a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0ZM2.5 19.25a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0Zm0-14.5a3.25 3.25 0 1 1 6.5 0 3.25 3.25 0 0 1-6.5 0ZM5.75 6.5a1.75 1.75 0 1 0-.001-3.501A1.75 1.75 0 0 0 5.75 6.5Zm0 14.5a1.75 1.75 0 1 0-.001-3.501A1.75 1.75 0 0 0 5.75 21Zm12.5-14.5a1.75 1.75 0 1 0-.001-3.501A1.75 1.75 0 0 0 18.25 6.5Z"></path>
+                    <path d="M5.75 16.75A.75.75 0 0 1 5 16V8a.75.75 0 0 1 1.5 0v8a.75.75 0 0 1-.75.75Z"></path>
+                    <path d="M17.5 8.75v-1H19v1a3.75 3.75 0 0 1-3.75 3.75h-7a1.75 1.75 0 0 0-1.75 1.75H5A3.25 3.25 0 0 1 8.25 11h7a2.25 2.25 0 0 0 2.25-2.25Z"></path>
+                  </svg> Fork Policy
+                </h3>
+              </div>
+              <div class="Box-row">
+                <p class="mb-0 color-fg-muted"> Toggle your organization fork policy, this will allow or disallow uses to fork repos. </p>
+              </div>
+              <div class="Box-row">
+                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-toggle-fork-policy&projects=&template=org-toggle-fork-policy.yml&title=%5Borg-fork-policy-toggle%5D+Toggle+organization+fork+policy">
+                  <button type="button" name="Create an organization" class="btn btn-outline"> Update </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 float-left">
+          <div class="p-2">
+            <div class="Box color-shadow-small">
+              <div class="Box-row">
+                <h3 class="h4">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;">
+                    <path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25ZM14.5 6h-13v7.25c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25Zm-6-3.5v2h6V2.75a.25.25 0 0 0-.25-.25ZM5 2.5v2h2v-2Zm-3.25 0a.25.25 0 0 0-.25.25V4.5h2v-2Z"></path>
+                  </svg> Pages Policy
+                </h3>
+              </div>
+              <div class="Box-row">
+                <p class="mb-0 color-fg-muted"> Toggle GitHub pages. Allow users to host static content from their repositories. </p>
+              </div>
+              <div class="Box-row">
+                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-toggle-pages&projects=&template=org-toggle-pages.yml&title=%5Borg-pages-toggle%5D+Toggle+organization+pages">
+                  <button type="button" name="Create an organization" class="btn btn-outline"> Update </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 float-left">
+          <div class="p-2">
+            <div class="Box color-shadow-small">
+              <div class="Box-row">
+                <h3 class="h4">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;">
+                    <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path>
+                  </svg> Repo Create Policy
+                </h3>
+              </div>
+              <div class="Box-row">
+                <p class="mb-0 color-fg-muted"> Allow or disallow org members to create repositories. </p>
+              </div>
+              <div class="Box-row">
+                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-toggle-repo-creation&projects=&template=org-toggle-repo-creation.yml&title=%5Borg-repo-creation-toggle%5D+Toggle+organization+repo+creation">
+                  <button type="button" name="Create an organization" class="btn btn-outline"> Update </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 float-left">
+          <div class="p-2">
+            <div class="Box color-shadow-small">
+              <div class="Box-row">
+                <h3 class="h4">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                    <path d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"></path>
+                    <path d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"></path>
+                    <path d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"></path>
+                  </svg> Webhooks
+                </h3>
+              </div>
+              <div class="Box-row">
+                <p class="mb-0 color-fg-muted"> Update a current webhook with new configuration settings. </p>
+              </div>
+              <div class="Box-row">
+                <button type="button" name="Create an organization" class="btn btn-outline"> Update </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-3">
+      <div class="clearfix gutter-md-spacious">
+        <div class="col-3 float-left">
+          <div class="p-2">
+            <div class="Box color-shadow-small">
+              <div class="Box-row">
+                <h3 class="h4">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                    <path d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"></path>
+                    <path d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"></path>
+                    <path d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"></path>
+                  </svg> Webhooks
+                </h3>
+              </div>
+              <div class="Box-row">
+                <p class="mb-0 color-fg-muted"> Deletes a webhook from the organization. Proceed with caution. </p>
+              </div>
+              <div class="Box-row">
+                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-delete-webhook&projects=&template=org-delete-webhook.yml&title=%5Borg-delete-webhook%5D+Delete+and+organization+webhook">
+                  <button type="button" name="Create an organization" class="btn btn-danger"> Delete </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div id="Repository" class="tabcontent" style="display: none;">
+      <div class="Subhead">
+        <h2 class="Subhead-heading">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+            <path d="M3 2.75A2.75 2.75 0 0 1 5.75 0h14.5a.75.75 0 0 1 .75.75v20.5a.75.75 0 0 1-.75.75h-6a.75.75 0 0 1 0-1.5h5.25v-4H6A1.5 1.5 0 0 0 4.5 18v.75c0 .716.43 1.334 1.05 1.605a.75.75 0 0 1-.6 1.374A3.251 3.251 0 0 1 3 18.75ZM19.5 1.5H5.75c-.69 0-1.25.56-1.25 1.25v12.651A2.989 2.989 0 0 1 6 15h13.5Z"></path>
+          </svg> Repository Changes <div class="Subhead-description">All of the operations below are scoped to GitHub repositories</div>
+        </h2>
+      </div>
+      <div class="p-3">
+        <div class="clearfix gutter-md-spacious">
+          <div class="col-3 float-left">
+            <div class="p-2">
+              <div class="Box color-shadow-small">
+                <div class="Box-row">
+                  <h3 class="h4">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;">
+                      <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path>
+                    </svg> Repository
+                  </h3>
+                </div>
+                <div class="Box-row">
+                  <p class="mb-0 color-fg-muted"> Create a new repository in your organization </p>
+                </div>
+                <div class="Box-row">
+                  <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=org-create-announcement&projects=&template=org-create-announcement.yml&title=%5Borg-announcement%5D+Create+a+new+organization+banner+announcement">
+                    <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 float-left">
+            <div class="p-2">
+              <div class="Box color-shadow-small">
+                <div class="Box-row">
+                  <h3 class="h4">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display:inline-block;vertical-align:text-bottom">
+                      <path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v1.5A1.75 1.75 0 0 1 14.25 6H1.75A1.75 1.75 0 0 1 0 4.25ZM1.75 7a.75.75 0 0 1 .75.75v5.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-5.5a.75.75 0 0 1 1.5 0v5.5A1.75 1.75 0 0 1 13.25 15H2.75A1.75 1.75 0 0 1 1 13.25v-5.5A.75.75 0 0 1 1.75 7Zm0-4.5a.25.25 0 0 0-.25.25v1.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-1.5a.25.25 0 0 0-.25-.25ZM6.25 8h3.5a.75.75 0 0 1 0 1.5h-3.5a.75.75 0 0 1 0-1.5Z"></path>
+                    </svg> Archive
+                  </h3>
+                </div>
+                <div class="Box-row">
+                  <p class="mb-0 color-fg-muted"> Archive a repository, this will preserve the repository as read only </p>
+                </div>
+                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-create-archive&projects=&template=repo-create-archive.yml&title=%5Brepo-create-archive%5D+Archive+a+repository">
+                  <div class="Box-row">
+                    <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 float-left">
+          <div class="p-2">
+            <div class="Box color-shadow-small">
+              <div class="Box-row">
+                <h3 class="h4">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;">
+                    <path d="M9.5 3.25a2.25 2.25 0 1 1 3 2.122V6A2.5 2.5 0 0 1 10 8.5H6a1 1 0 0 0-1 1v1.128a2.251 2.251 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.5 0v1.836A2.493 2.493 0 0 1 6 7h4a1 1 0 0 0 1-1v-.628A2.25 2.25 0 0 1 9.5 3.25Zm-6 0a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Zm8.25-.75a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5ZM4.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"></path>
+                  </svg> Branch Protection
+                </h3>
+              </div>
+              <div class="Box-row">
+                <p class="mb-0 color-fg-muted"> Create a new branch protection rule for your repository </p>
+              </div>
+              <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-create-branch-protection&projects=&template=repo-create-branch-protection.yml&title=%5Brepo-create-branch-protection%5D+Create+a+branch+protection+rule.">
+                <div class="Box-row">
+                  <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3 float-left">
+        <div class="p-2">
+          <div class="Box color-shadow-small">
+            <div class="Box-row">
+              <h3 class="h4">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;">
+                  <path d="M9.5 3.25a2.25 2.25 0 1 1 3 2.122V6A2.5 2.5 0 0 1 10 8.5H6a1 1 0 0 0-1 1v1.128a2.251 2.251 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.5 0v1.836A2.493 2.493 0 0 1 6 7h4a1 1 0 0 0 1-1v-.628A2.25 2.25 0 0 1 9.5 3.25Zm-6 0a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Zm8.25-.75a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5ZM4.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"></path>
+                </svg> Branch Ruleset <span class="Label Label--success">beta</span>
+              </h3>
+            </div>
+            <div class="Box-row">
+              <p class="mb-0 color-fg-muted"> Create new branch ruleset for your repository </p>
+            </div>
+            <div class="Box-row">
+              <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-create-branch-ruleset&projects=&template=repo-create-branch-ruleset.yml&title=%5Brepo-create-branch-ruleset%5D+Create+a+branch+ruleset">
+                <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="p-3">
+      <div class="clearfix gutter-md-spacious">
+        <div class="col-3 float-left">
+          <div class="p-2">
+            <div class="Box color-shadow-small">
+              <div class="Box-row">
+                <h3 class="h4">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                    <path d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"></path>
+                    <path d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"></path>
+                    <path d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"></path>
+                  </svg> Webhooks
+                </h3>
+              </div>
+              <div class="Box-row">
+                <p class="mb-0 color-fg-muted"> Create new webhooks for your repository and subscribe to events </p>
+              </div>
+              <div class="Box-row">
+                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-create-webhook&projects=&template=repo-create-webhook.yml&title=%5Brepo-create-webhook%5D+Create+a+new+repository+webhook">
+                  <button type="button" name="Create an organization" class="btn btn-primary"> Create </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 float-left">
+          <div class="p-2">
+            <div class="Box color-shadow-small">
+              <div class="Box-row">
+                <h3 class="h4">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                    <path d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"></path>
+                    <path d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"></path>
+                    <path d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"></path>
+                  </svg> Webhook Delivery
+                </h3>
+              </div>
+              <div class="Box-row">
+                <p class="mb-0 color-fg-muted"> Report the last webhook delivery HTTP data, useful for debugging </p>
+              </div>
+              <div class="Box-row">
+                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-get-webhook-delivery&projects=&template=repo-get-webhook-delivery.yml&title=%5Brepo-get-webhook-delivery%5D+Title+for+repo-get-webhook-delivery">
+                  <button type="button" name="Create an organization" class="btn btn-primary"> Report </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 float-left">
+          <div class="p-2">
+            <div class="Box color-shadow-small">
+              <div class="Box-row">
+                <h3 class="h4">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                    <path d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"></path>
+                    <path d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"></path>
+                    <path d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"></path>
+                  </svg> Webhook Status
+                </h3>
+              </div>
+              <div class="Box-row">
+                <p class="mb-0 color-fg-muted"> Report the status of the webhook, enabled or disabled. </p>
+              </div>
+              <div class="Box-row">
+                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-get-status-webhook&projects=&template=repo-get-status-webhook.yml&title=%5Brepo-status-webhook%5D+Get+the+Status+of+a+webhook">
+                  <button type="button" name="Create an organization" class="btn btn-primary"> Report </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 float-left">
+          <div class="p-2">
+            <div class="Box color-shadow-small">
+              <div class="Box-row">
+                <h3 class="h4">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display:inline-block;vertical-align:text-bottom">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
+                    <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path>
+                  </svg> Issues policy
+                </h3>
+              </div>
+              <div class="Box-row">
+                <p class="mb-0 color-fg-muted"> Create a transfer request, requires enterprise admin approval </p>
+              </div>
+              <div class="Box-row">
+                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-toggle-issues&projects=&template=repo-toggle-issues.yml&title=%5Brepo-toggle-issues%5D+Enable+issues+for+a+repository">
+                  <button type="button" name="Create an organization" class="btn btn-outline"> Update </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-3">
+      <div class="clearfix gutter-md-spacious">
+        <div class="col-3 float-left">
+          <div class="p-2">
+            <div class="Box color-shadow-small">
+              <div class="Box-row">
+                <h3 class="h4">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;">
+                    <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path>
+                  </svg> Repository visibility
+                </h3>
+              </div>
+              <div class="Box-row">
+                <p class="mb-0 color-fg-muted"> Change the repositories visibility to internal and or private and vice verse </p>
+              </div>
+              <div class="Box-row">
+                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-toggle-visibility&projects=&template=repo-toggle-visibility.yml&title=%5Brepo-update-visibility%5D+Change+repository+visibility">
+                  <button type="button" name="Create an organization" class="btn btn-outline"> Update </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 float-left">
+          <div class="p-2">
+            <div class="Box color-shadow-small">
+              <div class="Box-row">
+                <h3 class="h4">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;">
+                    <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path>
+                  </svg> Repository Name
+                </h3>
+              </div>
+              <div class="Box-row">
+                <p class="mb-0 color-fg-muted"> List the organization maintainers users using issue operations entitlement </p>
+              </div>
+              <div class="Box-row">
+                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-update-name&projects=&template=repo-update-name.yml&title=%5Brepo-update-name%5D+Rename+a+repository">
+                  <button type="button" name="Create an organization" class="btn btn-outline"> Update </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3 float-left">
+          <div class="p-2">
+            <div class="Box color-shadow-small">
+              <div class="Box-row">
+                <h3 class="h4">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom">
+                    <path d="M5.5 4.25a2.25 2.25 0 0 1 4.5 0 .75.75 0 0 0 1.5 0 3.75 3.75 0 1 0-6.14 2.889l-2.272 4.258a.75.75 0 0 0 1.324.706L7 7.25a.75.75 0 0 0-.309-1.015A2.25 2.25 0 0 1 5.5 4.25Z"></path>
+                    <path d="M7.364 3.607a.75.75 0 0 1 1.03.257l2.608 4.349a3.75 3.75 0 1 1-.628 6.785.75.75 0 0 1 .752-1.299 2.25 2.25 0 1 0-.033-3.88.75.75 0 0 1-1.03-.256L7.107 4.636a.75.75 0 0 1 .257-1.03Z"></path>
+                    <path d="M2.9 8.776A.75.75 0 0 1 2.625 9.8 2.25 2.25 0 1 0 6 11.75a.75.75 0 0 1 .75-.751h5.5a.75.75 0 0 1 0 1.5H7.425a3.751 3.751 0 1 1-5.55-3.998.75.75 0 0 1 1.024.274Z"></path>
+                  </svg> Webhooks
+                </h3>
+              </div>
+              <div class="Box-row">
+                <p class="mb-0 color-fg-muted"> Report the last webhook delivery HTTP data, useful for debugging </p>
+              </div>
+              <div class="Box-row">
+                <a href="https://github.com/casa-vega/issue-ops/issues/new?assignees=&labels=repo-delete-webhook&projects=&template=repo-delete-webhook.yml&title=%5Brepo-delete-webhook%5D+Delete+and+organization+webhook">
+                  <button type="button" name="Create an organization" class="btn btn-danger"> Delete </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div id="Docs" class="tabcontent" style="display: none;">
+      <!-- Docs content goes here --> Coming Soon
     </div>
     <script src="script.js"></script>
   </body>
