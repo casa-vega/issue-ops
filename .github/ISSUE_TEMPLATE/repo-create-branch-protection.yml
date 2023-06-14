@@ -44,7 +44,6 @@ body:
   - type: markdown
     attributes:
       value: |
-        ---
         ## Required pull request reviews
   - type: input
     id: required_pull_request_reviews
