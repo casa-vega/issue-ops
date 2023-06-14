@@ -18,14 +18,10 @@ jobs:
         id: payload
         run: |
           echo '${{ toJSON(github.event.client_payload) }}' > ${HOME}/issue-parser-result.json
-          echo '${{ toJSON(github.event) }}' > ${HOME}/issue-parser-result2.json
-          cat ${HOME}/issue-parser-result.json
-          cat ${HOME}/issue-parser-result2.json
-
 
 
       # validate that required fields are present and that user has entitlements to perform the requested operation
-      - name: validate required form entries and user auth
+      - name: validate required field entries and user auth
         id: validate
         run: |
           echo "FORM=$(python .github/scripts/validation.py form \
