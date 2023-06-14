@@ -4,12 +4,12 @@ title: "[repo-create-branch-protection] Create a branch protection rule."
 labels:
   - repo-create-branch-protection
 body:
-  - type: input
-    id: instance
-    attributes:
-      label: instance (*)
-      description: Description for instance
-      placeholder: ex. value
+  # - type: input
+  #   id: instance
+  #   attributes:
+  #     label: instance (*)
+  #     description: Description for instance
+  #     placeholder: ex. value
   - type: input
     id: organization
     attributes:
@@ -37,54 +37,60 @@ body:
   - type: input
     id: enforce_admins
     attributes:
-      label: enforce_admins (*)
+      label: enforce_admins
       description: Description for enforce_admins
       placeholder: ex. value
   - type: input
     id: required_pull_request_reviews
     attributes:
-      label: required_pull_request_reviews (*)
+      label: required_pull_request_reviews
       description: Description for required_pull_request_reviews
       placeholder: ex. value
   - type: input
     id: restrictions
     attributes:
-      label: restrictions (*)
+      label: restrictions
       description: Description for restrictions
       placeholder: ex. value
-  - type: input
+  - type: checkboxes
     id: required_linear_history
     attributes:
-      label: required_linear_history (*)
+      label: required_linear_history
       description: Description for required_linear_history
-      placeholder: ex. value
-  - type: input
+      options:
+        - label: Enable
+  - type: checkboxes
     id: allow_force_pushes
     attributes:
-      label: allow_force_pushes (*)
+      label: allow_force_pushes
       description: Description for allow_force_pushes
-      placeholder: ex. value
-  - type: input
+      options:
+        - label: Enable
+  - type: checkboxes
     id: allow_deletions
     attributes:
-      label: allow_deletions (*)
+      label: allow_deletions
       description: Description for allow_deletions
-      placeholder: ex. value
-  - type: input
+      options:
+        - label: Enable
+  - type: checkboxes
     id: required_conversation_resolution
     attributes:
-      label: required_conversation_resolution (*)
+      label: required_conversation_resolution
       description: Description for required_conversation_resolution
-      placeholder: ex. value
-  - type: input
+      options:
+        - label: Enable
+  - type: checkboxes
     id: lock_branch
     attributes:
-      label: lock_branch (*)
+      label: lock_branch
       description: Description for lock_branch
-      placeholder: ex. value
-  - type: input
+      options:
+        - label: Enable
+  - type: checkboxes
     id: allow_fork_syncing
     attributes:
-      label: allow_fork_syncing (*)
+      label: allow_fork_syncing
       description: Description for allow_fork_syncing
-      placeholder: ex. value
+      options:
+        - label: Enable
