@@ -14,32 +14,33 @@ body:
     id: organization
     attributes:
       label: organization (*)
-      description: Description for organization
-      placeholder: ex. value
+      description: The account owner of the repository. The name is not case sensitive.
+      placeholder: ex. github
   - type: input
     id: repository
     attributes:
       label: repository (*)
-      description: Description for repository
-      placeholder: ex. value
+      description: The name of the repository without the .git extension. The name is not case sensitive.
+      placeholder: ex. octocat
   - type: input
     id: branch
     attributes:
       label: branch (*)
-      description: Description for branch
-      placeholder: ex. value
+      description: The name of the branch. Cannot contain wildcard characters.
+      placeholder: ex. main
   - type: input
     id: required_status_checks
     attributes:
-      label: required_status_checks (*)
-      description: Description for required_status_checks
-      placeholder: ex. value
-  - type: input
+      label: required_status_checks
+      description: Require status checks to pass before merging.
+      placeholder: ex. continuous-integration/gh-actions
+  - type: checkboxes
     id: enforce_admins
     attributes:
       label: enforce_admins
       description: Description for enforce_admins
-      placeholder: ex. value
+      options:
+        - label: Enable
   - type: input
     id: required_pull_request_reviews
     attributes:
