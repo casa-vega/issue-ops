@@ -38,60 +38,60 @@ body:
     id: enforce_admins
     attributes:
       label: Enforce admins
-      description: Description for enforce_admins
+      description: Enforce all configured restrictions for administrators
       options:
         - label: Enable
   - type: input
     id: required_pull_request_reviews
     attributes:
       label: Required pull request reviews
-      description: Description for required_pull_request_reviews
+      description: Require at least one approving review on a pull request, before merging.
       placeholder: ex. value
   - type: input
     id: restrictions
     attributes:
       label: Restrictions
-      description: Description for restrictions
+      description: Restrict who can push to the protected branch
       placeholder: ex. value
   - type: checkboxes
     id: required_linear_history
     attributes:
       label: Required linear history
-      description: Description for required_linear_history
+      description: Enforces a linear commit Git history, which prevents anyone from pushing merge commits to a branch
       options:
         - label: Enable
   - type: checkboxes
     id: allow_force_pushes
     attributes:
       label: Allow force pushes
-      description: Description for allow_force_pushes
+      description: Permits force pushes to the protected branch by anyone with write access to the repository.
       options:
         - label: Enable
   - type: checkboxes
     id: allow_deletions
     attributes:
       label: Allow deletions
-      description: Description for allow_deletions
+      description: Allows deletion of the protected branch by anyone with write access to the repository
       options:
         - label: Enable
   - type: checkboxes
     id: Required_conversation_resolution
     attributes:
       label: required_conversation_resolution
-      description: Description for required_conversation_resolution
+      description: Requires all conversations on code to be resolved before a pull request can be merged into a branch that matches this rule
       options:
         - label: Enable
   - type: checkboxes
     id: lock_branch
     attributes:
       label: Lock branch
-      description: Description for lock_branch
+      description: Whether to set the branch as read-only
       options:
         - label: Enable
   - type: checkboxes
     id: allow_fork_syncing
     attributes:
       label: Allow fork syncing
-      description: Description for allow_fork_syncing
+      description: Whether users can pull changes from upstream when the branch is locked.
       options:
         - label: Enable
