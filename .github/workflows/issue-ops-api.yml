@@ -18,9 +18,10 @@ jobs:
         id: payload
         run: |
           echo '${{ toJSON(github.event.client_payload) }}' > ${HOME}/issue-parser-result.json
+          echo '${{ toJSON(github.event) }}' > ${HOME}/issue-parser-result2.json
           cat ${HOME}/issue-parser-result.json
+          cat ${HOME}/issue-parser-result2.json
 
-      
 
 
       # validate that required fields are present and that user has entitlements to perform the requested operation
@@ -28,11 +29,11 @@ jobs:
         id: validate
         run: |
           echo "FORM=$(python .github/scripts/validation.py form \
-            --op=${{ github.event.name }})" >> $GITHUB_OUTPUT
-          if ! [[ "${{ github.event.name }}" == *list ]]; then
+            --op=${{ github.event.action }})" >> $GITHUB_OUTPUT
+          if ! [[ "${{ github.event.action }}" == *list ]]; then
             echo "AUTH=$(python .github/scripts/validation.py auth \
             --instance=EMU \
-            --org=${{ github.event.client_payload.oganization }} \
+            --org=${{ github.event.client_payload.organization }} \
             --user=${{ github.actor }})" >> $GITHUB_OUTPUT
           fi
 
