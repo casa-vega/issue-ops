@@ -41,6 +41,10 @@ body:
       description: Enforce all configured restrictions for administrators
       options:
         - label: Enable
+  - type: markdown
+    attributes:
+      value: |
+        ---
   - type: input
     id: required_pull_request_reviews
     attributes:
