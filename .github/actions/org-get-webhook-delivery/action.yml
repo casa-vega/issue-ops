@@ -2,14 +2,14 @@ name: "org-get-webhook-delivery"
 description: Description for "org-get-webhook-delivery"
 
 inputs:
-  instance:
-    description: "Description for instance"
-    required: true
+  # instance:
+  #   description: "GitHub Instance"
+  #   required: true
   organization:
-    description: "Description for organization"
+    description: "GitHub Organization"
     required: true
   webhook_url:
-    description: "Description for webhook_url"
+    description: "External webhook_url"
     required: true
 
 runs:

@@ -1,20 +1,47 @@
-name: "repo-get-webhook-delivery"
-description: Description for "repo-get-webhook-delivery"
+name: "org-get-webhook-delivery"
+description: Description for "org-get-webhook-delivery"
 
 inputs:
-  instance:
-    description: "Description for instance"
-    required: true
+  # instance:
+  #   description: "Description for instance"
+  #   required: true
   organization:
-    description: "Description for organization"
+    description: "GitHub Organization"
     required: true
   repository:
-    description: "Description for repository"
+    description: "GitHub Repository"
     required: true
+  webhook_url:
+    description: "External webhook_url"
+    required: true
+
 runs:
   using: composite
   steps:
-    - name: Execute repo-get-webhook-delivery
+    - name: Execute org-get-webhook-delivery
       shell: bash
       run: |
-        echo "Add your code here to execute the operation"
+        webhooks=$(gh api repos/${{ inputs.organization }}/${{ inputs.repository }}/hooks | jq '.[] | select(.config.url == "${{ inputs.webhook_url }}")')
+        count=$(echo "$webhooks" | jq -s length)
+        if [[ $count -eq 0 ]]; then
+          json_data=$(jq -nc '{ "msg": "No webhook found with the specified URL", "status": "failure" }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        elif [[ $count -eq 1 ]]; then
+          hook_id=$(echo "$webhooks" | jq -r .id)
+          delivery=$(gh api repos/${{ inputs.organization }}/${{ inputs.repository }}/hooks/$hook_id/deliveries \
+            --method GET)
+          delivery_id=$(echo "$delivery" | jq -r .[0].id)
+          data=$(gh api repos/${{ inputs.organization }}/${{ inputs.repository }}/hooks/$hook_id/deliveries/$delivery_id \
+            --method GET)
+          if [[ $? -eq 0 ]]; then
+            clean_data=$(echo "$data" | tr -d '\001-\037' | sed 's/\\n//g' | sed 's/\\r//g' | jq -c .)
+            json_data=$(jq -nc --argjson data "$clean_data" '{ "msg": "fetched webhook delivery", "status": "success", "data": $data }')
+            echo -e "RESULT=$json_data" >> $GITHUB_ENV
+          else
+            json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to fetch last webhook delivery", "status": "failure", "error": $data }')
+            echo -e "RESULT=$json_data" >> $GITHUB_ENV
+          fi
+        else
+          json_data=$(jq -nc --argjson error "$data" '{ "msg": "More than one webhook found with the specified URL", "status": "failure",  "error": $data }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        fi
