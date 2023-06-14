@@ -2,7 +2,7 @@ name: issue-ops-api
 on:
   repository_dispatch:
     types:
-      - org-create-repo
+      - repo-create
 
 jobs:
   issue-ops-api-run:
