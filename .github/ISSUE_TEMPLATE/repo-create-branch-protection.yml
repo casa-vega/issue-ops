@@ -29,69 +29,69 @@ body:
       description: The name of the branch. Cannot contain wildcard characters.
       placeholder: ex. main
   - type: input
-    id: Required status checks
+    id: required_status_checks
     attributes:
-      label: required_status_checks
+      label: Required status checks
       description: Require status checks to pass before merging.
       placeholder: ex. continuous-integration/gh-actions
   - type: checkboxes
-    id: Enforce Admins
+    id: enforce_admins
     attributes:
-      label: enforce_admins
+      label: Enforce admins
       description: Description for enforce_admins
       options:
         - label: Enable
   - type: input
-    id: Required pull request reviews
+    id: required_pull_request_reviews
     attributes:
-      label: required_pull_request_reviews
+      label: Required pull request reviews
       description: Description for required_pull_request_reviews
       placeholder: ex. value
   - type: input
-    id: Restrictions
+    id: restrictions
     attributes:
-      label: restrictions
+      label: Restrictions
       description: Description for restrictions
       placeholder: ex. value
   - type: checkboxes
-    id: Required linear history
+    id: required_linear_history
     attributes:
-      label: required_linear_history
+      label: Required linear history
       description: Description for required_linear_history
       options:
         - label: Enable
   - type: checkboxes
-    id: Allow force pushes
+    id: allow_force_pushes
     attributes:
-      label: allow_force_pushes
+      label: Allow force pushes
       description: Description for allow_force_pushes
       options:
         - label: Enable
   - type: checkboxes
-    id: Allow deletions
+    id: allow_deletions
     attributes:
-      label: allow_deletions
+      label: Allow deletions
       description: Description for allow_deletions
       options:
         - label: Enable
   - type: checkboxes
-    id: Required conversation resolution
+    id: Required_conversation_resolution
     attributes:
       label: required_conversation_resolution
       description: Description for required_conversation_resolution
       options:
         - label: Enable
   - type: checkboxes
-    id: Lock branch
+    id: lock_branch
     attributes:
-      label: lock_branch
+      label: Lock branch
       description: Description for lock_branch
       options:
         - label: Enable
-  - type: Checkbox
+  - type: checkboxes
     id: allow_fork_syncing
     attributes:
-      label: allow_fork_syncing
+      label: Allow fork syncing
       description: Description for allow_fork_syncing
       options:
         - label: Enable
