@@ -11,84 +11,84 @@ body:
   #     description: Description for instance
   #     placeholder: ex. value
   - type: input
-    id: organization
+    id: Organization
     attributes:
       label: organization (*)
       description: The account owner of the repository. The name is not case sensitive.
       placeholder: ex. github
   - type: input
-    id: repository
+    id: Repository
     attributes:
       label: repository (*)
       description: The name of the repository without the .git extension. The name is not case sensitive.
       placeholder: ex. octocat
   - type: input
-    id: branch
+    id: Branch
     attributes:
       label: branch (*)
       description: The name of the branch. Cannot contain wildcard characters.
       placeholder: ex. main
   - type: input
-    id: required_status_checks
+    id: Required status checks
     attributes:
       label: required_status_checks
       description: Require status checks to pass before merging.
       placeholder: ex. continuous-integration/gh-actions
   - type: checkboxes
-    id: enforce_admins
+    id: Enforce Admins
     attributes:
       label: enforce_admins
       description: Description for enforce_admins
       options:
         - label: Enable
   - type: input
-    id: required_pull_request_reviews
+    id: Required pull request reviews
     attributes:
       label: required_pull_request_reviews
       description: Description for required_pull_request_reviews
       placeholder: ex. value
   - type: input
-    id: restrictions
+    id: Restrictions
     attributes:
       label: restrictions
       description: Description for restrictions
       placeholder: ex. value
   - type: checkboxes
-    id: required_linear_history
+    id: Required linear history
     attributes:
       label: required_linear_history
       description: Description for required_linear_history
       options:
         - label: Enable
   - type: checkboxes
-    id: allow_force_pushes
+    id: Allow force pushes
     attributes:
       label: allow_force_pushes
       description: Description for allow_force_pushes
       options:
         - label: Enable
   - type: checkboxes
-    id: allow_deletions
+    id: Allow deletions
     attributes:
       label: allow_deletions
       description: Description for allow_deletions
       options:
         - label: Enable
   - type: checkboxes
-    id: required_conversation_resolution
+    id: Required conversation resolution
     attributes:
       label: required_conversation_resolution
       description: Description for required_conversation_resolution
       options:
         - label: Enable
   - type: checkboxes
-    id: lock_branch
+    id: Lock branch
     attributes:
       label: lock_branch
       description: Description for lock_branch
       options:
         - label: Enable
-  - type: checkboxes
+  - type: Checkbox
     id: allow_fork_syncing
     attributes:
       label: allow_fork_syncing
