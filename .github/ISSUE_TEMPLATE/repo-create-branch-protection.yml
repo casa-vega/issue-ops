@@ -11,21 +11,21 @@ body:
   #     description: Description for instance
   #     placeholder: ex. value
   - type: input
-    id: Organization
+    id: organization
     attributes:
-      label: organization (*)
+      label: Organization (*)
       description: The account owner of the repository. The name is not case sensitive.
       placeholder: ex. github
   - type: input
-    id: Repository
+    id: repository
     attributes:
-      label: repository (*)
+      label: Repository (*)
       description: The name of the repository without the .git extension. The name is not case sensitive.
       placeholder: ex. octocat
   - type: input
-    id: Branch
+    id: branch
     attributes:
-      label: branch (*)
+      label: Branch (*)
       description: The name of the branch. Cannot contain wildcard characters.
       placeholder: ex. main
   - type: input
