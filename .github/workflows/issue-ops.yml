@@ -3,7 +3,6 @@ on:
   issues:
     types:
       - opened
-  repository_dispatch:
 
 jobs:
   issue-ops-run:
