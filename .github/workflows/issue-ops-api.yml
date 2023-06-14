@@ -1,6 +1,8 @@
 name: issue-ops-api
 on:
   repository_dispatch:
+    types:
+      - org-create-repo
 
 jobs:
   issue-ops-api-run:
@@ -26,11 +28,11 @@ jobs:
         id: validate
         run: |
           echo "FORM=$(python .github/scripts/validation.py form \
-            --op=${{ github.event.event_type }})" >> $GITHUB_OUTPUT
-          if ! [[ "${{ github.event.event_type }}" == *list ]]; then
+            --op=${{ github.event.name }})" >> $GITHUB_OUTPUT
+          if ! [[ "${{ github.event.name }}" == *list ]]; then
             echo "AUTH=$(python .github/scripts/validation.py auth \
             --instance=EMU \
-            --org=${{ steps.issue-parser.outputs.issueparser_organization }} \
+            --org=${{ github.event.client_payload.oganization }} \
             --user=${{ github.actor }})" >> $GITHUB_OUTPUT
           fi
 
