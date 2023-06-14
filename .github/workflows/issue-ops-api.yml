@@ -15,7 +15,7 @@ jobs:
       - name: parse client payload
         id: payload
         run: |
-          echo '${{ toJSON(github.event.client_payload) }}' > ${HOME}/issue-parser-payload.json
+          echo '${{ toJSON(github.event.client_payload) }}' > ${HOME}/issue-parser-result.json
           cat ${HOME}/issue-parser-payload.json
 
       
