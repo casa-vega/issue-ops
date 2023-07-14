@@ -14,5 +14,5 @@ runs:
     - name: Execute repo-create-workflow-from-template
       shell: bash
       run: |
-        gh repo clone casa-vega/.github
+        gh repo clone casa-vega/.github wf-templates
         gh repo clone casa-vega/new-internet
