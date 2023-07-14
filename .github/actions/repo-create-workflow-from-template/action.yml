@@ -2,6 +2,8 @@ name: "repo-create-workflow-from-template"
 description: Description for "repo-create-workflow-from-template"
 
 inputs:
+  organization:
+    required: true
   repository:
     required: true
   template:
