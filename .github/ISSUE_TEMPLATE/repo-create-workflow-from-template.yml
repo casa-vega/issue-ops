@@ -5,6 +5,12 @@ labels:
   - repo-create-workflow-from-template
 body:
   - type: input
+    id: organization
+    attributes:
+      label: organization (*)
+      description: The org your repo lives in
+      placeholder: ex. value
+  - type: input
     id: repository
     attributes:
       label: GitHub Repository (*)
