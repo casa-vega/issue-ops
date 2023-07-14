@@ -1,0 +1,16 @@
+name: "repo-create-workflow-from-template"
+description: Description for "repo-create-workflow-from-template"
+
+inputs:
+  repository:
+    required: true
+  template:
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Execute repo-create-workflow-from-template
+      shell: bash
+      run: |
+        gh repo clone casa-vega/.github
+        gh repo clone casa-vega/new-internet

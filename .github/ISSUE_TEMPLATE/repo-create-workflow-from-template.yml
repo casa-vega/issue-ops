@@ -1,0 +1,21 @@
+name: "repo-create-workflow-from-template"
+description: create an action workflow from pr and add it to your repo
+title: "[repo-create-workflow-from-template] Create a workflow from template"
+labels:
+  - repo-create-workflow-from-template
+body:
+  - type: input
+    id: repository
+    attributes:
+      label: GitHub Repository (*)
+      description: The name of the github repository (must be exact)
+      placeholder: ex. super-awesome-repo
+  - type: dropdown
+    id: template
+    attributes:
+      label: GitHub Instance (*)
+      description: The instance of Github you're targeting. 
+      options:
+        - python
+        - ruby
+        - java

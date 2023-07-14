@@ -1,0 +1,3 @@
+required_fields:
+  - repository
+  - template
