@@ -13,8 +13,8 @@ body:
   - type: dropdown
     id: template
     attributes:
-      label: GitHub Instance (*)
-      description: The instance of Github you're targeting. 
+      label: Workflow Template (*)
+      description: The Github Actions template you're targeting. 
       options:
         - python
         - ruby
