@@ -14,11 +14,14 @@ runs:
     - name: Execute repo-create-workflow-from-template
       shell: bash
       run: |
-        gh repo clone casa-vega/action-template
+        gh repo clone casa-vega/action-template action-template
+        pwd
+        ls
         gh repo clone casa-vega/${{ inputs.repository }}
-
+        pwd
+        ls
         cd ${{ inputs.repository }}
-
+        pwd
         git checkout -b ${{ inputs.organization }}-${{ inputs.repository }}-${{ inputs.template}}-template
 
         cp ../action-template/${{ inputs.template }} .github/workflows/
