@@ -15,21 +15,13 @@ runs:
       shell: bash
       run: |
         gh repo clone casa-vega/action-template action-template
-        pwd
-        ls
         gh repo clone casa-vega/${{ inputs.repository }}
-        pwd
-        ls
         cd ${{ inputs.repository }}
-        pwd
         git checkout -b ${{ inputs.organization }}-${{ inputs.repository }}-${{ inputs.template}}-template
-
-        cp ../action-template/${{ inputs.template }} .github/workflows/
-
+        cp ../action-template/${{ inputs.template }}.yml .github/workflows/
         git add .github/workflows/${{ inputs.template }}
         git commit -m "Add ${{ inputs.template }} workflow"
         git push origin ${{ inputs.branch }}
-
         gh pr create \
           --title "Add ${{ inputs.template }} workflow template to ${{ inputs.repository }}" \
           --body "Add ${{ inputs.template }} workflow template to ${{ inputs.repository }}" \
