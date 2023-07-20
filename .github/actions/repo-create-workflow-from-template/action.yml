@@ -21,10 +21,14 @@ runs:
 
         git checkout -b ${{ inputs.organization }}-${{ inputs.repository }}-${{ inputs.template}}-template
 
-        cp ../actions-template/${{ inputs.template }} .github/workflows/
+        cp ../action-template/${{ inputs.template }} .github/workflows/
 
         git add .github/workflows/${{ inputs.template }}
         git commit -m "Add ${{ inputs.template }} workflow"
         git push origin ${{ inputs.branch }}
 
-        gh pr create --title "Add ${{ inputs.template }} workflow" --body "Add ${{ inputs.template }} workflow" --base main --head ${{ inputs.branch }}
+        gh pr create \
+          --title "Add ${{ inputs.template }} workflow template to ${{ inputs.repository }}" \
+          --body "Add ${{ inputs.template }} workflow template to ${{ inputs.repository }}" \
+          --base main \
+          --head ${{ inputs.organization }}-${{ inputs.repository }}-${{ inputs.template}}-template
