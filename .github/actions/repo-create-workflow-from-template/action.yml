@@ -18,6 +18,7 @@ runs:
         gh repo clone casa-vega/${{ inputs.repository }}
         cd ${{ inputs.repository }}
         git checkout -b ${{ inputs.organization }}-${{ inputs.repository }}-${{ inputs.template}}-template
+        mkdir -p .github/workflows
         cp ../action-template/${{ inputs.template }}.yml .github/workflows/
         git add .github/workflows/${{ inputs.template }}
         git commit -m "Add ${{ inputs.template }} workflow"
