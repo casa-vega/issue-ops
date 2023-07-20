@@ -21,7 +21,7 @@ runs:
         mkdir -p .github/workflows
         cp ../action-template/${{ inputs.template }}.yml .github/workflows/
         git config --global user.email "cvega@github.com"
-        git config --global user.name "Casey Vega"
+        git config --global user.name "cvega"
         git add .github/workflows/${{ inputs.template }}.yml
         git commit -m "Add ${{ inputs.template }} workflow"
         git push --set-upstream origin ${{ inputs.organization }}-${{ inputs.repository }}-${{ inputs.template}}-template
