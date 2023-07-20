@@ -14,8 +14,6 @@ runs:
     - name: Execute repo-create-workflow-from-template
       shell: bash
       run: |
-        gh auth login --with-token ${{ secrets.EMU_ISSUE_OPS }}
-
         gh repo clone casa-vega/actions-template
         gh repo clone casa-vega/${{ inputs.repository }}
 
