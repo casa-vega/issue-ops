@@ -32,3 +32,10 @@ runs:
           --body "Add ${{ inputs.template }} workflow template to ${{ inputs.repository }}" \
           --base main \
           --head ${{ inputs.organization }}-${{ inputs.repository }}-${{ inputs.template}}-template
+        if [[ $? -eq 0 ]]; then
+          json_data=$(jq -nc '{ "msg": "PR for ${{ inputs.template}} created on ${{ inputs.organization }}/${{ inputs.repository }} ", "status": "success" }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        else
+          json_data=$(jq -nc --argjson error "$data" '{ "msg": "unable to create workflow template", "status": "error": $data }')
+          echo -e "RESULT=$json_data" >> $GITHUB_ENV
+        fi
