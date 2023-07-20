@@ -14,5 +14,19 @@ runs:
     - name: Execute repo-create-workflow-from-template
       shell: bash
       run: |
-        gh repo clone casa-vega/.github wf-templates
-        gh repo clone casa-vega/new-internet
+        gh auth login --with-token ${{ secrets.EMU_ISSUE_OPS }}
+
+        gh repo clone casa-vega/actions-template
+        gh repo clone casa-vega/${{ inputs.repository }}
+
+        cd ${{ inputs.repository }}
+
+        git checkout -b ${{ inputs.branch }}
+
+        cp ../actions-template/${{ inputs.template }} .github/workflows/
+
+        git add .github/workflows/${{ inputs.template }}
+        git commit -m "Add ${{ inputs.template }} workflow"
+        git push origin ${{ inputs.branch }}
+
+        gh pr create --title "Add ${{ inputs.template }} workflow" --body "Add ${{ inputs.template }} workflow" --base main --head ${{ inputs.branch }}
