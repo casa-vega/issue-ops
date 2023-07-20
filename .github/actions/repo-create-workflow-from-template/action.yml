@@ -25,7 +25,7 @@ runs:
         git add .github/workflows/${{ inputs.template }}.yml
         git commit -m "Add ${{ inputs.template }} workflow"
         secret=$(<../token.txt)
-        git remote add origin https://cvega:${secret}@github.com/${{ inputs.repository }}/${{ inputs.repository }}.git
+        git remote set-url origin https://cvega:${secret}@github.com/${{ inputs.repository }}/${{ inputs.repository }}.git
         git push --set-upstream origin ${{ inputs.organization }}-${{ inputs.repository }}-${{ inputs.template}}-template
         gh pr create \
           --title "Add ${{ inputs.template }} workflow template to ${{ inputs.repository }}" \
