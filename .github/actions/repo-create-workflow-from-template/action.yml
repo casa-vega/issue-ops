@@ -21,7 +21,7 @@ runs:
 
         cd ${{ inputs.repository }}
 
-        git checkout -b ${{ inputs.branch }}
+        git checkout -b ${{ inputs.organization }}-${{ inputs.repository }}-${{ inputs.template}}-template
 
         cp ../actions-template/${{ inputs.template }} .github/workflows/
 
