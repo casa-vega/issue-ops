@@ -14,7 +14,7 @@ runs:
     - name: Execute repo-create-workflow-from-template
       shell: bash
       run: |
-        gh repo clone casa-vega/actions-template
+        gh repo clone casa-vega/action-template
         gh repo clone casa-vega/${{ inputs.repository }}
 
         cd ${{ inputs.repository }}
