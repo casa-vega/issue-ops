@@ -20,7 +20,7 @@ runs:
         git checkout -b ${{ inputs.organization }}-${{ inputs.repository }}-${{ inputs.template}}-template
         mkdir -p .github/workflows
         cp ../action-template/${{ inputs.template }}.yml .github/workflows/
-        git add .github/workflows/${{ inputs.template }}
+        git add .github/workflows/${{ inputs.template }}.yml
         git commit -m "Add ${{ inputs.template }} workflow"
         git push origin ${{ inputs.branch }}
         gh pr create \
